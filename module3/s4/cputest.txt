@@ -1,0 +1,171 @@
+drop table dbtest
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+
+Table created.
+
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+
+ SID Stat Num Stat Name                                       Value             
+---- -------- ---------------------------------------- ------------             
+ 262       12 CPU used by this session                           39             
+ 262        9 session logical reads                           5,803             
+ 262       50 consistent gets                                 3,472             
+ 262       47 db block gets                                   2,331             
+ 262       54 physical reads                                     68             
+ 262      328 buffer is pinned count                            407             
+ 262       11 CPU used when call started                         37             
+
+7 rows selected.
+
+> Logical I/O Rate Test 
+>  This script will generate output that can be used to 
+>  correlate Oracle logical I/Os to CPU capacity and speed. 
+>  This can be used to compare CPU speed between platforms and 
+>  Oracle releases or to correlate workload capacity for the 
+>  system in question. 
+> 
+>  The basic premise is that Oracle logical I/Os translate directly 
+>  to CPU usage. By measuring the time it takes to execute a series 
+>  of logical I/Os we can measure the rate a CPU can execute a 
+>  logical I/O.  Since all logical I/Os are not the same, the numbers 
+>  produced by this test should be considered theoretical maximums. 
+>  These numbers will give values that can be used to measure CPU 
+>  capacity and relative speed for an Oracle database, and should be 
+>  within an acceptable margin of error. 
+> 
+>  NOTE: It is important that physical reads remain constant for each 
+>  loop in order to insure that only logical I/Os affect the timing. 
+>  A busy SGA may prevent this as well as CPU queuing for overall 
+>  timing.  It is recommended that this test be run on an idle, or 
+>  near idle machine. 
+> 
+>  The results of this script show the session logical reads 
+>  performed for each loop, which should be constant, and the total 
+>  time, which is in hundredths of a second. The statistic "physical 
+>  reads" is included to verify that all blocks were cached. 
+>  These values can be used to calculate the maximum logical I/Os per 
+>  second that can be executed: 
+> 
+>  session logical reads / ( total time / 100 ) = maximum logical 
+>  I/Os per second 
+> 
+>  If calculating for capacity against existing information 
+>  (e.g. SYSMON data) then the total period (elapsed time) must be 
+>  known, the total number of CPUs available, and some fudge factor 
+>  (e.g. CPU queuing, SMP scalability): 
+>    Interval capacity (with 20% fudge factor) = 
+>      logical I/Os per second * total time * # of CPUs * .8 
+
+**********                                                                      
+Loop > 1                                                                        
+**********                                                                      
+CPU used by this session = 47                                                   
+session logical reads = 5901                                                    
+consistent gets = 3570                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+*                                                                               
+CPU used by this session = 58                                                   
+session logical reads = 6967                                                    
+consistent gets = 4636                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+**                                                                              
+total time: 11                                                                  
+LIOs/sec per CPU: 9691                                                          
+LIOs/sec system total: 19382                                                    
+**********                                                                      
+Loop > 2                                                                        
+**********                                                                      
+CPU used by this session = 59                                                   
+session logical reads = 6967                                                    
+consistent gets = 4636                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+*                                                                               
+CPU used by this session = 68                                                   
+session logical reads = 8027                                                    
+consistent gets = 5696                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+**                                                                              
+total time: 9                                                                   
+LIOs/sec per CPU: 11778                                                         
+LIOs/sec system total: 23556                                                    
+**********                                                                      
+Loop > 3                                                                        
+**********                                                                      
+CPU used by this session = 69                                                   
+session logical reads = 8027                                                    
+consistent gets = 5696                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+*                                                                               
+CPU used by this session = 78                                                   
+session logical reads = 9087                                                    
+consistent gets = 6756                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+**                                                                              
+total time: 9                                                                   
+LIOs/sec per CPU: 11778                                                         
+LIOs/sec system total: 23556                                                    
+**********                                                                      
+Loop > 4                                                                        
+**********                                                                      
+CPU used by this session = 79                                                   
+session logical reads = 9087                                                    
+consistent gets = 6756                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+*                                                                               
+CPU used by this session = 89                                                   
+session logical reads = 10147                                                   
+consistent gets = 7816                                                          
+db block gets = 2331                                                            
+physical reads = 68                                                             
+buffer is pinned count = 407                                                    
+CPU used when call started = 40                                                 
+**                                                                              
+total time: 9                                                                   
+LIOs/sec per CPU: 11778                                                         
+LIOs/sec system total: 23556                                                    
+
+PL/SQL procedure successfully completed.
+
+
+ SID Stat Num Stat Name                                       Value             
+---- -------- ---------------------------------------- ------------             
+ 262       12 CPU used by this session                           89             
+ 262        9 session logical reads                          10,150             
+ 262       50 consistent gets                                 7,819             
+ 262       47 db block gets                                   2,331             
+ 262       54 physical reads                                     68             
+ 262      328 buffer is pinned count                            407             
+ 262       11 CPU used when call started                         89             
+
+7 rows selected.
+

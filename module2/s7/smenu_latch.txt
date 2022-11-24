@@ -1,0 +1,241 @@
+This help focuses on latches. It attemps to give a clear understanding of 
+how latches are implemented in the Oracle RDBMS and what causes latch contention. 
+
+-------------------------------------------------------------------------------
+                   Internal Latch Contention
+-------------------------------------------------------------------------------
+
+
+
+================
+What is a latch?
+================
+
+Latches control the access to internal data structures and thereby provide 
+a way to protect them. If a process can't obtain a latch immediately, it spins 
+while waiting for the latch. Spinning processes should be minimized because 
+they can lead to additional CPU use and a slowing of the system.
+
+A latch is a type  of a lock that can be VERY QUICKLY aquired and freed.
+Latches are typically used to prevent more than one process from
+executing the same  piece of  code at  a given time. 
+
+Associated with each latch is a cleanup procedure that will be called if 
+a process  dies while holding  the latch.  Latches  have an  associated 
+level that  is used to prevent deadlocks.  Once a process acquires a latch 
+at a certain level it cannot subsequently acquire a latch at a  level that 
+is equal to  or less than that level (unless it acquires it nowait).
+
+
+
+
+====================
+Latches vs Enqueues:
+====================
+
+The Oracle RDBMS makes use of different types of locking mechanisms.
+They are mainly latches, enqueues, distributed locks and global locks
+(used in parallel instance implementations).
+
+Enqueues are another type of locking mechanism used in Oracle.
+An enqueue is a more sophisticated mechanism which permits several concurrent
+processes to have varying degree of sharing of "known" resources. Any object
+which can be concurrently used, can be protected with enqueues. A good example
+is of locks on tables. We allow varying levels of sharing on tables e.g.
+two processes can lock a table in share mode or in share update mode etc.
+One difference is that the enqueue is obtained using an OS specific
+locking mechanism. An enqueue allows the user to store a value in the lock,
+i.e the mode in which we are requesting it. The OS lock manager keeps track
+of the resources locked. If a process cannot be granted the lock because it
+is incompatible with the mode requested and the lock is requested with wait,
+the OS puts the requesting process on a wait queue which is serviced in FIFO.
+Another difference between latches and enqueues is that
+in latches there is no ordered queue of waiters like in enqueues. Latch
+waiters may either use timers to wakeup and retry or spin (only in
+multiprocessors). Since all waiters are concurrently retrying (depending on
+the scheduler), anyone might get the latch and conceivably the first one to
+try might be the last one to get.
+
+
+==================================
+When do we need to obtain a latch?
+==================================
+
+A process acquires a latch when working with a structure in the SGA
+(System Global Area). It continues to hold the latch for the period
+of time it works with the structure. The latch is dropped when the
+process is finished with the structure. Each latch protects a different
+set of data, identified by the name of the latch.
+
+Oracle uses atomic instructions like "test and set" for operating on latches.
+Processes waiting to execute a part of code for which a latch has
+already been obtained by some other process will wait until the
+latch is released. Examples are redo allocation latches, copy
+latches, archive control latch etc. The basic idea is to block concurrent
+access to shared data structures. Since the instructions to
+set and free latches are atomic, the OS guarantees that only one process gets
+it. Since it is only one instruction, it is quite fast. Latches are held
+for short periods of time and provide a mechanism for cleanup in case
+a holder dies abnormally while holding it. This cleaning is done using
+the services of PMON.
+
+
+=============================
+What causes latch contention?
+=============================
+
+Latches protect the data structures describing the blocks
+in the buffer cache from the list of users trying to access these blocks
+in the database. If a process is not able to obtain a latch right away,
+it must wait for the latch. This causes a slowdown to occur and results
+in additional CPU usage, until a latch is available. The CPU usage is a
+consequence of the "spinning" of the process. "Spinning" means that the
+process continues to look for the availability of the latch after
+fixed intervals of time, during which it sleeps. It continues to spin
+until a latch is available.
+
+
+Each row in the V$LATCH table contains statistics for a different type
+of latch. The columns of the table reflect activity for different types
+of latch requests. The distinction between these types of requests is
+whether the requesting process continues to request a latch if it
+is unavailable:
+
+willing-to-wait         If the latch requested with a willing-to-wait
+                        request is not available, the requesting process
+                        waits a short time and requests the latch again.
+                        The process continues waiting and requesting until
+                        the latch is available.
+
+immediate               If the latch requested with an immediate request is
+                        not available, the requesting process does not
+                        wait, but continues processing.
+
+The following columns in V$LATCH table reflect willing-to-wait requests:
+------------------------------------------------------------------------
+
+GETS                    Number of successful willing-to-wait requests for
+                        a latch.
+
+MISSES                  Number of times an initial willing-to-wait request
+                        was unsuccessful.
+
+SLEEPS                  Number of times a process waited a requested a latch
+                        after an initial wiling-to-wait request.
+
+The following columns in V$LATCH table reflect immediate requests:
+------------------------------------------------------------------
+
+IMMEDIATE_GETS          Number of successful immediate requests for each latch.
+
+IMMEDIATE_MISSES        Number of unsuccessful immediate requests for each
+                        latch.
+
+
+
+==================================================
+List of latches that are of most concern to a DBA:
+==================================================
+
+
+Cache buffers chains latch:
+...........................
+
+        This latch is needed when user processes try to scan
+        the SGA for database cache buffers.
+
+
+Cache buffers LRU chain latch:
+..............................
+
+        This latch is needed when user processes try to scan
+        the LRU (least recently used) chain containing all the dirty blocks
+        in the buffer cache.
+
+Redo allocation latch:
+......................
+
+        This latch controls the allocation of space for redo
+        entries in the redo log buffer. There is one redo allocation
+        latch per instance.
+
+
+Redo copy latch:
+................
+
+        The use of a redo copy latch is forced when the size of an entry
+        is greater than the parameter LOG_SMALL_ENTRY_MAX_SIZE.
+
+
+
+Row cache objects latch:
+........................
+
+        This latch comes into play when user processes are attempting to
+        access the cached data dictionary values.
+
+
+
+==================================================
+How can we reduce contention for internal latches?
+==================================================
+
+
+We can reduce contention for these latches and tune them by adjusting
+certain init.ora parameters.
+
+Cache buffers chain latch:
+..........................
+
+        This latch is related to DB_BLOCK_HASH_BUCKETS (undocumented in
+        Oracle7) which is related to db_block_buffers. It can be tuned by
+        adjusting DB_BLOCK_BUFFERS.
+
+Cache buffers LRU chain latch:
+..............................
+
+        Increasing the parameters DB_BLOCK_BUFFERS and DB_BLOCK_WRITE_BATCH
+        will reduce waits on this kind of latches.
+
+Redo Allocation Latch:
+......................
+
+        Contention for this latch can be reduced by decreasing the value of
+        LOG_SMALL_ENTRY_MAX_SIZE on multi-cpu systems to force the use of the
+        redo copy latch.
+
+Redo copy latch:
+................
+
+        This latch is waited for on both single and multi-cpu systems.
+        On multi-cpu systems, contention can be reduced by increasing the
+        value of LOG_SIMULTANEOUS_COPIES and/or increasing
+        LOG_ENTRY_PREBUILD_THRESHOLD (undocumented in Oracle7).
+
+        Notice that on single-cpu systems increasing the value of
+        LOG_ENTRY_PREBUILD_THRESHOLD won't have much effect as
+        CPU_COUNT is zero.  Default is 0.
+
+Row cache objects latch:
+........................
+
+        In order to reduce contention for this latch, we need to
+        tune the data dictionary cache. In Oracle7 this basically means
+        increasing the size of the shared pool (SHARED_POOL_SIZE)
+        as the dictionary cache is a part of the shared pool.
+
+LATCH_SPIN_COUNT (_LATCH_SPIN_COUNT):
+====================================
+
+        It sets the number of times a process attempts to get
+        a latch before sleeping. If the oracle process tries to get a latch
+        and finds that it is busy, the process spins and checks back with
+        latch LATCH_SPIN_COUNT number of times until the latch is not busy.
+        Once it attains LATCH_SPIN_COUNT, the process sleeps for a set period
+        of time, then wakes up and tries again.
+
+        Performance can be adjusted by changing the value of SPIN_COUNT.
+        If a high value is used, the latch will be attained sooner than if
+        you use a low value. However, you may use more CPU time spinning to
+        get the latch if you use a high value for SPIN_COUNT.
+

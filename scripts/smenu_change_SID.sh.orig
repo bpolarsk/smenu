@@ -1,0 +1,43 @@
+#!/bin/ksh
+#set -xv
+# smenu_change_SID.sh
+OS=`uname | awk '{print $1}'`
+
+case $OS in
+  AIX   ) ORATAB=/etc/oratab ;;
+  HP-UX ) ORATAB=/etc/oratab ;;
+  CYG*  ) ORATAB=/etc/oratab ;;
+  Linux ) ORATAB=/etc/oratab ;;
+  SunOS ) ORATAB=/var/opt/oracle/oratab ;;
+   *    ) if [ -f /etc/oratab ];then
+             ORATAB=/etc/oratab
+          elif [ -f /var/opt/oracle/oratab ];then
+             ORATAB=/var/opt/oracle/oratab
+          else
+            echo "I did not find the Oratab ! "
+            echo " Edit he file $0 and update the ORATAB locatction. "
+            return
+          fi
+           ;;
+esac
+
+echo " "
+PS3=' Select SID ==> '
+SIDLIST=` awk -F: '/^[^#^\*]/ { printf "%s ", $1 } ' $ORATAB | tr -d '*'| tr ' ' '\n' | sort -u | tr '\n' ' '`
+#SIDLIST=`cat $ORATAB | cut -f1 -d: | grep -v ^[#] | grep -v '^ '`
+echo " "
+echo " Instances :"
+echo " "
+echo " "
+select SID in ${SIDLIST}
+   do
+      if [[ -n ${SID} ]]; then
+         ORAENV_ASK=NO
+         ORACLE_SID=${SID}
+         export ORAENV_ASK ORACLE_SID
+         break
+      else
+         print -u2 "Invalid choice"
+      fi
+done
+

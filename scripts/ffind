@@ -1,0 +1,3 @@
+#!/bin/ksh
+STR=$1
+find . -print -exec grep -i $STR {} \; | more

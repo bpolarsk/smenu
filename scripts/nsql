@@ -1,0 +1,49 @@
+#!/bin/sh
+#set -xv
+#trap 'if [ -f zzgg$$.sql ];then
+#          rm zzgg$$.sql
+#      fi 
+#      exit ' 0 2 9 13 15 
+. $SBIN/scripts/passwd.env
+. ${GET_PASSWD} 
+if [  "x-$CONNECT_STRING" = "x-" ];then
+   echo "could no get a the password of $S_USER"
+   exit 0
+fi
+if [ 'x-'$1 = 'x-' ];then
+   echo "no argument"
+   exit 0
+fi
+bb=`echo $1 | grep '.sql'`
+if [ $? -eq 1 ];then
+   if [ -f $1 -o ! -f $1.sql ];then
+      cp $1 titi$$.sql
+      bb=titi$$.sql
+   else
+      if [ -f $1.sql ];then
+         bb=$1.sql
+      else
+         echo "cannot resolve $1"
+         exit 0
+      fi
+   fi
+else
+   bb=$1
+fi
+echo $bb
+#banner $ORACLE_SID
+echo local access to $ORACLE_SID database ...
+cat $bb > zzgg$$.sql
+tail -2 $bb > zz$$.txt
+grep '/' zz$$.txt
+if [ $? -eq 1 ];then
+   echo "/" >> zzgg$$.sql
+fi
+rm zz$$.txt
+echo "exit" >> zzgg$$.sql
+shift
+sqlplus -s "$CONNECT_STRING" @zzgg$$.sql $*
+rm zzgg$$.sql
+if [ -f titi$$.sql ];then
+   rm titi$$.sql
+fi

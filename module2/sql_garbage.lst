@@ -1,0 +1,236 @@
+SQL> select 1 nopr,
+  2  to_char(a.inst_id) inst_id,
+  3  a.users users,
+  4  to_char(a.garbage,'9,999,999,999') garbage,
+  5  to_char(b.good,'9,999,999,999') good,
+  6  to_char((b.good/(b.good+a.garbage))*100,'9,999,999.999') good_percent
+  7  from (select
+  8    a.inst_id,
+  9    b.username users,
+ 10    sum(a.sharable_mem+a.persistent_mem) Garbage,
+ 11    to_number(null) good
+ 12  from
+ 13     sys.gv_$sqlarea a,
+ 14     dba_users b
+ 15  where
+ 16    (a.parsing_user_id = b.user_id and a.executions<=1)
+ 17  group by a.inst_id, b.username
+ 18  union
+ 19  select distinct
+ 20    c.inst_id,
+ 21    b.username users,
+ 22    to_number(null) garbage,
+ 23    sum(c.sharable_mem+c.persistent_mem) Good
+ 24  from
+ 25     dba_users b,
+ 26     sys.gv_$sqlarea c
+ 27  where
+ 28    (b.user_id=c.parsing_user_id and c.executions>1)
+ 29  group by c.inst_id, b.username
+ 30  ) a, (select
+ 31    a.inst_id,
+ 32    b.username users,
+ 33    sum(a.sharable_mem+a.persistent_mem) Garbage,
+ 34    to_number(null) good
+ 35  from
+ 36     sys.gv_$sqlarea a,
+ 37     dba_users b
+ 38  where
+ 39    (a.parsing_user_id = b.user_id and a.executions<=1)
+ 40  group by a.inst_id,b.username
+ 41  union
+ 42  select distinct
+ 43    c.inst_id,
+ 44    b.username users,
+ 45    to_number(null) garbage,
+ 46    sum(c.sharable_mem+c.persistent_mem) Good
+ 47  from
+ 48     dba_users b,
+ 49     sys.gv_$sqlarea c
+ 50  where
+ 51    (b.user_id=c.parsing_user_id and c.executions>1)
+ 52  group by c.inst_id, b.username
+ 53  ) b
+ 54  where a.users=b.users
+ 55  and a.inst_id=b.inst_id
+ 56  and a.garbage is not null and b.good is not null
+ 57  union
+ 58  select 2 nopr,
+ 59  '-------' inst_id,'-------------' users,'--------------' garbage,'--------------' good,
+ 60  '--------------' good_percent from dual
+ 61  union
+ 62  select 3 nopr,
+ 63  to_char(a.inst_id,'999999'),
+ 64  to_char(count(a.users)) users,
+ 65  to_char(sum(a.garbage),'9,999,999,999') garbage,
+ 66  to_char(sum(b.good),'9,999,999,999') good,
+ 67  to_char(((sum(b.good)/(sum(b.good)+sum(a.garbage)))*100),'9,999,999.999') good_percent
+ 68  from (select
+ 69    a.inst_id,
+ 70    b.username users,
+ 71    sum(a.sharable_mem+a.persistent_mem) Garbage,
+ 72    to_number(null) good
+ 73  from
+ 74     sys.gv_$sqlarea a,
+ 75     dba_users b
+ 76  where
+ 77    (a.parsing_user_id = b.user_id and a.executions<=1)
+ 78  group by a.inst_id,b.username
+ 79  union
+ 80  select distinct
+ 81    c.inst_id,
+ 82    b.username users,
+ 83    to_number(null) garbage,
+ 84    sum(c.sharable_mem+c.persistent_mem) Good
+ 85  from
+ 86     dba_users b,
+ 87     sys.gv_$sqlarea c
+ 88  where
+ 89    (b.user_id=c.parsing_user_id and c.executions>1)
+ 90  group by c.inst_id,b.username
+ 91  ) a, (select
+ 92    a.inst_id,
+ 93    b.username users,
+ 94    sum(a.sharable_mem+a.persistent_mem) Garbage,
+ 95    to_number(null) good
+ 96  from
+ 97     sys.gv_$sqlarea a,
+ 98     dba_users b
+ 99  where
+100    (a.parsing_user_id = b.user_id and a.executions<=1)
+101  group by a.inst_id,b.username
+102  union
+103  select distinct
+104    c.inst_id,
+105    b.username users,
+106    to_number(null) garbage,
+107    sum(c.sharable_mem+c.persistent_mem) Good
+108  from
+109     dba_users b,
+110     sys.gv_$sqlarea c
+111  where
+112    (b.user_id=c.parsing_user_id and c.executions>1)
+113  group by c.inst_id, b.username
+114  ) b
+115  where a.users=b.users
+116  and a.inst_id=b.inst_id
+117  and a.garbage is not null and b.good is not null
+118  group by a.inst_id
+119  order by 1,2 desc
+120  /
+
+Mon Jun 29                                                             page    1
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         1 1                                                                    
+BENHAMIDA_37                                    181,350      3,753,389          
+        95.391                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    2
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         1 1                                                                    
+BUTAYE_37                                       921,371     10,184,891          
+        91.704                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    3
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         1 1                                                                    
+DE15064                                          99,367      2,505,320          
+        96.185                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    4
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         1 1                                                                    
+ELAACHOUCH_37                                22,697,285     27,314,179          
+        54.616                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    5
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         1 1                                                                    
+STRMADMIN                                     5,371,674    168,527,218          
+        96.911                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    6
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         1 1                                                                    
+SYS                                           6,060,649     27,984,146          
+        82.198                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    7
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         2 -------                                                              
+-------------                            -------------- --------------          
+--------------                                                                  
+                                                                                
+
+Mon Jun 29                                                             page    8
+                            Shared Pool Utilization
+
+      NOPR INST_ID                                                              
+---------- ----------------------------------------                             
+USERS                                    GARBAGE        GOOD                    
+---------------------------------------- -------------- --------------          
+GOOD_PERCENT                                                                    
+--------------                                                                  
+         3       1                                                              
+6                                            35,261,248    240,445,263          
+        87.211                                                                  
+                                                                                
+
+8 rows selected.
+
+SQL> spool off

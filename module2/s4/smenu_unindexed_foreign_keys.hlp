@@ -1,0 +1,13 @@
+Unindexed Foreign Keys
+
+by : Tom Kyte's 
+
+Having Unindexed foreign keys can be a performance issue. There are two issues associated with unindexed foreign keys. The first is the fact that a table lock will result if you update the parent records primary key (very very unusual) or if you delete the parent record and the child's foreign key is not indexed. (note: this behavior is different under version 7.0 and 7.1 of Oracle. There are still table locks but for different DML operations and on different tables. V7.2 changed the behavior). 
+
+To read about this issue, please see the Application Developers Guide the section on Maintaining Data Integrity/Concurrency Control, Indexes, and Foreign Keys. If you have an account on technet.oracle.com (they are free, get one) you can click here to read about it.
+
+The second issue has to do with performance in general of a parent child relationship. Consider that if you have an on delete cascade and have not indexed the child table (eg: EMP is child of DEPT. Delete deptno = 10 should cascade to EMP. If deptno in emp is not indexed -- full table scan). This full scan is probably undesirable and if you delete many rows from the parent table, the child table will be scanned once for each parent row deleted.
+
+Also consider that for most (not all, most) parent child relationships, we query the objects from the 'master' table to the 'detail' table. The glaring exception to this is a code table (short code to long description). For master/detail relationships, if you do not index the foreign key, a full scan of the child table will result.
+
+

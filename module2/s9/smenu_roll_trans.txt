@@ -1,0 +1,40 @@
+
+How many transactions can a rollback segment handle concurrently ?
+==================================================================
+The maximum number of transactions allowed for a rollback segment is dependent 
+on the 'transaction table slots' found in the header of the rollback segment. 
+The first block of the rollback segment is called the segment header. The 
+segment header contains a structure called a transaction table. The transaction
+table contains slots (or rows) which keep track of all active transactions 
+within that rollback segment. Each active transaction assigned to this rollback 
+segment will also have a corresponding slot or row assigned to it in the
+transaction table. Thereby, with a larger Oracle block size there is more room 
+for a larger transaction table. In other words, more slots or rows can be 
+inserted into the transaction table. The extent map is also kept in the 
+segment header. 
+
+   On Solaris:
+
+         TRANSACTIONS          BLOCKSIZE
+         ------------          ---------
+             31                    2K    
+             67                    4K
+            140                    8K
+
+
+HOW DOES THE OPTIMAL FOR ROLLBACK SEGMENTS WORK?Solution Description: 
+=====================================================================
+
+The optimal parameter does work for rollback segments, but under certain 
+conditions.The process of deallocating extents is performed when the head moves
+from one extent to the next.  At this time, the segment size is checked
+and the RDBMS determines if the next extent should be deallocated.
+That is, if a transaction needs to continue writing rollback information
+from one extent to another extent in the rollback segment, Oracle compares
+the current size of the rollback segment to the optimal size.
+
+The extent can only be deallocated if there are no active transactions
+in it.  If necessary, the RDBMS will deallocate multiple extents at one
+time until the segment has shrunk back to its optimal size.  The RDBMS
+always deallocates the oldest inactive extents as they are the least
+likely to be used for read consistency.

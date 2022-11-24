@@ -1,0 +1,22 @@
+IWCMIG1,IWCMIG1.unix.banksys.be=
+    (DESCRIPTION =
+      (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = bpgfr0001db-vip.frm.meshcore.net) (PORT = 1531))) 
+      (CONNECT_DATA = (SERVICE_NAME = IWCMIG1BR.frm.meshcore.net) (SERVER = DEDICATED)))
+FDPRD2,FDPRD2.frm.meshcore.net=
+      (DESCRIPTION = 
+        (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = bpgfr0001db-vip.frm.meshcore.net) (PORT = 1531))) 
+        (CONNECT_DATA = (SERVICE_NAME = FDPRD2BE.frm.meshcore.net) (SERVER = DEDICATED)))
+FRMMIG1,FRMMIG1.frm.meshcore.net=
+      (DESCRIPTION = 
+        (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = bpgfr0001db-vip.frm.meshcore.net) (PORT = 1531))) 
+        (CONNECT_DATA = (SERVICE_NAME = FRMMIG1BR.frm.meshcore.net) (SERVER = DEDICATED)))
+IWDPRD1,IWDPRD1.frm.meshcore.net=
+      (DESCRIPTION = 
+        (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = bpgfr0001db-vip.frm.meshcore.net) (PORT = 1531))) 
+        (CONNECT_DATA = (SERVICE_NAME = IWDPRD1BR.frm.meshcore.net) (SERVER = DEDICATED)))
+WEBCAT1,WEBCAT1.sqtps0001db.sys.meshcore.net=
+      (DESCRIPTION = 
+        (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP) (HOST = sqtps0001db-vip.sys.meshcore.net) (PORT = 1531))) 
+        (CONNECT_DATA = (SERVICE_NAME = wpb_cat_aps.sys.meshcore.net ) (SERVER = DEDICATED)))
+
+

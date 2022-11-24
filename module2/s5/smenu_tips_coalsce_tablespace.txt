@@ -1,0 +1,41 @@
+Coalescing Free Space
+====================
+
+Space for tablespace segments is managed using extents, which are comprised of a specific 
+number of contiguous data blocks. The free extent closest in size to the required extent 
+is used when allocating new extents to a tablespace segment. Thus, a larger free extent 
+can be fragmented, or smaller contiguous free extents can be coalesced into one larger free 
+extent. However, continuous allocation and deallocation of free space fragments your tablespace 
+and makes allocation of larger extents more difficult. By default, SMON (system monitor) 
+processes incrementally coalesce the free extents of tablespaces in the background. If desired, 
+you can disable SMON coalescing. 
+
+
+
+If you find that fragmentation of space is high (contiguous space on your disk appears as non-contiguous), 
+you can coalesce your free space in a single space transaction. After every eight coalesces the space 
+transaction commits and other transactions can allocate or deallocate space. You must have ALTER TABLESPACE 
+privileges to coalesce tablespaces. You can coalesce all available free space extents in a tablespace into 
+larger contiguous extents on a per tablespace basis by using the following command: 
+
+
+	"ALTER TABLESPACE tablespace COALESCE;"
+
+
+You can also use this command to supplement SMON and extent allocation coalescing, thereby improving 
+space allocation performance in severely fragmented tablespaces. Issuing this command does not effect 
+the performance of other users accessing the same tablespace. Like other options of the ALTER TABLESPACE 
+command, the COALESCE option is exclusive; when specified, it should be the only option.
+
+
+Viewing Information about Tablespaces
+
+To display statistics about coalesceable extents for tablespaces, you can view the DBA_FREE_SPACE_COALESCED view. 
+You can query this view to determine if you need to coalesce space in a particular tablespace.
+
+
+SEE ALSO
+========
+
+	-V$SORT_SEGMENT
+	-DBA_FREE_SPACE_COALESCED

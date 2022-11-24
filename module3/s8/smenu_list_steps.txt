@@ -1,0 +1,469 @@
+
+
+Here are the sequences of action. In bracket is the smenu shortcuts (aq, rul, cap, prop, app ). 
+You can perform all action with shortcuts except the creation of the strmadmin user which is done in the smenu 3.8.7
+These 5 shorcuts are all you need to know. Type 'rul -s'  to have  this sequence.
+
+
+     ON SOURCE DB
+i)	-- create admin user at source	(smenu/3.8.7)
+     ON  TARGET DB
+ii)	-- create admin user at target	(smenu/3.8.7)
+     ON SOURCE DB
+I)	-- create queue at db source   	(aq)
+     ON  TARGET DB
+
+II)	-- create queue at db target  	(aq)
+
+     Create Capture:
+
+     ON SOURCE DB
+III)    -- create ruleset		(rul)
+               *rule set name
+               *rule set owner
+IV)	-- Create capture         	(cap)
+               *queue_name   
+               *capture_name
+               *rule_set_name
+V)	-- Create rule for capture 	(rul)  + grant all on <table> to strmamdin
+               * rule name
+               * object name
+               * object owner
+               * source DB
+VI)	-- Add capture rule to ruleset.  (rul)
+               * rule name
+               * rule owner
+               * rule set name
+VII)	-- Create propagation between source and target (prop)
+               * source queue
+               * target queue
+               * owener (of queues and prop)
+               * propagation name
+
+
+
+	   Create Apply:
+
+      ON  TARGET DB
+VIII)   -- create generic switch data ownership function (rul)
+               * source owner
+               * target owner 
+               * source db
+IX)	-- Create a stream apply rule table that take input from generic switch function (rul)
+                    * table
+                    * source owner
+                    * target owner
+                    * source db
+                    * stream name (invent one)
+                    * target queue name
+                    * target queue owner
+X)	-- Grant execute of rule set to apllied owner 	(rul)
+                    * stream name
+                    * target owner
+                    * source DB name
+
+     Load queue parameters:
+
+     ON SOURCE DB
+XI)	-- Prepare source schema instantiation (cap)
+                    * source owner
+     ON SOURCE DB
+XII	-- prepare source table instantiation (cap)
+                    * source owner
+                    * table table name
+                    * db link to use
+     ON TARGET DB
+XIII	-- set option disable on TARGET queue (app)
+                    * stream name
+                    * N or Y
+
+      Start queues:
+
+     ON  TARGET DB
+XIV	-- Start apply    (app)
+                 * apply name
+     ON SOURCE DB
+XV	-- start capture  (cap)
+                 * capture name
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------
+0 :  Create admin user at source and target DB (smenu/3.8) Admin user is STRMADMIN
+
+    [POLDEV]> ros strmadmin
+
+MACHINE s05096          - ORACLE_SID : POLDEV                          Page:   1
+
+Date              -  Friday    30th December  2005  12:23:04
+Username          -  SYS
+List System Privilege(s) for a User  STRMADMIN
+
+
+                                Default            Temporary
+       Username               Tablespace           Tablespace      Profile               Role (admin)
+----------------------- ----------------------- ---------------- ------------ -----------------------------------
+STRMADMIN               TBS_ADMIN_STREAM        TEMP             DEFAULT      CREATE RULE-
+                                                                              CREATE RULE SET-
+                                                                              UNLIMITED TABLESPACE-
+
+OBJECT_TYPE            Username          Owner                   Table                  Column          Privilege     Gran
+------------------ ---------------- ---------------- ----------------------------- ---------------- ----------------- ----
+VIEW               STRMADMIN        SYS              DBA_APPLY_ERROR                                SELECT            NO
+PACKAGE            STRMADMIN        SYS              DBMS_APPLY_ADM                                 EXECUTE           NO
+PACKAGE            STRMADMIN        SYS              DBMS_AQADM                                     EXECUTE           NO
+PACKAGE            STRMADMIN        SYS              DBMS_CAPTURE_ADM                               EXECUTE           NO
+PACKAGE            STRMADMIN        SYS              DBMS_FLASHBACK                                 EXECUTE           NO
+PACKAGE            STRMADMIN        SYS              DBMS_PROPAGATION_ADM                           EXECUTE           NO
+PACKAGE            STRMADMIN        SYS              DBMS_STREAMS_ADM                               EXECUTE           NO
+
+(don't forget to do samething on target DB)
+
+I) 1.a) Create SOURCE queue:
+
+    [RMANTST]> aq -create -qn Q_SENDER -u strmadmin -x  -v
+
+    execute DBMS_STREAMS_ADM.SET_UP_QUEUE( queue_table => 'Q_SENDER', queue_name  => 'Q_SENDER');
+
+
+
+   1.b) Show SOURCE queue we just created
+
+
+    [POLDEV]> aq -l 
+
+MACHINE s05096    -  ORACLE_SID : POLDEV                                             Page:   1
+                                                                   Queue             Message Count
+   Qid Queue Owner and Name                 Queue Table             Type     Enq Deq   in Queue
+------ ------------------------------------ ---------------------- --------- --- --- -------------
+  8116 STRMADMIN.AQ$_Q_SENDER_E             Q_SENDER               EXCEPTION NO  NO
+  8118 STRMADMIN.Q_SENDER                   Q_SENDER               NORMAL    YES YES
+
+
+II) 2.a) CREATE TARGET QUEUE
+
+
+     [RMANTST]> aq -create -u strmadmin -qn Q_RECEIVER -x
+
+     execute DBMS_STREAMS_ADM.SET_UP_QUEUE( queue_table => 'Q_RECEIVER', queue_name  => 'Q_RECEIVER');
+
+    b) Show target queue
+
+
+     [RMANTST]> aq -l
+
+MACHINE s05096    -  ORACLE_SID : RMANTST                                             Page:   1
+                                                                   Queue             Message Count
+   Qid Queue Owner and Name                 Queue Table             Type     Enq Deq   in Queue
+------ ------------------------------------ ---------------------- --------- --- --- -------------
+  8278 STRMADMIN.AQ$_Q_RECEIVER_E           Q_RECEIVER             EXCEPTION NO  NO
+  8280 STRMADMIN.Q_RECEIVER                 Q_RECEIVER             NORMAL    YES YES
+
+
+III) 3.a) Create rules set on source:
+
+       [POLDEV]> rul -create -rs RS_CAP_BEMIS -u strmadmin -x
+
+	execute DBMS_RULE_ADM.CREATE_RULE_SET(rule_set_name => 'STRMADMIN.RS_CAP_BEMIS', 
+                                              evaluation_context => 'sys.streams$_evaluation_context');
+
+
+     3.b) Show rule sets:
+
+       [POLDEV]> rul -ls
+
+MACHINE s05096          - ORACLE_SID : POLDEV                                              Page:   1
+
+RULE_SET_OWNER Rule set Name        Rule Name                          RULE_SET_RULE_COMMENT
+-------------- -------------------- ---------------------------------- -----------------------------------
+STRMADMIN      RS_CAP_BEMIS         .
+               Q_SENDER_R           .
+SYS            AQ$_PROP_NOTIFY_1_R  .
+
+
+IV) 4.A Create capture on source DB:
+
+        [POLDEV]> cap -create -cn CAP_TBL_POD_INFORMATION -u strmadmin -rs RS_CAP_BEMIS  -qn Q_SENDER -u strmadmin -x
+
+       execute DBMS_CAPTURE_ADM.CREATE_CAPTURE(queue_name => 'STRMADMIN.Q_SENDER', capture_name => 'CAP_TBL_POD_INFORMATION',
+                                               rule_set_name => 'STRMADMIN.RS_CAP_BEMIS');
+
+    4.B  Show capture :
+
+        [POLDEV]> cap -l
+
+MACHINE s05096          - ORACLE_SID : POLDEV                                              Page:   1
+                                                                              S
+                                                                              T
+                                                                              A
+                                                                              T     Next          Last          Last
+                                                                              U   captured      captured       applied
+Capture name       Queue Owner and Name           Rule set name               S      Scn           Scn           Scn
+------------------ ------------------------------ --------------------------- - ------------- ------------- -------------
+CAP_TBL_POD_INFORM STRMADMIN.Q_SENDER             STRMADMIN.RS_CAP_BEMIS      D  149857785259
+ATION
+
+
+
+V) 5.a  Create a rule for capture :
+
+       [POLDEV]> rul -create -cap -rn RUL_CAP_POD_INFOR -t POD_INFORMATION -so BEMIS -src_sid POLDEV -x
+
+     execute DBMS_RULE_ADM.CREATE_RULE ( rule_name => 'RUL_CAP_POD_INFOR',  condition => ':dml.get_object_owner() = ''BEMIS''
+             AND '|| ':dml.get_object_name() = ''POD_INFORMATION'' AND '|| ':dml.get_source_database_name() = ''POLDEV''');
+
+
+    5.b Show rule :
+
+       [POLDEV]> rul -l
+
+MACHINE s05096          - ORACLE_SID : POLDEV                                              Page:   1
+
+RULE_OWNER     RULE_NAME                      Target Object                    Object Owner           Applied in
+-------------- ------------------------------ -------------------------------- ---------------------- ----------
+STRMADMIN      RUL_CAP_POD_INFOR              POD_INFORMATION                  BEMIS                  POLDEV
+
+
+
+VI) 6.a Add capture rule to rule set :
+
+    [POLDEV]> rul -add -rn RUL_CAP_POD_INFOR -rs RS_CAP_BEMIS -u STRMADMIN -v
+
+     execute DBMS_RULE_ADM.ADD_RULE( rule_name => 'STRMADMIN.RUL_CAP_POD_INFOR', rule_set_name => 'STRMADMIN.RS_CAP_BEMIS', 
+                                     evaluation_context => NULL);
+
+    6.b Show new ruleset:
+
+MACHINE s05096          - ORACLE_SID : POLDEV                                              Page:   1
+
+RULE_SET_OWNER Rule set Name        Rule Name                          RULE_SET_RULE_COMMENT
+-------------- -------------------- ---------------------------------- -----------------------------------
+STRMADMIN      RS_CAP_BEMIS         STRMADMIN.RUL_CAP_POD_INFOR
+
+
+VII)  7.a Create propagation
+
+
+    [POLDEV]> prop -create -u strmadmin -pn PROP_A_TO_B -sourceq Q_SENDER -destq Q_RECEIVER -dblk rmantst -x
+
+
+      execute DBMS_PROPAGATION_ADM.CREATE_PROPAGATION( propagation_name => 'STRMADMIN.PROP_A_TO_B', 
+                source_queue => 'STRMADMIN.Q_SENDER', destination_queue => 'STRMADMIN.Q_RECEIVER', 
+                destination_dblink => 'RMANTST');
+
+
+    7.b Show propagation :
+
+
+    [POLDEV]> prop -l
+
+MACHINE s05096          - ORACLE_SID : POLDEV                                              Page:   1
+
+                                                                                       Destination
+Propagation name       Source queue                    Remote queue                    Local or remot Rule set name
+---------------------- ------------------------------- ------------------------------- -------------- --------------------
+PROP_A_TO_B            STRMADMIN.Q_SENDER              STRMADMIN.Q_RECEIVER            RMANTST
+
+
+        And since propagation is also a job : 
+
+     [POLDEV]> jbsu
+
+
+MACHINE s05096          - ORACLE_SID : POLDEV                                              Page:   1
+
+Date              -  Friday    30th December  2005  13:27:04
+Username          -  SYS
+List Submitted Jobs
+
+                                                                                Last       Last  Next       Next
+                                                                                Ok         Ok    Run        Run
+    Id Submitter  Security   Job                                                Date       Time  Date       Time  Errs Ok
+------ ---------- ---------- -------------------------------------------------- ---------- ----- ---------- ----- ---- --
+   361 SYS        SYS        next_date := sys.dbms_aqadm.aq$_propaq(job);                        30/12/2005 13:26      Y
+
+
+
+VIII)  8.a Create a generic function to switch ownership of objects in queue from source owner to target owner.
+
+       [RMANTST] > rul -switch -so bemis -to sorting_shared -src_sid POLDEV
+
+CREATE OR REPLACE FUNCTION POLDEV_to_SORTING_SHARED ( p_in_data IN SYS.ANYDATA) RETURN SYS.ANYDATA IS
+out_data SYS.LCR$_ROW_RECORD;
+tc PLS_INTEGER;
+typenm VARCHAR2(61);
+BEGIN
+typenm := p_in_data.GETTYPENAME();
+IF typenm = 'SYS.LCR$_ROW_RECORD' THEN
+-- Typecast AnyData to LCR$_ROW_RECORD
+tc := p_in_data.GETOBJECT(out_data);
+IF out_data.GET_OBJECT_OWNER() = 'BEMIS' THEN
+-- Transform the in_data into out_data
+out_data.SET_OBJECT_OWNER('SORTING_SHARED');
+END IF;
+-- Convert to AnyData
+RETURN SYS.AnyData.ConvertObject(out_data);
+ELSE
+RETURN p_in_data;
+END IF;
+END;
+/
+
+      
+
+IX)  9.a Create a table apply rule that uses this function:
+
+     [RMANTST]> rul -apl_sw -t pod_information -so bemis -to sorting_shared 
+                    -src_sid POLDEV -sn STRM_APL_TO_SORTING -qn Q_RECEIVER -u STRMADMIN -x
+
+DECLARE
+action_ctx SYS.RE$NV_LIST;
+ac_name varchar2(30) := 'STREAMS$_TRANSFORM_FUNCTION';
+v_dmlrule VARCHAR2( 128 );
+v_ddlrule VARCHAR2( 128 );
+rs_name VARCHAR2(64);
+BEGIN
+DBMS_STREAMS_ADM.ADD_TABLE_RULES( table_name  => 'BEMIS.POD_INFORMATION', streams_type => 'APPLY',
+streams_name => 'STRM_APL_TO_SORTING', queue_name => 'STRMADMIN.Q_RECEIVER', include_dml => true, include_ddl => false,
+dml_rule_name => v_dmlrule, ddl_rule_name => v_ddlrule, source_database => 'POLDEV');
+
+select rule_name into v_dmlrule from dba_rules where rule_owner='STRMADMIN' and RULE_CONDITION LIKE '%POD_INFORMATION%';
+select rule_action_context into action_ctx from dba_rules where rule_owner='STRMADMIN' and rule_name = v_dmlrule;
+
+action_ctx := SYS.RE$NV_LIST(SYS.RE$NV_ARRAY());
+action_ctx.ADD_PAIR(ac_name,SYS.ANYDATA.CONVERTVARCHAR2('STRMADMIN.POLDEV_to_SORTING_SHARED'));
+DBMS_RULE_ADM.ALTER_RULE(rule_name => v_dmlrule,action_context => action_ctx );
+END;
+/
+
+     9.b Show the apply rule :
+
+       [RMANTST]> app -l
+                                                                                                                    Apply
+                                                                           Type of                                  Process
+Apply name                                 Queue name                   Applied Events Rule Set name                Status
+------------------------------------------ ---------------------------- -------------- ---------------------------- --------
+STRMADMIN.STRM_APL_TO_SORTING              STRMADMIN.Q_RECEIVER         Captured       RULESET$_8                   DISABLED
+
+
+        [RMANTST]> rul -ls
+
+
+RULE_SET_OWNER Rule set Name        Rule Name                                RULE_SET_RULE_COMMENT
+-------------- -------------------- ---------------------------------------- -----------------------------------
+STRMADMIN      RULESET$_8           STRMADMIN.POD_INFORMATION7               STRMADMIN.RULESET$_8
+
+
+        [RMANTST]> rul -l
+
+
+RULE_OWNER     RULE_NAME                      Target Object                    Object Owner           Applied in
+-------------- ------------------------------ -------------------------------- ---------------------- ----------
+STRMADMIN      POD_INFORMATION7               POD_INFORMATION                  BEMIS                  POLDEV
+
+
+
+X)   10.a Grant execute to target user  on the conversion fonction (defined in 9) :
+
+     [RMANTST]> rul -grant -sn STRM_APL_TO_SORTING -to sorting_shared -src_sid POLDEV -x
+
+DECLARE
+rs_name VARCHAR2(64); -- Variable to hold rule set name
+BEGIN
+SELECT RULE_SET_OWNER||'.'||RULE_SET_NAME INTO rs_name FROM DBA_APPLY WHERE APPLY_NAME='STRM_APL_TO_SORTING';
+DBMS_RULE_ADM.GRANT_OBJECT_PRIVILEGE( privilege => SYS.DBMS_RULE_ADM.EXECUTE_ON_RULE_SET, object_name => rs_name, grantee =>
+ 'SORTING_SHARED'); END;
+/
+prompt doing 'grant execute on POLDEV_to_SORTING_SHARED to SORTING_SHARED ;'
+prompt may fails if the current user has not enought privilege
+grant execute on POLDEV_to_SORTING_SHARED to SORTING_SHARED
+/
+
+PL/SQL procedure successfully completed.
+
+Grant succeeded.
+
+
+
+XI ) 11.a Prepare source instantiation :
+
+      [POLDEV]> cap -si -so bemis -x
+
+      execute  DBMS_CAPTURE_ADM.PREPARE_SCHEMA_INSTANTIATION( schema_name  => 'BEMIS');
+
+
+PL/SQL procedure successfully completed.
+
+XII)  12.a Instantiate the table
+
+      [POLDEV]> cap -ti -so bemis -t pod_information -v -dblk rmantst -x
+
+execute dbms_capture_adm.prepare_table_instantiation('BEMIS.POD_INFORMATION') ;
+set serveroutput on size 2000
+DECLARE
+  iscn NUMBER; -- Variable to hold instantiation SCN value
+BEGIN
+  iscn := DBMS_FLASHBACK.GET_SYSTEM_CHANGE_NUMBER();
+  DBMS_APPLY_ADM.SET_TABLE_INSTANTIATION_SCN@RMANTST(source_object_name => 'BEMIS.POD_INFORMATION', source_database_name =>
+'POLDEV', instantiation_scn => iscn);
+dbms_output.put_line(iscn);
+END;
+/
+
+
+PL/SQL procedure successfully completed.
+
+149857796897
+
+PL/SQL procedure successfully completed.
+
+
+XIII)  12.A Don't disable the queue on dequeue error:
+
+      [RMANTST]> app -dis_on_err N -sn STRM_APL_TO_SORTING -x
+ 
+      execute DBMS_APPLY_ADM.SET_PARAMETER(apply_name =>'STRM_APL_TO_SORTING', parameter => 'disable_on_error', value => 'n');
+
+PL/SQL procedure successfully completed.
+
+
+XIV) 13.a   Start apply process on target
+
+      [RMANTST]> app -start -an STRM_APL_TO_SORTING -x
+
+         execute  DBMS_APPLY_ADM.START_APPLY( apply_name => 'STRM_APL_TO_SORTING');
+
+PL/SQL procedure successfully completed.
+
+
+
+     1b.b Show the apply process status
+     [RMANTST]> app -l
+                                                                                                                    Apply
+                                                                           Type of                                  Process
+Apply name                                 Queue name                   Applied Events Rule Set name                Status
+------------------------------------------ ---------------------------- -------------- ---------------------------- --------
+STRMADMIN.STRM_APL_TO_SORTING              STRMADMIN.Q_RECEIVER         Captured       RULESET$_8                   ENABLED
+
+
+
+XV )  15.A start the capture process :
+
+    [POLDEV]> cap -start -cn CAP_TBL_POD_INFORMATION -x
+
+    execute  DBMS_CAPTURE_ADM.START_CAPTURE( capture_name => 'CAP_TBL_POD_INFORMATION');
+
+        PL/SQL procedure successfully completed.
+
+
+
+
+Now, it is time to sacrify some users to the god of DBA, but should work.
+Smenu also offer many features to track the status of the streams and troubleshoot. 
+I will make soon another article about this.
+

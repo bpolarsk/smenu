@@ -1,0 +1,130 @@
+AWPPRD1,AWPPRD1.vptps0002db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = vptps0002db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = AWPPRD1VE.sys.meshcore.net)))
+
+BCTPRD1,BCTPRD1.spgfo0004db.unix.banksys.be=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgfo0004db-vip.unix.banksys.be)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = BCTPRD1DA.unix.banksys.be)))
+
+BWAPRD1,BWAPRD1.spgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = BWAPRD1DA.frm.meshcore.net)))
+
+CIBPRD1,CIBPRD1.spcib0001db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spcib0001db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = CIBPRD5DA.sys.meshcore.net)))
+
+CIBPRD2,CIBPRD2.spcib0001db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spcib0001db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = CIBPRD6DA.sys.meshcore.net)))
+
+CIBPRD3,CIBPRD3.bpcib0001db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpcib0001db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = CIBPRD7BR.sys.meshcore.net)))
+
+CIBPRD4,CIBPRD4.bpcib0001db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpcib0001db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = CIBPRD8BR.sys.meshcore.net)))
+
+CRMPRD1,CRMPRD1.spgfo0052db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgfo0052db.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = CRMPRD2DA.sys.meshcore.net)))
+
+CSPRD1,CSPRD1.spgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = CSPRD1DA.frm.meshcore.net)))
+
+DBOPRD1,DBOPRD1.spgbo0033db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgbo0033db.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = DBOPRD1DA.sys.meshcore.net)))
+
+DSPRD1,DSPRD1.spgbo0005db.unix.banksys.be=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgbo0005db-vip.unix.banksys.be)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = DSPRD2FR.unix.banksys.be)))
+
+DUINT1,DUINT1.bqslv0005db.unix.banksys.be=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bqslv0006db-vip.unix.banksys.be)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = DUINT1.unix.banksys.be)))
+
+EBPRD1,EBPRD1.spnpc0002db.unix.banksys.be=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spnpc0002db-vip.unix.banksys.be)(PORT = 1522)))
+	  (CONNECT_DATA = (service_name = EBPRD1)))
+
+FDPRD1,FDPRD1.spgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = FDPRD1FR.frm.meshcore.net)))
+
+FRPRD1,FRPRD1.spnpc0002db.unix.banksys.be=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spnpc0002db-vip.unix.banksys.be)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = FRPRD1FR.unix.banksys.be)))
+
+IWDPRD1,IWDPRD1.bpgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = IWDPRD1BR.frm.meshcore.net)))
+
+IWPRD1,IWPRD1.bpgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = IWPRD1BR.frm.meshcore.net)))
+
+OEMPRD1,OEMPRD1.bpgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = OEMPRD1BR.frm.meshcore.net)))
+
+OEMPRD2,OEMPRD2.spgfr0001db.frm.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spgfr0001db-vip.frm.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = OEMPRD2DA.frm.meshcore.net)))
+
+WAINT1BR,WAINT1BR.bqglo0010db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bqglo0010db-vip.svc.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WAINT2BR.sys.meshcore.net)))
+
+WAPRD1,WAPRD1.spglo0030db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spglo0030db-vip.svc.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WAPRD2DA.wlp.banksys.be)))
+
+WBPRD1,WBPRD1.bpbma0004db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpbma0004db.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WBPRD2BR.sys.meshcore.net)))
+
+WDPRD1,WDPRD1.spbma0003db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spbma0003db.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WDPRD2DA.sys.meshcore.net)))
+
+WEPRD1,WEPRD1.bpglo0010db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = bpglo0010db-vip.svc.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WEPRD1BR.wlp.banksys.be)))
+
+WPBPRD1,WPBPRD1.vptps0002db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = vptps0002db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WPBPRD1VE.sys.meshcore.net)))
+
+WVIPRD1,WVIPRD1.spifo0001db.sys.meshcore.net=
+     (DESCRIPTION = (ADDRESS_LIST =
+	  (ADDRESS = (PROTOCOL = TCP)(HOST = spifo0001db-vip.sys.meshcore.net)(PORT = 1531)))
+	  (CONNECT_DATA = (service_name = WVIPRD1DA.sys.meshcore.net)))
+

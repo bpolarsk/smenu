@@ -1,0 +1,53 @@
+#!/bin/sh
+# copy the script and rename it 'cb' then do "ln cb cf"
+# to change background color "cb", to list and pick a color "cb -l".
+# if you know the color number "cb <nn>"
+# cf is the same use, but change the color font instead of background
+# cf=color foreground  cb=color background
+# author: B.Polarski 15/09/2022. version 1.0
+PS3='SELECT color ==> '
+# foreground is 38
+# background is 48
+src=`basename $0`
+if [  "$src" = 'cf' ];then
+     TARGET=38
+else
+    # default is change background
+     TARGET=48
+fi
+
+if [ -z "$1" -o "$1" = "-l" ];then
+   max_elem=`tput cols` ; max_elem=`expr $max_elem - 8`
+   max_elem=`expr $max_elem / 5`
+   printf "\e[$46;5;255m";
+   for((i=1; i<256; i++)); do
+       printf "\e[${TARGET};5;${i}m%03d" $i;
+       printf '\e[0m';
+       printf ' ' ;
+       [ ! $(($i % $max_elem)) -eq 0 ] && printf ' ' || printf '\n'
+   done
+   rad="00"
+   printf '\n' ;
+   for((i=1; i<256; i++))
+   do
+      if [ $i -gt 99 ] ;then
+         unset rad
+      elif [ $i -gt 9 ] ;then
+         rad=0
+     fi
+     LIST="$LIST ${rad}$i"
+   done
+   COLUMNS=`tput cols`
+   select fcol in $LIST
+   do
+      printf '\e['${TARGET}';5;'${fcol}'m'
+      exit
+   done
+else
+  var=$1
+  ret='^[0-9]+$'
+  if ! [[ $1 =~ $ret ]] ; then
+   echo "error: Not a number" >&2; exit 1
+  fi
+  printf '\e['${TARGET}';5;'${var}'m'
+fi

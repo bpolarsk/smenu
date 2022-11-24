@@ -1,0 +1,12 @@
+declare
+   nr number := 0 ;
+begin
+dbms_job.SUbmit( nr, 'system.admin_tab_parts.do_main;', trunc(sysdate) + 1 + 2/24, 'trunc(sysdate) + 1'  ) ;
+end ;
+/
+declare
+   nr number := 0 ;
+begin
+dbms_job.SUbmit( nr, 'system.admin_tab_parts.do_main(''CHECK_DROP_PARTS'');', trunc(sysdate) + 1 + 2/24, 'trunc(sysdate) + 1'  ) ;
+end ;
+/

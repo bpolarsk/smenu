@@ -1,0 +1,21 @@
+SELECT ccd01.numcpt,
+    ccd01.natenc
+  FROM ccd01,
+    ccd07
+  WHERE ccd07.numcpt = ccd01.numcpt
+  AND ccd07.datmod   = ' '
+  AND (datclo        = ' '
+  OR datclo          > '201900000')
+  union 
+SELECT ccd04.numcpt,
+    ccd04.natenc
+  FROM ccd04
+  WHERE (ccd04.numcpt
+    || ccd04.datmod_eff ) IN
+    (SELECT ccd04.numcpt
+      || MAX (ccd04.datmod_eff)
+    FROM ccd04
+    WHERE ccd04.datmod_eff < '20191231'
+    GROUP BY ccd04.numcpt
+    ) 
+/

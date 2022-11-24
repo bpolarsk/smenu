@@ -1,0 +1,31 @@
+#!/usr/bin/ksh
+# author : B. Polarski
+# date   : 
+# Program:
+
+if echo "\c" | grep c >/dev/null 2>&1; then
+    NN='-n'
+    unset NC
+else
+    NC='\c'
+    unset NN
+fi
+
+# ------------------------------------------------------------------------------------
+function help
+{
+ more <<EOF
+
+EOF
+ exit
+}
+# ------------------------------------------------------------------------------------
+
+while [ -n "$1" ]; do
+   case "$1" in
+
+     -rn ) ROWNUM=$2 ;;
+
+   esac
+   shift
+done

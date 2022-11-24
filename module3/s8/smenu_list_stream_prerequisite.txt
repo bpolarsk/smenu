@@ -1,0 +1,214 @@
+        ========================================
+        =     Prerequisite for streams         =
+        ========================================
+
+     1) Configuring a Streams Administrator
+        -----------------------------------------------------
+        CREATE USER strmadmin IDENTIFIED BY strmadmin;
+        GRANT CONNECT, RESOURCE, SELECT ANY DICTIONARY, AQ_ADMINISTRATOR_ROLE,
+              EXP_FULL_DATABASE,IMP_FULL_DATABASE TO strmadmin;
+
+        GRANT EXECUTE ON DBMS_APPLY_ADM TO strmadmin;
+        GRANT EXECUTE ON DBMS_AQ TO strmadmin;
+        GRANT EXECUTE ON DBMS_AQADM TO strmadmin;
+        GRANT EXECUTE ON DBMS_CAPTURE_ADM TO strmadmin;
+        GRANT EXECUTE ON DBMS_FLASHBACK TO strmadmin;
+        GRANT EXECUTE ON DBMS_PROPAGATION_ADM TO strmadmin;
+        GRANT EXECUTE ON DBMS_RULE_ADM TO strmadmin;
+        GRANT EXECUTE ON DBMS_STREAMS_ADM TO strmadmin;
+        
+        BEGIN 
+         /* Creates a new rule set in STRMADMIN's schema */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+            privilege => DBMS_RULE_ADM.CREATE_RULE_SET_OBJ, grantee => 'strmadmin', grant_option => FALSE);
+
+         /* Creates a new rule in STRMADMIN's schema */          
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE( 
+            privilege => DBMS_RULE_ADM.CREATE_RULE_OBJ, grantee => 'strmadmin', grant_option => FALSE); END;
+
+         /* Creates a new evaluation context in STRMADMIN's schema */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE( 
+              privilege => DBMS_RULE_ADM.CREATE_EVALUATION_CONTEXT_OBJ, grantee => 'STRMADMIN', grant_option => TRUE);
+
+         /* Grants STRMADMIN privilege to create a new rule set in any schema.  */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+              privilege => DBMS_RULE_ADM.CREATE_ANY_RULE_SET, grantee => 'STRMADMIN', grant_option => TRUE);
+ 
+         /* Grants STRMADMIN privilege to alter any rule set owned by any user.  */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+              privilege => DBMS_RULE_ADM.ALTER_ANY_RULE_SET, grantee => 'STRMADMIN', grant_option => TRUE);
+
+         /* Grants STRMADMIN privilege to execute any rule set owned by any user.  */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+            privilege => DBMS_RULE_ADM.EXECUTE_ANY_RULE_SET,  grantee => 'STRMADMIN', grant_option => TRUE);
+
+         /* Grants STRMADMIN privilege to create a new rule in any schema.  */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+              privilege => DBMS_RULE_ADM.CREATE_ANY_RULE, grantee => 'STRMADMIN', grant_option => TRUE);
+
+         /* Grants STRMADMIN privilege to alter any rule owned by any user.  */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+              privilege => DBMS_RULE_ADM.ALTER_ANY_RULE, grantee => 'STRMADMIN', grant_option => TRUE);
+
+         /* Grants STRMADMIN privilege to execute any rule owned by any user.  */
+         DBMS_RULE_ADM.GRANT_SYSTEM_PRIVILEGE(
+              privilege => DBMS_RULE_ADM.EXECUTE_ANY_RULE, grantee => 'STRMADMIN', grant_option => TRUE);
+
+         /* Grants STRMADMIN privilege to execute any evaluation context owned by any user.  */
+         DBMS_RULE_ADM.GRANT_OBJECT_PRIVILEGE(
+              privilege => DBMS_RULE_ADM.EXECUTE_ON_EVALUATION_CONTEXT, object_name => 'SYS.STREAMS$_EVALUATION_CONTEXT',
+              grantee   => 'STRMADMIN', grant_option => FALSE );
+
+          /* Grants the STRMADMIN user, privilege to ENQUEUE any message to any queues in the database */
+          DBMS_AQADM.GRANT_SYSTEM_PRIVILEGE( privilege => 'ENQUEUE_ANY', grantee => 'STRMADMIN', admin_option => FALSE);
+
+          /* Grants STRMADMIN privilege to DEQUEUE any message from any queues in the database */
+          DBMS_AQADM.GRANT_SYSTEM_PRIVILEGE( privilege => 'DEQUEUE_ANY', grantee => 'STRMADMIN', admin_option => FALSE);
+
+          /* Grants STRMADMIN privilege to run or execute DBMS_AQADM on any schemas in the database */
+          DBMS_AQADM.GRANT_SYSTEM_PRIVILEGE( privilege => 'MANAGE_ANY', grantee => 'STRMADMIN', admin_option => TRUE);
+        END ;
+        /
+
+     2) Configuring the Database to Run in ARCHIVELOG Mode
+        -----------------------------------------------------
+        startup mount ;
+        Alter datase archivelog ;
+
+     3) Specify an Alternate Tablespace for LogMiner
+        -----------------------------------------------------
+         CREATE TABLESPACE logmnrts DATAFILE '/u11/oradata/POLDEV/logmnrts.dbf' SIZE 25 M REUSE 
+                AUTOEXTEND ON MAXSIZE UNLIMITED;
+         EXECUTE DBMS_LOGMNR_D.SET_TABLESPACE('logmnrts');
+
+     4) set init.ora following parameters (sm/3.8.2 'pars'):
+        -----------------------------------------------------
+          GLOBAL_NAMES=true
+	  JOB_QUEUE_PROCESSES=x  ( >number of jobs in dba_jobs)
+	  COMPATIBLE=9.2.0
+	  LOG_PARALLELISM=1 
+	  AQ_TM_PROCESSES=1 aq monitor process 
+	  LOGMNR_MAX_PERSISTENT_SESSIONS=1
+
+     5) Create a dblink between the source and target: 
+        ------------------------------------------------
+          The name of this dblink must be the global_name of the target db 
+          CREATE DATABASE LINK target.net CONNECT TO strmadmin IDENTIFIED BY strmadmin USING 'target.net';
+
+     6) Create a stream queue
+        -----------------------------------------------------
+        When you create a capture process or apply process, you associate the process with a specific Streams queue.
+        When you create a propagation, you associate it with a specific source queue and destination queue.
+
+          CONNECT strmadmin/strmadmin@DBA1
+          BEGIN
+             DBMS_STREAMS_ADM.SET_UP_QUEUE(
+                queue_table  => 'strm_queue_table',
+                queue_name   => 'strm_queue',
+                queue_user   => 'strmadmin');
+          END;
+          /
+        or you can make it simple :
+        ...........................
+        CONNECT strmadmin/strmadmin
+        EXEC DBMS_STREAMS_ADM.SET_UP_QUEUE(); 
+
+        Creates a queue table and a Streams queue for use with the capture, propagate, and apply functionality of Streams.
+        Set up includes the following actions:
+        * If the specified queue table does not exist, then this procedure runs the CREATE_QUEUE_TABLE procedure 
+          in the DBMS_AQADM package to create the queue table with the specified storage clause.
+        * If the specified queue name does not exist, then this procedure runs the CREATE_QUEUE procedure in the 
+          DBMS_AQADM package to create the queue.
+        * This procedure starts the queue.
+        * If a queue user is specified, then this procedure configures this user as a secure queue user of the queue 
+          and grants ENQUEUE and DEQUEUE privileges on the queue to the specified queue user.
+
+        To configure the queue user as a secure queue user, this procedure creates an Advanced Queuing agent with the same 
+        name as the user name, if one does not already exist. If an agent with this name already exists and is associated 
+        with the queue user only, then it is used. SET_UP_QUEUE then runs the ENABLE_DB_ACCESS procedure in the DBMS_AQADM 
+        package, specifying the agent and the user.
+
+
+     7) Configure Capture Process on DBA1:
+        -----------------------------------------------------
+         CONNECT strmadmin/strmadmin@DBA1
+         BEGIN
+         DBMS_STREAMS_ADM.ADD_TABLE_RULES(
+           table_name     => 'scott.dept',   
+           streams_type   => 'capture',
+           streams_name   => 'capture_simp',
+           queue_name     => 'strmadmin.streams_queue',
+           include_dml    =>  true,
+           include_ddl    =>  true);
+         END;
+         /
+
+     8) Configure Propagation Process on DBA1:
+        -----------------------------------------------------
+         CONNECT strmadmin/strmadminpw@DBA1
+         BEGIN
+           DBMS_STREAMS_ADM.ADD_TABLE_PROPAGATION_RULES(
+             table_name              => 'scott.dept', 
+             streams_name            => 'dba1_to_dba2', 
+             source_queue_name       => 'strmadmin.streams_queue',
+             destination_queue_name  => 'strmadmin.streams_queue@dba2',
+             include_dml             =>  true,
+             include_ddl             =>  true,
+             source_database         => 'dba1');
+         END;
+         /
+
+     9) Configure Instantiation SCN : 
+        -----------------------------------------------------
+        The instantiation SCN of the source table must be configured in the destination table 
+        before the apply process will work.
+
+        CONNECT strmadmin/strmadminpw@dba1
+        DECLARE
+          v_scn  NUMBER;
+        BEGIN
+           v_scn := DBMS_FLASHBACK.GET_SYSTEM_CHANGE_NUMBER();
+           DBMS_APPLY_ADM.SET_TABLE_INSTANTIATION_SCN@DBA2(
+           source_object_name    => 'scott.dept',
+           source_database_name  => 'dba1',
+           instantiation_scn     => v_scn);
+        END;
+        /
+
+    10) Configure Apply Process on the destination database (DBA2):
+        -----------------------------------------------------
+          CONNECT strmadmin/strmadmin@DBA2
+          BEGIN
+             DBMS_STREAMS_ADM.ADD_TABLE_RULES(
+               table_name      => 'scott.dept',
+               streams_type    => 'apply', 
+               streams_name    => 'apply_simp',
+               queue_name      => 'strmadmin.streams_queue',
+               include_dml     =>  true,
+               include_ddl     =>  true,
+               source_database => 'dba1');
+           END;
+           /
+
+    11) Start Apply Process on destination database (DBA2) and prevent errors stopping the process:
+        -----------------------------------------------------
+            CONNECT strmadmin/strmadminpw@DBA2
+            BEGIN
+              DBMS_APPLY_ADM.SET_PARAMETER(
+                apply_name  => 'apply_simp', 
+                parameter   => 'disable_on_error', 
+                value       => 'n');
+
+              DBMS_APPLY_ADM.START_APPLY(apply_name  => 'apply_simp');
+            END;
+            /
+
+    12) Start Capture Process on the source database (DBA1):
+        -----------------------------------------------------
+
+           CONNECT strmadmin/strmadminpw@DBA1
+           BEGIN
+             DBMS_CAPTURE_ADM.START_CAPTURE( capture_name  => 'capture_simp');
+           END;
+           / 
+EOF

@@ -1,0 +1,13 @@
+SBIN : This the root directory of smenu.
+
+SBINS : Directory containing the scripts
+
+S_USER  : default user of smenu. Normally it is 'system'
+          but it may be any user with DBA role. however,
+          some functions may required user SYS. You are
+          then prompted for its password
+
+MAIL_PRG : This the usal mail command. It may also be
+        mail, or sendmail -t.
+ 
+COMPRESS : choose to use compress or gzip as default.

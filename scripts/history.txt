@@ -1,0 +1,530 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#                 visit  "www.smenu.org" for latest Smenu release                        +
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+23-11-2022  :   Added 'aw -writes' to display IO & direct writes stats in conjuction with '-sl' '-each'
+21-11-2022  :   Added 'soc -s' 'soc -curr' 'soc -cpt' 'soc -prg' to investigate open cursors
+                when you hit 'too many open cursors'
+19-10-2022  :   Added tbl -unload -cvs, to unload data with  "," as separator
+14-09-2022  :   Added 'cb' and 'cf' to change color background and font
+10-08-2022  :   Added sl -la and sl -ltop to display session info from v$active_session_history
+25-07-2022  :   Added column everage rows to sq -ph
+15-07-2022  :   Added sts -awlb to list meta for Kruger MANAGE_PARTS
+01-07-2022  :   Added profile to "gc -bk" to list backup info from cloud control
+20-06-2022  :   Added profile to "usr -cr <oneuser>" when profile is default
+02-02-2022  :   added sta -def to view dbms_gather_Stats default setting
+28-12-2021  :   added 'lstd -gap f <file_id>' to list size & gap in a datafile. lstd -s accept
+                now -f <file_id> to calculate resize only for a single datafile.
+30-09-2021  :   Added 'lstd -fsa' to list filenumber for temporary tablespace, case of ORA-01114 
+                for temporary datafile it is the filenumber and not the file id that is reported
+10-06-2021  :   Enriched aud -ls -at -u with activity stats
+12-02-2021  :   Added dep -lsv List all grants tables needed for views of a user
+21-01-2021  :   Added idx -lcl to list orphaned entries in indexes to be cleanup
+04-06-2019  :   Added idx -use to list SQL_ID using this index
+03-05-2019  :   Added src -ext <view> to xpand sub view text to top level (only 12c+)
+30-04-2019  :   Added tbl -tis (concat of tbl -t, tbl -t -s, idx -t). nice for analysis
+25-04-2019  :   Added sx -purge to remove a given SID plan from SGA
+02-04-2019  :   Added 'sq -mcount' to list bind mistatch query count and reason
+20-02-2019  :   Modified sq -top to list sql_id instead of hash_value
+20-02-2019  :   Added lsbk -jbb to list last 10 db backups and last 10 arch back. This is to
+                avoid missing the db backup entries due to spam from numerous arch backup
+18-12-2018  :   Added aud -ls -c <code> to see failed loging attempt (code=1017)
+04-12-2018  :   Added sts -nls to see NLS setting
+25-10-2017  :   Added  tbl -rdef -pm -col_name -seg to generated a redef script to partition
+                a table on -pm months on column -col_name with -seg sub partition per month
+20-10-2017  :   Added  aw -each to single list snap_id  between -b and -e
+08-09-2017  :   Added  lc -purge SQL_ID to remove SQL_ID from library cache
+08-02-2017  :   Added  rol -tx <obj> to list excution grants on procedures
+29-12-2016  :   Added 'aw -sts' to list statistics variance over 2 weeks
+11-10-2016  :   Added 'tbl tsiz -tl <list of tables>  to process a list of table wastage, 
+                blank separated
+26-09-2016  :   Added 'tbl -hist' to derive a table history growth from AWR.
+25-08-2016  :   Added 'aw -rdl' to list LGWR and REDO statistics
+25-07-2016  :   Added 'soc -cpt' to list the count of opened cursors per session
+09-06-2016  :   Added 'aw -hist -t <tbl>' to list stts from WRI\$_OPTSTAT_TAB_HISTORY
+21-03-2016  :   added 'sta -lst' to list statle statistics for non system tables
+16-03-2016  :   added 'aw -pga' to list stats of pga from AWR
+23-12-2015  :   added 'sq -fm' to find query with same signature and different litterals
+22-12-2015  :   added 'sx -lh' to list the hints of a stored profile
+21-12-2015  :   added 'sts -ltb' to list admin_tab_partitions configuration
+21-12-2015  :   added 'tbl -rdef' to create script to online alter a table using dbms_redefinition
+08-12-2015  :   Added 'sq -le' to list sql_exec_id. Added 'sq -ex' to display sql_monitor
+                report for a given exec_id
+02-10-2015  :   Added change background color in 'cnt' if the SID is listed in the new file $SBINS/.prod
+03-09-2015  :   Added shortcut 'gc' to deal with some unsupported Grid control features.
+                added 'gc -td' to list target DB. Added 'gc -rmw' to remove warning messages.
+                added 'gc -rmc' to remove critical messages
+03-08-2015  :   Added 'aw -slp' to list session history under crash cicumstances (more ligt query)
+                added 'drm -lw' to list maintenance windows of the resource manager
+26-02-2015  :   Added 'frg -rcb' to display content of recycle bin
+10-12-2014  :   Added 'sts -al -ora', 'sts -cpt','sts -bid <n>' show alert log excerpt
+                and counts.
+27-11-2014  :   Added 'frg -aux' to list aux occupancy
+26-11-2014  :   Added 'frg -tmp' to list session temp occupancy
+14-11-2014  :   Added 'usr -lck' to view lcoked users, 'usr -xp' to view expired, 'usr -rst'
+                to generate a new passwrd a the text of a mail to used by the DBA (RRE)
+15-10-2014  :   Added 'sta -set_freq' to set a frequency histogram columns
+06-10-2014  :   Added 'spx -dop', 'spx -f', 'spx -o' to show info over parallel executions
+25-08-2014  :   Added mgm shortcut to deal with Grid control metrics.
+22-07-2014  :   Added 'dg -r' to show apply log statistics 
+20-05-2014  :   Added sga -top to list active occupancy of sql work area
+13-02-2014  :   Added shortcut 'met' to deal with system metric
+05-02-2014  :   Added shortcut 'buf -lo -t <table>' to list all buffer associated to all 
+                objects related to the table in to the cache
+05-02-2014  :   Added shortcut 'dep -t' to list all physical objects related to a table
+04-02-2014  :   Added shortcut 'aw -lpt <tbl>' to list sql_id that uses this object
+31-01-2014  :   Added shortcut 'sq -d <sec>' to list SQL_ID run during the n seconds(out of
+                v$sqltats)
+30-01-2014  :   Added shortcut 'buf -lo' to list to buffer_cache contents
+29-01-2014  :   Added shortcut 'usr -l' to list all users metadata
+28-01-2014  :   Added shortcut 'usr' to hold all schema related operations
+21-01-2014  :   Revamped totally 'seg -hot' to add various sort order
+16-12-2013  :   Added 'sta -lc' to list locked tables
+12-12-2013  :   Added 2 perl 10046 parser, 'sts -prf' extract overview from trace file
+                while 'sts -tkp' perform a more detail analysis
+11-12-2013  :   Added 'sls -d <n>' to show system event during n seconds
+19-11-2013  :   Added 'seg -av' to list differentiaks events statistics of segments 
+13-11-2013  :   Added 'sx -px' to view plan from v$plan_monitor.
+14-10-2013  :   Added 'sq -lm' to list table from v$sql_monitor. Added 'sq -si' to show details
+25-09-2013  :   Adpated 'sts -pwd' to create script of password that allows uppercase (11g+)
+20-09-2013  :   Added 'sq -cpar' to view dbms_parallel_execute chunk status
+03-09-2013  :   Added 'rol -quot' to list user tablespaces quota
+27-08-2013      Added 'tbl -tsiz' to list table occupancy including by related objects 
+                (indexes, lobs). 
+31-07-2013  :   Added 'lck -ls' to list lock duration
+26-07-2013  :   Added 'sx -clr' to list sql colored (11gr2); added 'sx -clr_add' to color
+                a new sql for monitor purpose. added 'sx -clr_drop' to remove colored sql
+25-07-2013  :   Added 'lck -lo' to list object locked, with the rowid. Usefull to know which
+                shared lock prevents a delete or table DML.
+22-07-2013  :   Modified 'sta -mod' to exclude recyclin bin tables from list (RRE)
+11-07-2013  :   Added 'frg -xt' or 'frg -id' to list hwm extend occupancy. This is usefull
+                to list which segment to rebuild/move in order to efficient shrink datafile.
+08-07-2013  :   Added 'rol -tbl' to list access type and user list to a table
+28-06-2013  :   Added 2 columns in 'lstd -fs' to give average read/write time per datafile
+21-09-2012  :   Adapted password handling to case senstive in 11g. Added 'sga -c' to list 
+                current memory component size (11g). Added sga -lpar to list parameter
+                related to memory size
+26-07-2012  :   Added 'tbl -wst' to list tables with too much wasted empty space. 
+                Added 'tbl -swst' to generate statement to shrink tables that wasted space
+25-07-2012  :   Added 'sta -set_col' to set column statistics, including into partitions 
+                ( add : -part <partname>). by default the segment table is modified.
+                Modified 'sta -get' to allow looking for column partition statistics
+                using the '-part <partname>' clause
+24-07-2012  :   Added 'tbl -part -s' to display columns statistics for (sub)partitions. 
+08-06-2012  :   Added 'sys -cle' to list background and foreground wait class during n secs
+30-05-2012  :   Added 'mod -lu' to list monitored objects.
+24-01-2012  :   Added 'sx -lpt <table_name>' to list all plan which refers to a table or
+                one of its index.
+10-01-2012  :   Added 'sx -po' and 'sx -po1' to show plan with steps order and addtional 
+                statistics
+09-01-2012  :   Added 'sts -dest' to list archive destinations
+15-12-2011  :   Extended display of data value from v$sql_bind_capture to non basic type,
+                (timestampTZ,clob) using anydata access functions. this is in 'st' and 'aw'
+01-12-2011  :   Added 'lstd -fp', 'lstd -fs' to view various files stats.
+                Added 'lstd -d n' to view delta reads/writes during n seconds
+02-09-2011  :   Added 'idx -lief' to list all indexes PCT internal occupancy. 
+                Added 'idx -sief' to generated statement to rebuild indexes which are below
+                n percent occupancy.
+13-07-2011  :   Added 'app -err -erno' to display LCR info starting from an error message number
+05-05-2011  :   Added 'sx -fprf -id' to transfer the sql plan profile of a hinted sql (in file) 
+                to an active sql_id. Added 'sx -lot' to list the hints of a given sql_id.
+28-04-2011  :   Added 'tbl -luse' to list top tables with low ratio of blocks usage
+27-04-2011  :   Added 'idx -ief' to display index efficiency.
+18-04-2011  :   Added 'sx -ld' to list all plan with different hash values. Added 'sx -cr_prf'
+                to create a stored profile out ouf the current sql. Added 'sx -tr_prf'
+                to transfer the SQL profile between 2 sql_id. added 'sq -lprf' to list all
+                queries that uses store profile. added 'sx -sp' to list stored profiles in
+                the system.
+18-03-2011  :   Added 'seg -pread' to list segment physical read/write. Added 'seg -d <seg>'
+                to make a measurement on the segments IO during n seconds.
+15-03-2011  :   Added 'aw -io' to display tablespace io history stats
+01-03-2011  :   Added rac support for 'sts -sar', fixed format issue in 'tbl -p', 
+                Rename 'sx -pl' to 'sx -lpl',Added  'sx -pl' to display plan from memory
+                when plan hash value is given.
+24-02-2011  :   Added 'shed -a' to list jobs argument. Added 'sg -s', 'dg -t' to display
+                various dataguard status
+23-02-2011  :   Added support for standby redo log into 'rdl' and 'lstd'
+18-02-2011  :   More scripts adpated to Cygwin
+10-02-2011  :   Several scripts modified to cope with Cygwin specific. From now on, Cygwin
+                is again my reference platform using PuttyCyg as terminal emulator.
+04-02-2011  :   'lsbk -f' show now also the contents of archives into backup pieces that
+                contains archives.
+03-02-2011  :   Added 'lsbk -f' to list content of rman backup piece
+28-01-2011  :   Added 'aw -lsm' to display General DB operations stats per snap_id,
+                Added 'sts -fkn' to list FK on nullabe columns
+24-01-2011  :   Added 'src -su' to display all column or source where given string appears
+20-01-2011  :   Added 'vsp -vv' to see parameter valid values and current set values
+12-01-2011  :   Added 'esqltrcprof.pl' from Norbert Debes as shortcut 'prf'. 
+                renamed 'prf' to 'pra'. 
+06-01-2011  :   Added scrambling.ksh script, a generic routine to scramble production data
+                for development environment
+05-01-2011  :   Added 'frg -s' quota occupancy on tablespace overview (script by bill hoyle)
+                Add 'rol -usr' to display a shema detail shema role/grants (sys & objects)
+                added 'tbl -ctree' to list cascading FK on <table> with <table> as root
+04-01-2011  :   Added 'sta -set' to set some column statistics. Added 'sta -get' to view
+                these values. added 'sta -cr_histo' to create a frequency histogram on a
+                column (max 254 buckets) and adapt the density for all rows that are not
+                in the histogram.
+29-12-2010  :   Renamed 'aw -ev' into 'aw -se' to emphasize it is session oriented.
+                Added 'aw -ev' to mine AWR system events & waits following various filters
+22-12-2010  :   Added 'st -sgen' to generate usable SQL script with binds out of V$SQL and 
+                V$SQL_BIND_CAPTURE, fixed some regexp flaw in 'st -f'. Added 'aw -sgen'
+                to extract SQL and its bind in a ready to use from AWR
+21-12-2010  :   Added 'lgm -cr' to load archive into a table and create index. 
+                Added 'lgm -dr' to drop this table. Added 'lgm -cpt' to show counts of entries
+                added 'lgm -tt -sid' to list entries for a given SID
+17-12-2010  :   Added 'tbl -pred -col' to show plan stats for SQL that uses the column. 
+                This is espcially Usefull to track or monitor non index columns
+16-12-2010  :   Added 'sl -a' to see all active sessions, sql_id and the objects they access
+13-12-2010  :   Added 'lc -mx' to show mutext distribution
+10-12-2010  :   Added 'soc -ls' which list opened cursors per origin
+09-12-2010  :   Added 'sx -stp' from iggy to show execution plan ordered by steps
+                added 'lgm -la' to mine  archive directly the current redo log, 
+                add 'lgm -sid' to mine archive per session, added 'lgm -xid' to display
+                all DML related to an XID.
+07-12-2010  :   Added 'aw -slk' to display session locking tree for a given snap id.
+                Added 'aw -sa' to display all information related to a session for a snap
+                added 'aw -ldb' to list DBID and snap counts presents in the repository
+                added 'xpl -m' to generate the xplain plan for a file using DMBS_XPLAN
+                added sort options to 'sx -l' to single out plans by last active, gets, cost
+30-11-2010  :   Added 'sql -top <nn>' to produce TOP sql for <nn> secs, sorted by many 
+                conditions.
+29-11-2010  :   Reworked 'sqn' completely in order to bring more options. check 'sqn -h'
+                starting to modify smenu  so that it may be used by non SYS|SYSTEM user
+                with only the 'select any table and select catalog view' and exec dbms_lock.
+26-11-2010  :   Added 'aw -sb' to list binds from AWR. Added 'aw -pf' to show SQL stats 
+                from AWR history. revamp 'sx -l' to mine mutliple plan for a sqlid and others
+                criterias.
+25-11-2010  :   modified awr so that other users than sys and system may use it. 
+                Added 'aw -pl' to list plan from AWR
+30-12-2009  :   Revamped a bit 'drm' to achieve more atomic operations. New options added.
+22-12-2009  :   Added 'cap -d' overview of streams lines seen from source db
+14-12-2009  :   Added 'sts -pch' to display parameter change history from dba_hist_parameter
+09-12-2009  :   Added 'frg -cr' to generate create tablespace statement. Added 'sq -m -io'
+                to display io waits for the last sql
+26-11-2009  :   Added 'buf -io' to report Buffer IO distribution. Added 'srv -sti' to
+                display service statistics per instance
+24-11-2009  :   Added 'app -cf' to list prebuilt update conflict handler
+16-11-2009  :   Fixed 'rol -cr' to correctly generated the creation user with grants on directories.
+15-10-2009  :   Added 'app -xerr -erno' Added view/re-execute errors by type (error_number)
+31-08-2009  :   Added 'sys -io' to display avg waits on Sequential and Scattered reads,
+                added 'lat -x' an implmentation of latchprofx from Tanel Poder
+28-08-2009  :   Renamed 'srv -sl' to  'srv -c'  and added a second session count query 
+                to display sessions count per service
+14-08-2009  :   Added 'sx -opt' to list optimizer value for a given hash_value/sql_id
+13-08-2009  :   Added 'prop -d <n>' to display propagation traffic during 'n' seconds
+29-07-2009  :   Added shortcut 'rsy' to cope with all resync of streams. Added option 'spx -ls'
+                to list slave id on one row for each master in parallel query stats
+24-07-2009  :   Added 'sta -lr' to list when dbms_gather_stat job ran, 'sta -mod' to list 
+                tables not analyzed while they should have.
+15-07-2009  :   Added 'lgm -w' to allow any where clause on mining archive logs
+13-07-2009  :   Extend 'tbl -g' to partitions and subpartions
+10-07-2009  :   Fixed some rendering in 'tbl -c' when same name is used in multiple schema.
+08-07-2009  :   Added option 'src -st' to list system views view given string
+01-07-2009  :   Added option 'prop -droprs' to drop rule set associated to propagation.
+29-06-2009  :   Added option 'sq -pb' to list query with execution variations during last n days
+25-06-2009  :   Added option 'sga -g' to list memory granule type distribution
+23-06-2009  :   Added option 'sts -td' to convert a date to SCN, Added 'lgm -t' to list content of
+                redo content for a given table.
+16-06-2009  :   Added option 'app -cmp' to list compare of Old/New in apply handler for update/delete
+11-06-2009  :   Added option 'soc -la' to list last sql's executed that are still in sql_area,
+                Added option 'sys -g' to show histogram of <event> taken during <n> seconds
+10-06-2009  :   Added option 'sl -dump' and 'sl -rf' to dump session PGA and perform some aggregations.
+05-06-2009  :   Added 'sts -s' to list system statistics, 'sts -si' to show how When system 
+                statistics were taken, 'sts -' to List gather_database_stats run history.
+                Added 'sta -fx -dx' to gather/delete stat for fixed tables.  Added 'sts -fy -dy'
+                to gather/delete system statistics.
+04-06-2009  :   Added 'sq -pl' to display queries with multiple plan mistmatch. Added , 'sq -ph'
+                to display query performance history. Added 'sq -pb' to display query 
+                bind plan mistmatch reason.
+03-06-2009  :   Added 'aw -gn' to list a metric stat. Use 'aw -met' to retrieve the desired metric id
+25-05-2009  :   Added 'ses -rb' and 'sys -rb' to show sesssions ratio on Undo/reconstruct blocks
+18-05-2009  :   added 'idx -sinv' to generate statment to rebuild invalid indexes
+11-05-2009  :   Replaced 'lck -l' with an improved version from Jared still
+08-05-2009  :   Added option 'aw -lsi' to list relevant metric from dba_hist_sysmetric_history
+07-05-2009  :   Added option 'aw -lst' to list most important metrics stats
+06-05-2009  :   Added option 'tbl -txn' to list available flash back transaction for the table
+05-05-2009  :   Added option 'sts -s' to extrace Unix sar like info from AWR repository
+27-04-2009  :   Added 'rdl -la' to display the number of log switches per hour
+03-04-2009  :   Added option 'drm -m' to display resource group mapping, 'drm -l' has been enhanced
+02-04-2009  :   Added option 'srv -st' to display various metrics on services
+31-03-2009  :   Added option 'srv -start|stop|drop'. added option 'drm -set' to assign
+                a consumer group to a user
+30-03-2009  :   Added option 'aw -cr_sql_plan' to create a stored profile from an existing 
+                AWR store path into dba_hist_sql_plan
+20-02-2009  :   Added option 'dep -p' to list reverse object dependency
+05-02-2009  :   Added option 'seg -top' to list top segement occupancy
+24-01-2009  :   Added option 'shed j' to list running jobs from scheduler
+23-12-2008  :   Added option 'sts -def' to display database properties
+22-10-2008  :   Added deferrable information to 'tbl -c'
+29-09-2008  :   Added 'aw -lbw' to list buffer busy waits stats out of dba_hist_seg_stat 
+16-09-2008  :   Added 'srv -l' to list services out from dba_services. Addped option 'prop -check' 
+                to check if propagation is ok. Added option 'prop -trace' to activate
+                events '24040' on propagation start
+03-09-2008  :   Added shortcuts 'dpf' to exploit the output table filled by  'dbms_profiler'
+22-08-2008  :   Added option 'xpl -bu' to become another user in order to take the explain plan
+18-06-2008  :   Apdated the menu part of streams so that it to brings it in par of 
+                the shortcuts. This requieres a bit of coding to foresee multiple cases.
+                It will allow people with less in depth knowlege of streams to issue monitoring 
+                commands.
+30-05-2008  :   Added 'sta -lp' to list dbms_stat default parameters
+27-05-2008  :   Added 'rdl -t' to list redo log strands
+26-05-2008  :   Added 'tbl -ph' to list partitions column values (high_values)
+05-05-2008  :   Added 'aw -purge' to purge snapshots
+16-04-2008  :   Added 'obj -lib' to list all libraries from dba_libraries
+15-04-2008  :   Added 'shed -e' and 'shed -d' to enable/disable a job in scheduler
+                Added 'shed -r' to run immediately job of of the scheduler. Added 'sta -lock/unlock' 
+                to lock/unlock table or schema statistics
+28-03-2008  :   Added 'buf -l' to list the count of buffers of objects.  Removed 'buf -a' as 
+                it is quite meaningless. Added 'buf -drac' to list buffer objects count in 
+                all instances of rac
+27-03-2008  :   Added 'rac -gc' to display average Global cache block receive time.
+                'tbl -spc|-uspc' will now cycle through all partitions if no partition name is given
+19-03-2008  :   Started 'rac' shortcut to re-group related queries specific to RAC
+18-03-2008  :   Added 'sts -dif' that display parameter differences between memory and spfile
+14-03-2008  :   Added 'buf -rac' so show cache fusion efficiency
+07-03-2008  :   revamped 'rul' so that to better display the relations between rule sets, 
+                rules, and transformation rules
+03-03-2008  :   Added 'sga -his' to display free SGA size history from AWR.
+27-02-2008  :   Added 'sl -p' an adaptation of snaper from tanle Poder. Added 'aw -bbw' to display 
+                buffer busy wait from awr history. Added 'tbl -spc' and 'tbl -uspc' to list 
+                mapping of the blocks occupancy. Added 'tbl -dep' to list dependent segments
+18-02-2008  :   Added 'sts -t' to convert SCN to timestamp. Added 'obj -hd' to list location of 
+                object header block or return object whose header block is given
+12-02-2008  :   Added 'lat -dif' to display latch statistics difference for a duration (in seconds)
+05-02-2008  :   Added 'cap -lstb' to list suitable SCN and archive for new capture first_scn.
+                Added 'cap -build' to force an export of datadictonary. Added 'obj -ddl' 
+                to list last objects in DB with DDL on them.
+24-Jan-2008 :   Added 'cap -pckp' to purge logmnr_restart_ckpt\$ and advance the capture SCN
+23-Jan-2008 :   Added 'sl -t' to display imapact of events on a session response time
+                Added 'sls -n' to list event by name and class.
+22-Jan-2008 :   Added 'sts -opt' to display optimizer relevant parameters
+16-Jan-2008 :   Added 'cap -gm' to display counts on all logminer tables.
+15-Jan-2008 :   Added 'seg -hot' to list hot blocks from v$segstat. Added 'seg -tch' to list 
+                touch counts from v$segstat. Added 'lck -t' to display locking history.
+                Added 'sga -ko' to display overview of free chunk in SGA. This complement 'sga -k'
+                Added 'shed -o' to display an overview of the scheduler
+11-Jan-2008 :   'sx -vs' reports reports for each steps in an execution plan, the average
+                value where 'sx -vl' report the values of the last execution.
+02-Jan-2008 :   Added 'aq -si' and 'aq -pi' to change instance queue ownership in RAC.
+19-dec-2007 :   Added 'aq -k' to reduce the high water mark for a queue table and 
+                associated _P and IOT. Added 'aq -qt' to list queue table real size.
+                Added 'sls -g event name' to show event histogram
+14-dec-2007 :   Added 'rdl -s' to display stats on redo logs. Added 'aw -f snap_id' to list 
+                snap_id's that contains the sql_id
+10-dec-2007 :   Added 'sx -crf' to create  a hint from an sql file. Added shortcut 'lsbk' 
+                in replacement of rsbk with better scripting to list rman backups
+                added 'asm -mv' to move datafile between diskgroup using rman.
+05-dec-2007 :   Added 'sx -lso' to list all queries that uses stored outlines
+04-dec-2007 :   Added 'sx -cro' to create stored outlines. Added 'sx -lc' to list all stored 
+                outlines Category.Added 'sx -ln' List outlines hints for a given outline name.
+                Added 'sx -clone' to create a clone of a stored outline.  Added 'sx -pos' to change 
+                the position of an hint withing an outline.  Added 'sx -tr' to transfer 
+                all outlines hints from a source outline to a target. Added 'sx -cl' to clear 
+                all used column in dba_outlines.used .  Added 'sx -exp' to export the 3 outlines tables. 
+                Added 'sx -drc' to drop a stored outline category. Add 'sx -dr' to drop a single outline.
+03-dec-2007 :   added 'aq -purgep' to remove all rows from given exception queue
+                added 'aw -prf <sql_id>' to generate an SQL profile. Added 'aw -lprf' to generate 
+                list of sql profiles. Added 'aw -llprf' to show report for an Advisor task
+28-Nov-2007 :   added code to open an read exception queues in 'aq -readp'. We now support
+                descriptions of SYS.LCR$_PROCEDURE_RECORD. No doubts, your life is changed
+23-Nov-2007 :   added options 'aw -reset, -ckf, -chk, -cpt' to set/unset various capture parameters
+22-Nov-2007 :   added 'aw -readp <queue_name> -key' which display all values for a transaction
+                in normal and exeption table queues (AQ$_<xx>_P)
+19-Nov-2007 :   added 'aw -xpf' to extract from AWR sql_id whose plan differ from v$sql_plan
+                added 'aw -pl' to extract explain plan for a given snap_id. add option 
+                'sx -i' to extract plan from v$sql_plan with and sql_id
+15-Nov-2007 :   added 'sts -f' to show how much free space is left in the flashback area
+09-Nov-2007 :   added 'rlbs -us' to  Show the number of undo megs tablespace needed
+                added 'aw -sl' to extract top heavy sql load in system from awr
+                added 'aw -t <sql_id>' to submit sql_id to advisor and output results
+                this create, run, display and drop the task
+                added 'aw -ad' for a given period to obtain advices over this period
+08-Nov-2007 :   'tbl -lob' display also the partitions lobs size and tablespace location
+                added  'aw -dif' to create differential report on awr snapshot added  'aw -ash|-sid' 
+                to create active session reports for all or a single session. Added 'aw -s' 
+                to view all info including explain plan from awr history
+06-Nov-2007 :   Added option 'aw -set' to set workload repository duration and interval
+02-Nov-2007 :   Added option 'aw -b/-e' to produce awr report between 2 given snap id.
+                added option 'aw -html' to produce reports in html, default is text. 
+                Added option 'frg -os' to list objects in tablespace and their size. Useful
+                to see lobs real size
+31-Oct-2007 :   added 'shed -log' to show log for dba_scheduler_job_log.  Enriched the display
+                of 'shed -l' to list additional info on schedules, program and generated jobs
+30-Oct-2007 :   added option in 'mod' to set/unset table monitoring or index usage. added
+                option 'mod -x' to refresh dbms_stat info on dba_tab_modifications
+29-Oct-2007 :   added 'mod' to show result from monitoring tables modifications from dba_tab_modifications
+26-Oct-2007 :   Added 'awr' which will contains all about awr. option '-l' list the available snapshots, 
+                options '-use' list the awr options used on this DB(License?)
+                added option 'awr -r' to produce awr report on last snap
+25-Oct-2007 :   Added options 'tbl -logu' to list tables supplemental group not based on FK,PK 
+                or bitmap
+                prop '-rcr' to recreate a propagation will deduce now all requiered information 
+                from datadictionary.  prop '-lat' to change propagation latency will derive all 
+                its information from datadictionary. 'prop -v' will show last enqueue SRC scn
+                and last TARGET dequeued scn. 
+17-Oct-2007 :   Added shortcut option -dir to 'obj' to list oracle directories from dba_directories
+15-Oct-2007 :   Added shortcut 'shed' to service all about scheduler, added view supplemental
+                logging with 'tbl -log' 
+15-Oct-2007 :   Added List, disable, enable constraints for a table or schema 'tbl -cl -cd -ce'
+14-Oct-2007 :   Short cuts 'cap','prop','rul,'app','aq' enriched with specific 10gr2
+                streams functions
+09-Oct-2007 :   Added 'asm' shortcut to see ASM informations
+24-Aug-2007 :   'tbl -lob' also report now the size and internal occupancy for lobs.
+13-Aug-2007 :   Added new calculation method for clustering factor into 'idx'.  Added some
+                more options in 'obj' to view objects (per user, id)
+10-Aug-2007 :   Added option to 'sta -lst' to list objects without statistics
+                added option -heavy_disk and -heavy_gets to 'sq' to list heavy sql. This is an
+                alternate to option 'load' or -b or -d options
+                added generation of index creation statements when asking a table creation script
+                with 'tbl -ddl'
+24-Jul-2007 :   Added option '-c' to 'rob' to generate creation script for a given role
+                Added option '-c' to 'roa' to generate creation script for a given user
+20-Jul-2007 :   Modified "sta" so that sm_sttab is not more requiered to gather statistics
+                Added support for MV in 'src', it does same thing as 'mw -t' : output source code
+                Added support for trigger into 'src'
+10-Jul-2007 :   Added option -b to xpl to show plans using dbms_xplan with 6 additionals options
+08-Jul-2007 :   Added shortcut 'fio' to list datafiles io waits
+14-Jun-2007 :   Added option -c to materialized view to see refresh group.
+                Added one column to 'fsi' to show tablepsaces with one extent segment that
+                will failt to extend
+                Added option 'xt' to 'obj' to display the object with not enought space
+                to extent
+11-Feb-2007 :   Added shorcut dep options to list object dependencies
+31-Jan-2007 :   Added option -pk to sq to list running PL/SQL packages
+02-Dec-2006 :   Added option -pred to 'tbl' to show col_usage$. This allow  to known which
+                column is used with which type of joins on predicate.
+15-Dec-2006 :   Added view upload errors from EM sysman tables
+03-Nov-2006 :   Added sampling of v$session_event and 2 options to spl in order to the profile
+                for a session, module or action
+26-Oct-2006 :   Added shortcuts 'mts' to deal with MTS, see mts -h. Added option 'sl' -lw
+                for 10g to display in one screen active session, sql, the wait and object locked.
+                added option in 'rep' to set up 'repadmin' and 'snapadmin' accounts
+23-Oct-2006 :   Added option -f to 'idx' so that it displays indexed column for fixed views
+20-Oct-2006 :   Added option -ff to retrieve fast segment name when given file_id and block_id.
+                Though it works only locally managed tbs, it is around hundreds times faster than 
+                traditional way as it avoid access to dba_extents.
+17-Oct-2006 :   Added display non-idle time to 'sl'
+10-Oct-2006 :   Added option -ext to 'dblk' in order to add info from v$dblink, added option -a
+                to cpt to also list accounts wihtout any objects. Added showtuct 'mw' to handle
+                everything regarding materialzed views. It should grow until all is covered on 
+                the same par that streams family of shortucts.
+04-Oct-2006 :   added option -sp to sq and added the notion of family sql for sql without bind 
+                variables. This will be exploited later to help who weight on the DB even 
+                if sql hash_values are scattered.  Perl sampler backported to 8i and made more 
+                robust and stable for long running (days)
+                added some option to 'spl'
+28-sep-2006 :   added to 'tbl' option -i to gives all info from dba_tables, easy and so conveniant.
+25-sep-2006 :   Added option -load to 'sq' in an attempt to single out heavy sql not using binds
+21-Sep-2006 :   Added option -i to buf to show info contained into x$kvit
+15-Sep-2006 :   added option -rec to (rlbs) to see number of vector changes per objects in RLBS
+                extended (sl) with -r and -o to list overview of session and list who is running SQL
+                at this moment.
+14-Sep-2006 :   Modified 'dsk' so that it shows also X$ table in partial name selection,
+                added option -sa to 'soc' to display cursors not shared and the reason.
+                added support of 10gr1 to 'aq'.
+13-Sep-2006 :   Added option ses to see session statistics, plus diff of stats for a given period
+12-Sep-2006 :   Added option sys to see system statistics, plus diff of stats for a given period
+06-Sep-2006 :   Added options to 'lat' to proces 'cache buffer chain', added options to list
+                segment and options covered by a children latch in x$bh. updated 'lat' with
+                option -mis to show latche misses location.  upadated 'obj' with option -dict
+                to list object out of 'DICT' even gigven partial name.
+04-Sep-2006 :   Regrouped all shortcuts 'buf?' into single 'buf' with options. optimized some of these
+                options. Optimized 'dus' shortcuts for better performences.
+24-Aug-2006 :   Added some options into smenu_get_pawswd so that it allows distinct user connection
+22-Aug-2006 :   Added option -e to lstd to list datafile in auto that cannot extend anymore
+                added option -es to lstd to generated statement to set those datafile auto off
+06-Aug-2006 :   Add options to 'lc' to show who is holding the library cache pin and what is locked
+27-Jul-2006 :   Fix a small bug in aud that did not filter user when filter is requested
+                and user name given in lower case. Regrouped all 'lck%' shortuctuts into 'lck'
+25-Jul-2006 :   regrouped all latches related shotcuts into a single one 'lat'. Added some
+                more options to 'lat' such as latch location, sub pool latch count. 
+                Added option -d to 'par' to show better details on system parsing. This is usefull 
+                when the latch free is on the libray cache.
+24-Jul-2006 :   Added options -c to dsk to display comments
+05-Jul-2006 :   Added show hidden free memory in permament memory for 'sga'. Added option -f
+                to 'src' to show text from fixed_view_definition in order to have the SQL text
+                for the x$ views.
+03-Jul-2006 :   'sp' will list shortucts sorted by categories. 'lc -b' will show who is holding
+                the library cache lock and session waiting.
+28-Jun-2006 :   Add link to v$sql_bind_capture into 'sx', add converted options hash_value
+                sql_id so sx, added to sx automated generation of 10053 or ""nnn" event with
+                automated retrival and display of the trace file.
+21-Jun-2006 :   'sx' will also now report mem_used from v$sql_workarea_active and spilled 
+                to disk tempsegs.
+20-Jun-2006 :   Added advices lookup in SGA and extended sga summary (sga -s)
+18-Jun-2006 :   added session pga memory usage (lc -ses)
+15-Jun-2006 :   Added usage for temporary tablepsace 'dus -t'
+08-Jun-2006 :   Add dbms_xplain to the options of 'sx'. added blocks in 'tbl -t', usefull 
+                when considering clustering factors in 'idx -i'.  added some options to src
+                to show what object type is behind the synonym.
+06-Jun-2006 :   Added par -s  to show parsing per session, added -e "<event>" to to 'sle' 
+                to display all sessions whitch sharer this events
+02-Jun-2006 :   Renamed lcp to 'lc' and added some info for the library cache. Usefull to know
+                the reload and invalidation ongoing. added list of current running cursor to 'soc'
+29-May-2006 :   Added a specific query for library cache pin (SM/2.7.20) shortcut 'lcp'
+23-May-2006 :   Added option -like to dsk to list existing objects of this type
+                Added option -a to option sx to show predicate and access values.
+02-May-2006 :   Renamed shortcut pkg to src, as it will also show the source for views.
+25-Apr-2006 :   Added option -t to 'soc' so that to report only text for a given SID. added
+                also option -h to 'soc'. Added the shortcut 'tx' to deal with in doubt transactions
+                It have 3 options to query v$transaction, dba_2pc_pending and neighbors.
+10-Apr-2006 :   Added a Perl sampler to be called for remote DB. 
+12-Apr-2006 :   Added option 'prf' to list profile by name (-l) or to list all attribute 
+                for a single profile (-p). Added opiont -m to 'aud' to that to list last
+                logon time for a user. Add list all user with a given profile 'prf -p PROFILE -lu'
+11-Apr-2006 :   Added in spl the grouping by all type of minutes in individual SQL_HASH report
+                added the capability to limit the rows in this case. With the option -min,
+                to go back in timle,the number of rows filter and the grouping by time
+                You can extract any report for any query for any duraton on any time frame
+                and produce a graphic of it.
+08-Apr-2006 :   Added a install step by step in the online manual on how to add graphics
+                New options on the spl, mainly all that deals with ratio among the raw 
+                data. All these options can now be pushed to graphic. spl -x -g -w -r etc..
+                Start the work on detailed activity per time for an SQL, say minutes by 
+                minutes behaviour of a given SQL  and push it to graphic ('spl -de')
+05-Apr-2006 :   First graphic added to 'spl' with option -m. For the moment only
+                spl -dx, -dr, -dd, -dg are supported. Access this option with
+                spl -img. You must have firefox in the path.
+28-Mar-2006 :   Added shortcut 'dg' for logical dataguards with plenty options to view
+                differents stats : -e for errors, -a apply status, -m monitor etc...
+23-Mar-2006 :   Modified install.sh and docs so that smenu can run now on Cygwin. 
+16-Mar-2006 :   Added -u to 'rob' so that to list user which have the role in argument
+13-Mar-2006 :   Added auto-probe library to run perl DBIx. this is the first stage of
+                SQL to pie and bart charts I intend to add in Smenu for nice reporting
+                for the Oracle wait Interface implementation in Smenu.
+01-Mar-2006 :   Added single user display roles to 'roa'
+                added rog, to display privileges for one role.
+08-Feb-2006 :   Added options -tx, -d to 'rlbs' to monirot who is holding the undo segments.
+                Added 'lstr' to return queries with containt a substring. Very usefull to set
+                session to trace when you hunt for values for bind variables.
+                Added 'cpl' to list statement to compile invalid objects and list last modified
+                objects.
+04-Jan-2006 :   Added show higher applied logs 'apl -m'
+03-Jan-2006 :   Merged the shortcut 'owi' into 'spl'
+01-Jan-2006 :   Added A full set of command for streams and a section on setup streams in the
+                manual. There a 5 shortcuts for streams 'aq','cap','prop','app','rul'. Each of
+                them comes with an help. Moved the web site from geocities to www.smenu.org.
+29-Nov-2005 :   Added set stream user admin and list stream queue, SM/3.8 'str -q'
+28-Nov-2005 :   Added Check a set of transport tablespace, export, import, SM/3.2.[10,11,12]
+                shortcuts 'ttbc','ttbe','ttbi'
+                added a note on how to use it on the manual
+13-Nov-2005 :   Added the sampler for the Oracle wait interface (sm/3.1), and a shortcuts 'owi' 
+                that will query this feature. This is an important addition to smenu so I will 
+                devote a special section ot this in the documentation. In short, this is the same 
+                as the Oracle workload repository, but without objects in the DB and more options 
+                possibles. work for 9i also.
+10-Oct-2005 :   added shortcut option -col to 'sta' to gather statistics for a columns or list
+                of columns
+05-Oct-2005 :   added shortcut 'sta' to deal with dbms_gather stat. This is a full environment
+                to create, maintain, export, import, view statitics. It suport (sub)partitioned
+                tables and indexes and auto search of user defined stat table and statid
+21-Sep-2005 :   sq : Added join to V$process to enforce display of only active SQL with 
+                     option -x, added overload of time column to display sql elapsed when 
+                     option -x and -t are combiened
+20-Sep-2005 :   Added bufk to show tables that could be pinned and the statement.
+18-Apr-2005 :   Restart Smenu for 10g : this is a totally new version
+
+bpa: Bernard Polarski
+RRE: Roelens Rens
+PTI: Pierre Timmermans
+IZA: Iza Kanea

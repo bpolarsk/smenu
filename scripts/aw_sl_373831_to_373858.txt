@@ -1,0 +1,1009 @@
+Most expensive SQL in the workload repository
+
+Snap:	   373831  From :   01 Mar 2019 19:30:47  To :	 01 Mar 2019 19:40:47
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+fsxvbp4shqrk3 THALER_PRD		    129.98	  109	       0     3541434	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+5y4z2f6afmnmf THALER_PRD		    129.64	 1860	   14940      276945	127.30 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+6dt6wf5wcngum THALER_PRD		    123.94	23996	   17928      114597	121.84 SELECT /*+ INDEX ( cld14 cld14_1 ) */ numver, refmaj, d
+00sz19zjv9wfj THALER_PRD		    122.16	  252	   14264       66095	120.62 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+6a7nc831dsg7j THALER_PRD		    110.76	  401	   12730       23434	109.98 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+ctcy8vfnxvcn4 THALER_OWNER		     76.45	    1	  329863      360504	 54.11 create table tmp_zed06 as ( select a.ClientBuyWayId
+7ky6gmtnzqc7d THALER_PRD		     74.88	  109	    8656       14463	 74.39 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+5zqfkpp0gfdxg THALER_OWNER		     61.21	    5	       0     2891386	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+65pwgv9n2myzb THALER_OWNER		     47.92	11986	    5964       40762	 46.41 SELECT /*+ INDEX ( eid01 eid01_2 ) */ numver, refmaj, d
+g1tag71arrdpv THALER_PRD		     46.41	 3972	       0     1585810	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+fvujvm9x1hbs0 THALER_PRD		     43.97	 8039	    7769      469835	 39.13 UPDATE /*+ INDEX ( pgd12 pgd12_1 ) */ thaler_owner.pgd1
+7g6030zczrkuk THALER_PRD		     41.23	20633	    9353      619981	 33.63 INSERT INTO thaler_owner.evd01 (datmaj, heumaj, pgmmaj,
+872qwh35j4544 THALER_PRD		     40.56	  224	    4645      127319	 39.74 select * from ( select row_.*, rownum rownum_ from ( SE
+dvx2x30nywzt4 THALER_PRD		     37.47	 1686	    4388       31863	 36.92 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+7bgq22105shp2 THALER_PRD		     35.47	   26	       0      885357	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+6fdf3wpc9a4dh THALER_OWNER		     33.38	 9925	       0     3150419	  0.00 SELECT ARGTBL,	     LIBEL1_1, LIBEL1_2, LIBEL1_3, LIB
+2acup1009rx7d THALER_PRD		     30.57	   24	       0      786986	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+d3k5rcjkvmsj5 THALER_OWNER		     30.16	14477	   10348       57908	 29.06 SELECT /*+ INDEX ( zed02 zed02_1 ) */ numver, refmaj, d
+48gqh7mv2507n THALER_PRD		     30.05	17919	    6130      377242	 25.39 INSERT INTO thaler_owner.emd11 (datmaj, heumaj, pgmmaj,
+7hf7tg9476rzw THALER_PRD		     29.84	20936	    4912      243158	 21.64 INSERT INTO thaler_owner.cgd30 (datmaj, heumaj, pgmmaj,
+4q2rt2qj8hvkz THALER_PRD		     29.51	   49	    3318       10181	 29.27 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+4u2yz2wu7kczs THALER_PRD		     28.89	  136	    3210	6118	 28.67 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+90nt8gnfa203d THALER_PRD		     26.51	 7912	    5446      346657	 21.98 INSERT INTO thaler_owner.pgd12 (numver, refmaj, datcrt,
+4kv1t7zb5cdmk THALER_PRD		     25.69	10813	    5245      107118	 24.22 SELECT /*+ INDEX ( pgd21 pgd21_1 ) */ numver, refmaj, d
+0sy61kc09qp5h THALER_PRD		     25.44	20885	       0     1397084	  0.00 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+0s68mthkfyava THALER_PRD		     23.20	25191	    5700      120511	 21.86 SELECT /*+ INDEX ( pgd22 pgd22_1 ) */ numver, refmaj, d
+bykfbhx4z4gcm THALER_PRD		     21.51	 1693	    2786       36685	 20.19 insert into THALER_OWNER.jad01 (STAANN, NUMVER, REFMAJ,
+81nqr33df4ma4 THALER_PRD		     20.91	20714	    4811      102808	 19.76 SELECT /*+ INDEX ( pgd26 pgd26_1 ) */ numver, refmaj, d
+0y0y5384q1wad THALER_PRD		     20.54	16994	    3200      203983	 13.75 INSERT INTO thaler_owner.cgd01 (datmaj, heumaj, pgmmaj,
+29hr8c3xzmbjj THALER_OWNER		     20.20	    0	      20     3036287	  0.18 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ datcrt, numcli, t
+
+Snap:	   373832  From :   01 Mar 2019 19:40:47  To :	 01 Mar 2019 19:50:48
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+5y4z2f6afmnmf THALER_PRD		    154.66	 1762	   17096      273628	152.18 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+fsxvbp4shqrk3 THALER_PRD		    119.06	   95	       0     3082359	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+00sz19zjv9wfj THALER_PRD		    112.92	  215	   12836       58579	111.63 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+6a7nc831dsg7j THALER_PRD		    107.58	  399	   11904       24644	106.83 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+5zqfkpp0gfdxg THALER_OWNER		     60.41	    5	       0     2919981	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+7ky6gmtnzqc7d THALER_PRD		     49.18	   95	    5560	9845	 48.85 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+g1tag71arrdpv THALER_PRD		     47.53	 3972	       0     1584373	  0.01 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+dvx2x30nywzt4 THALER_PRD		     40.36	 1674	    4465       31647	 39.81 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+872qwh35j4544 THALER_PRD		     35.15	  188	    3940       98342	 34.52 select * from ( select row_.*, rownum rownum_ from ( SE
+d3k5rcjkvmsj5 THALER_OWNER		     33.65	14507	   10527       58028	 32.54 SELECT /*+ INDEX ( zed02 zed02_1 ) */ numver, refmaj, d
+4q2rt2qj8hvkz THALER_PRD		     32.04	   56	    3642       14927	 31.75 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+gq4u3dppjkmyr SYS			     26.80	    3	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+6fdf3wpc9a4dh THALER_OWNER		     25.53	 7601	       0     2469318	  0.00 SELECT ARGTBL,	     LIBEL1_1, LIBEL1_2, LIBEL1_3, LIB
+2jdrf6sbup7dy THALER_PRD		     25.37	   10	    2930	6427	 25.20 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+bykfbhx4z4gcm THALER_PRD		     23.61	 1670	    2702       35490	 22.19 insert into THALER_OWNER.jad01 (STAANN, NUMVER, REFMAJ,
+ft3n0ju3a258v SYS			     23.49	    4	       0	   8	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+4u2yz2wu7kczs THALER_PRD		     23.44	  113	    2559	4526	 23.25 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+86bdffj6f3p4z THALER_PRD		     18.30	 2096	    2043       21801	 17.37 insert into THALER_OWNER.zz700 (STAANN, NUMVER, REFMAJ,
+b0f3dzy6jcynq CAP_OWNER 		     17.98	 3793	    2294      144627	 16.09 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+0az7czjdw8z7j SYS			     16.72	    0	       0	   0	  1.15	    declare	      lbRec	    dbms_rcvman.lbRec_
+0acgaaypjp9g8 OBOOK_USER		     16.23	   58	       0     1525403	  0.00 select ordertosig0_.identifier as identifier1_0_, order
+g30whuq293xba THALER_PRD		     16.15	72865	    1260      291472	 11.74 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+5vfq8u6tkk1xn THALER_PRD		     14.41	  503	    1634       21606	 13.81 INSERT INTO thaler_owner.pgd10 (numver, refmaj, datcrt,
+3c7ymuq083ykb CAP_OWNER 		     14.34	 1823	    1638       50075	 13.51 insert into RSD10 (NUMVER,REFMAJ,DATCRT,DATMAJ,HEUMAJ,U
+5z20sfj46z1j0 SYS			     14.31	    4	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+9ggb3vda64xb2 CAP_OWNER 		     13.71	    5	       0      806853	  0.00 BEGIN STATCAP(2); END;
+5mw55dp9p6nyt SYS			     13.61	    7	       0	   0	  0.00 select  nvl(max(al.recid), '0'),nvl(max(al.recid), 0)
+g7cm50w6dzrax OBOOK_REPORTINGDDL	     13.31	   11	       0     3162353	  0.00 declare	 csid number(10);   -- Internal procedure to p
+3ghd8npvbxshk OBOOK_REPORTINGDDL	     13.30	   11	       0     3162353	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+f5bzmwamx230d THALER_OWNER		     11.28	    8	       0     1450140	  0.00 INSERT INTO rsd10				     (
+
+Snap:	   373833  From :   01 Mar 2019 19:50:48  To :	 01 Mar 2019 20:00:48
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+fsxvbp4shqrk3 THALER_PRD		    162.80	  126	       0     4066084	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+00sz19zjv9wfj THALER_PRD		    145.54	  285	   16078       81560	143.83 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5y4z2f6afmnmf THALER_PRD		    145.43	 1745	   16005      267976	143.13 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+bp9wrv6jq8tyd THALER_OWNER		     99.88	    1	  711948      712874	 60.32 select T1.STATRT,T1.DATSUS,T1.TYPSUS,T1.CODSUS,T1.TYPPD
+6a7nc831dsg7j THALER_PRD		     97.34	  345	   10636       25995	 96.64 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+7ky6gmtnzqc7d THALER_PRD		     69.10	  127	    7737       14800	 68.66 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+5zqfkpp0gfdxg THALER_OWNER		     60.84	    5	       0     2861930	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+6d65h4hd2gzmv THALER_PRD		     49.10	   14	    8683      190560	 45.80 select * from ( select this_.REFOPN as REFOPN2442_0_, t
+872qwh35j4544 THALER_PRD		     45.26	  218	    4949      175509	 44.26 select * from ( select row_.*, rownum rownum_ from ( SE
+g1tag71arrdpv THALER_PRD		     44.08	 3842	       0     1538296	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+dvx2x30nywzt4 THALER_PRD		     37.61	 1652	    4106       31189	 37.09 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+0hvvxk1vz6c4z THALER_PRD		     33.95	   81	    4906      175976	 30.32 SELECT /*+ INDEX ( evd01 evd01_2 ) */ datmaj, heumaj, p
+2jdrf6sbup7dy THALER_PRD		     29.45	    9	    3183	5825	 29.24 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+4q2rt2qj8hvkz THALER_PRD		     23.46	   77	    2581       14093	 23.24 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+bykfbhx4z4gcm THALER_PRD		     23.39	 1637	    2743       34982	 21.80 insert into THALER_OWNER.jad01 (STAANN, NUMVER, REFMAJ,
+0az7czjdw8z7j SYS			     21.25	    1	       0	   0	  0.00	    declare	      lbRec	    dbms_rcvman.lbRec_
+2acup1009rx7d THALER_PRD		     21.12	   16	       0      524656	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+5vfq8u6tkk1xn THALER_PRD		     20.12	  511	    1604       28012	 19.40 INSERT INTO thaler_owner.pgd10 (numver, refmaj, datcrt,
+4u2yz2wu7kczs THALER_PRD		     19.28	   91	    2109	3098	 19.16 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+86bdffj6f3p4z THALER_PRD		     17.98	 2016	    2027       21029	 17.06 insert into THALER_OWNER.zz700 (STAANN, NUMVER, REFMAJ,
+5bvqp4c0g92bn THALER_OWNER		     17.40	 1021	    2210       32022	 16.69 UPDATE /*+ INDEX ( srd30 srd30_1 ) */ thaler_owner.srd3
+b0f3dzy6jcynq CAP_OWNER 		     16.73	 3414	    2044      129135	 15.04 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+g30whuq293xba THALER_PRD		     16.60	69970	    1230      279886	 12.35 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+0acgaaypjp9g8 OBOOK_USER		     16.52	   54	       0     1420201	  0.00 select ordertosig0_.identifier as identifier1_0_, order
+gq4u3dppjkmyr SYS			     15.86	    1	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+9ggb3vda64xb2 CAP_OWNER 		     14.27	    5	       0      810992	  0.00 BEGIN STATCAP(2); END;
+g7cm50w6dzrax OBOOK_REPORTINGDDL	     13.02	   11	       0     3169928	  0.00 declare	 csid number(10);   -- Internal procedure to p
+3ghd8npvbxshk OBOOK_REPORTINGDDL	     13.02	   11	       0     3169928	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+3c7ymuq083ykb CAP_OWNER 		     12.71	 1654	    1396       44828	 11.95 insert into RSD10 (NUMVER,REFMAJ,DATCRT,DATMAJ,HEUMAJ,U
+gyrknqr2frf3j THALER_PRD		     12.34	  169	    1473	6990	 12.15 INSERT INTO thaler_owner.ind51 (numver, refmaj, datcrt,
+
+Snap:	   373834  From :   01 Mar 2019 20:00:48  To :	 01 Mar 2019 20:10:49
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+8wct9gmjj3dkk THALER_PRD		  1,075.81     432480	  247089     9589869	983.23 UPDATE /*+ INDEX ( xvd90 xvd90_1 ) */ thaler_owner.xvd9
+d26u2u32upupp THALER_PRD		    431.10     175809	   75494     3233134	368.74 INSERT INTO thaler_owner.xvd30 (datmaj, heumaj, pgmmaj,
+4jxc1806j1qc9 THALER_OWNER		    235.33	   45	   43669      634481	225.80 SELECT /*+ INDEX ( xvd90 xvd90_2 ) */ datmaj, heumaj, p
+fsxvbp4shqrk3 THALER_PRD		    229.16	  182	       0     6000758	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+0hvvxk1vz6c4z THALER_PRD		    201.51	  534	   30113     1088111	180.20 SELECT /*+ INDEX ( evd01 evd01_2 ) */ datmaj, heumaj, p
+00sz19zjv9wfj THALER_PRD		    186.27	  385	   21530      111998	183.89 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5y4z2f6afmnmf THALER_PRD		    155.85	 2015	   17522      306693	153.14 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+6a7nc831dsg7j THALER_PRD		     87.08	  302	    9552       22003	 86.47 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+7ky6gmtnzqc7d THALER_PRD		     86.91	  181	    9865       20028	 86.33 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+27m6fa8mnm18g THALER_PRD		     67.62     100536	   17233     1436602	 52.00 INSERT INTO thaler_owner.xvd90 (datmaj, heumaj, pgmmaj,
+5zqfkpp0gfdxg THALER_OWNER		     59.00	    5	       0     2861056	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+cu2q348wyhstd THALER_OWNER		     54.20	  533	    7469      283386	 51.30 SELECT /*+ INDEX ( evd01 evd01_2 ) */ staevt, refevt FR
+g1tag71arrdpv THALER_PRD		     45.22	 3879	       0     1548476	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+dvx2x30nywzt4 THALER_PRD		     37.32	 1635	    4153       30892	 36.79 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+2acup1009rx7d THALER_PRD		     37.03	   28	       0      918149	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+6082k2p3g8d61 THALER_PRD		     33.67	 4098	    5273     1402608	 12.71 SELECT /*+ INDEX ( xvd90 xvd90_2 ) */ datmaj, heumaj, p
+ft2d2ytsu7y6m THALER_PRD		     32.89     103546	   13999     1414284	 20.01 UPDATE /*+ INDEX ( evd01 evd01_1 ) */ thaler_owner.evd0
+4u2yz2wu7kczs THALER_PRD		     27.33	  170	    3038	6019	 27.09 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+2jdrf6sbup7dy THALER_PRD		     26.76	   14	    3120	8272	 26.57 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+872qwh35j4544 THALER_PRD		     26.62	  170	    2967       82086	 26.09 select * from ( select row_.*, rownum rownum_ from ( SE
+bykfbhx4z4gcm THALER_PRD		     22.15	 1645	    2482       34297	 20.89 insert into THALER_OWNER.jad01 (STAANN, NUMVER, REFMAJ,
+0acgaaypjp9g8 OBOOK_USER		     19.36	   68	       0     1788404	  0.00 select ordertosig0_.identifier as identifier1_0_, order
+g30whuq293xba THALER_PRD		     19.19	76658	    1415      306629	 14.26 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+86bdffj6f3p4z THALER_PRD		     17.06	 2020	    1942       20873	 16.22 insert into THALER_OWNER.zz700 (STAANN, NUMVER, REFMAJ,
+00wnaggkq84tu THALER_PRD		     15.08     348830	       0     2092456	  0.15 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+9ggb3vda64xb2 CAP_OWNER 		     14.55	    5	       0      814347	  0.00 BEGIN STATCAP(2); END;
+b0f3dzy6jcynq CAP_OWNER 		     13.65	 2878	    1680      110637	 12.16 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+5q9v53vzgatbp THALER_OWNER		     12.38	    5	       0	   0	  0.01 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+g7cm50w6dzrax OBOOK_REPORTINGDDL	     11.93	   11	       0     3177713	  0.00 declare	 csid number(10);   -- Internal procedure to p
+3ghd8npvbxshk OBOOK_REPORTINGDDL	     11.92	   11	       0     3177713	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+
+Snap:	   373835  From :   01 Mar 2019 20:10:49  To :	 01 Mar 2019 20:20:49
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+8wct9gmjj3dkk THALER_PRD		  1,251.31    1131226	  358522    25448003   1049.29 UPDATE /*+ INDEX ( xvd90 xvd90_1 ) */ thaler_owner.xvd9
+2xpatuaw5yxnn THALER_OWNER		    878.08	    1	 7704495     7723559	741.31 select /*+ parallel(IND90,8) */ APPGRP,CMPRSL_1,CMPRSL_
+d26u2u32upupp THALER_PRD		    414.90     171354	   75771     3207792	353.47 INSERT INTO thaler_owner.xvd30 (datmaj, heumaj, pgmmaj,
+cc3dpqfvg8vqb THALER_OWNER		    220.91	    1	 1191419     1193274	198.48 select /*+ parallel(XVD30,8) */ ACCNUM,ACCTYP,BTCLAS,BT
+fsxvbp4shqrk3 THALER_PRD		    217.77	  181	       0     5935171	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+00sz19zjv9wfj THALER_PRD		    167.08	  374	   17704       92674	165.12 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5y4z2f6afmnmf THALER_PRD		    165.48	 2061	   17397      318214	162.74 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+6a7nc831dsg7j THALER_PRD		    118.49	  406	   12717       29855	117.66 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+1pqqzfax2w4rs THALER_OWNER		    107.98	    1	  446411      448501	 97.26 select /*+ parallel(cwd84,8) */ * from cwd84 AS OF TIME
+d27bvax68x9dd THALER_OWNER		    103.48	    1	  412874      420689	 90.74 select /*+ parallel(OUD05,8) */ '20190301',DATENR,DATMA
+4sq0jukuzn1fk THALER_OWNER		     84.30	    1	  446412      446902	 56.39 select CLEPRI from CWD84 where IDTENT = 'OUD05' and COD
+7ky6gmtnzqc7d THALER_PRD		     83.69	  181	    8740       17818	 83.20 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+34hvpn6r4aj4t THALER_OWNER		     80.91	    1	    7594       43044	 80.26 select '#' z, a.refopn, b.staopn, a.typevt, a.staevt, a
+50t78xvkqbvpq THALER_OWNER		     71.45	    1	  420555      430415	 63.52 select /*+ parallel(OUD05,8) */ count(*) from OUD05 AS
+dmqqh5u0x91tb THALER_OWNER		     67.25	    1	       0      212843	  0.33 select /*+ parallel(CCD01,8) */ CATEMA,CDTVAL,CODACT_CT
+872qwh35j4544 THALER_PRD		     66.90	  282	    7151      264647	 65.45 select * from ( select row_.*, rownum rownum_ from ( SE
+5zqfkpp0gfdxg THALER_OWNER		     64.54	    5	       0     2949075	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+cnst1by044qvh THALER_OWNER		     47.49	    1	  183055      185861	 25.54 select COUNT(*) from CWD84 where IDTENT='OUD05' AND COD
+g1tag71arrdpv THALER_PRD		     46.17	 3956	       0     1584813	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+2jdrf6sbup7dy THALER_PRD		     41.99	    8	    4141	6000	 41.77 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+dvx2x30nywzt4 THALER_PRD		     41.91	 1698	    4413       32058	 41.34 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+f3b4bfs0cwhwq THALER_OWNER		     37.97	  113	   11717      803939	 29.17 SELECT /*+ INDEX ( xvd90 xvd90_2 ) */ datmaj, heumaj, p
+4jxc1806j1qc9 THALER_OWNER		     36.79	   45	   13104      641851	 28.44 SELECT /*+ INDEX ( xvd90 xvd90_2 ) */ datmaj, heumaj, p
+f3qgg56nny6um THALER_PRD		     36.11	 7647	    8444     1056416	 14.81 SELECT /*+ INDEX ( xvd90 xvd90_2 ) */ datmaj, heumaj, p
+4u2yz2wu7kczs THALER_PRD		     29.55	  150	    2904	5623	 29.33 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+6082k2p3g8d61 THALER_PRD		     28.77	 3665	    4538     1458093	  8.43 SELECT /*+ INDEX ( xvd90 xvd90_2 ) */ datmaj, heumaj, p
+3nzxrdhv00a37 THALER_OWNER		     24.87	    1	    2820      249073	 23.39 select '#' z, a.refopn, b.staopn, a.typevt, a.staevt, a
+bykfbhx4z4gcm THALER_PRD		     22.58	 1684	    2561       35770	 21.26 insert into THALER_OWNER.jad01 (STAANN, NUMVER, REFMAJ,
+g30whuq293xba THALER_PRD		     22.35	83539	    1636      334215	 16.93 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+86cpp93ajrpag THALER_OWNER		     19.16	    1	    2802     2929529	 11.89 SELECT /*+ INDEX ( cwd41 cwd41_1 ) */ datevt, heuevt, t
+
+Snap:	   373836  From :   01 Mar 2019 20:20:49  To :	 01 Mar 2019 20:30:50
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+9y5mqjqfvg72h THALER_OWNER		  4,547.92	    1	16753763    16804010   4254.84 select /*+ parallel(CGD30,8) */ CODCPL,CTPOPN,'20190301
+bva53c2jj9w1w THALER_OWNER		  3,059.06	    1	 7307862     7328312   2911.61 select /*+ parallel(PGD10,8) */ BUTPAI,CANINP,CANOUT,CO
+4gn8kf0r5u7qu THALER_OWNER		  2,741.97	    1	 6340833     6371890   2596.60 select /*+ parallel(PGD21,8) */ CODIDT_CSM,CODNOM_SCM,'
+4q9anc878gqd7 THALER_OWNER		  2,722.68	    1	 6333581     6420736   2579.59 select /*+ parallel(PGD22,8) */ ADRCEE,CODNOM_SCM_ORG,C
+19pfukx0zwt0d THALER_OWNER		  2,654.82	    1	 6730737     6809524   2491.89 select /*+ parallel(PGD20,8) */ CODBUT,CODSCM,'20190301
+g93fbgr7t9n8z THALER_OWNER		  2,553.56	    1	 6148271     6160508   2407.67 select /*+ parallel(PGD26,8) */ ADRLIN_1,ADRLIN_2,ADRLI
+321qgsdzcqbub THALER_OWNER		  1,684.50	    1	 4090136     4105596   1622.02 select /*+ parallel(JAD01,8) */ count(*) from JAD01 AS
+4zjj1nb1vrdar THALER_OWNER		  1,591.56	    1	 4090001     4108224   1494.52 select /*+ parallel(JAD01,8) */ CODCAS,'20190301',DATCR
+cvj4j8qxqgapv THALER_OWNER		  1,555.32	    1	 4710181     4780654   1424.09 select /*+ parallel(CGD01,8) */ '20190301',DATMAJ,HEUMA
+08196tbrytjpk THALER_OWNER		  1,023.55	    1	 2596591     2603027	975.92 select /*+ parallel(NCD10,8) */ CANINP,CANOUT,CODCAE,CO
+8w5wfu3g934sc THALER_OWNER		    773.41	    1	 2026814     2038198	738.65 select /*+ parallel(NTD10,8) */ ADRBEN,ADRDON,CANOPN_IN
+8q1tsq6v472nd THALER_OWNER		    695.22	    1	 1513729     1539134	668.93 select /*+ parallel(SRD30,8) */ ADRBEN,ADRORD,CODEXC,CO
+4zscvyc70r7xu THALER_OWNER		    581.70	    1	 1513704     1536082	562.34 select /*+ parallel(SRD30,8) */ count(*) from SRD30 AS
+0fjcwmumjjy7z THALER_OWNER		    576.64	    1	 1259903     1265743	561.38 select /*+ parallel(OAD10,8) */ count(*) from OAD10 AS
+3hj275fh8mgy4 THALER_OWNER		    537.97	    1	 1334483     1344351	519.32 select /*+ parallel(CLD74,8) */ count(*) from CLD74 AS
+5jd2sjdy451cu THALER_OWNER		    532.61	    1	 1259926     1266618	508.55 select /*+ parallel(OAD10,8) */ CANOPN_IN,CODCAS,CODCAS
+arsqz0tum30zy THALER_OWNER		    503.31	    1	 1334492     1345001	476.86 select /*+ parallel(CLD74,8) */ CODCXT,CODRFI_USA,'2019
+9mqdhxma9s4zt THALER_OWNER		    486.52	    1	 1489941     1517456	451.76 select /*+ parallel(DCD02,8) */ '20190301',DATCRT,DATMA
+9bmqh3shdshpr THALER_OWNER		    426.84	    1	 1318003     1328278	401.65 select /*+ parallel(DCD01,8) */ CODCTG,CODMKT,CODTIT,CR
+98n9db39b303p THALER_OWNER		    407.02	    1	  928232      933354	390.43 select /*+ parallel(NDD10,8) */ CANINP,CANOUT,CODCAE,CO
+5y4z2f6afmnmf THALER_PRD		    394.88	 2269	   20893      351455	391.22 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+0fr4hc25xj77a THALER_OWNER		    392.65	    1	 1209577     1216620	376.62 select /*+ parallel(CBD20,8) */ count(*) from CBD20 AS
+b25hqr9d2774a THALER_OWNER		    390.56	    1	  928210      932645	379.53 select /*+ parallel(NDD10,8) */ count(*) from NDD10 AS
+00sz19zjv9wfj THALER_PRD		    298.80	  396	   17108       93624	296.51 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+6tbx2z8cvyxak THALER_OWNER		    294.72	    1	 1200481     1207747	270.96 select /*+ parallel(CBD20,8) */ CANINP,CANOUT,CODGES,CO
+fsxvbp4shqrk3 THALER_PRD		    233.19	  192	       0     6206073	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+atuu3apb5p66d THALER_OWNER		    221.28	    1	  121077      142649	217.15 select /*+ parallel(DMD01,8) */ '20190301',DATCRT,DATDE
+9xjaypwpkr25b THALER_OWNER		    207.35	    1	   70539       95758	204.28 select /*+ parallel(CLD75,8) */ CODCXT,CODPAY,'20190301
+6a7nc831dsg7j THALER_PRD		    205.09	  325	   11536       21984	204.20 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+chy5s0uf09932 THALER_OWNER		    197.41	    1	  380444      381561	192.28 select /*+ parallel(FRD32,8) */ count(*) from FRD32 AS
+
+Snap:	   373837  From :   01 Mar 2019 20:30:50  To :	 01 Mar 2019 20:40:51
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+9y5mqjqfvg72h THALER_OWNER		  2,563.92	    0	12448091    12478124   2346.56 select /*+ parallel(CGD30,8) */ CODCPL,CTPOPN,'20190301
+bva53c2jj9w1w THALER_OWNER		  1,848.77	    0	 7349695     7367410   1685.56 select /*+ parallel(PGD10,8) */ BUTPAI,CANINP,CANOUT,CO
+4gn8kf0r5u7qu THALER_OWNER		  1,579.13	    0	 5740879     5776576   1445.39 select /*+ parallel(PGD21,8) */ CODIDT_CSM,CODNOM_SCM,'
+4q9anc878gqd7 THALER_OWNER		  1,210.70	    0	 3640807     3684560   1128.39 select /*+ parallel(PGD22,8) */ ADRCEE,CODNOM_SCM_ORG,C
+g93fbgr7t9n8z THALER_OWNER		    496.60	    0	 1770982     1774735	453.62 select /*+ parallel(PGD26,8) */ ADRLIN_1,ADRLIN_2,ADRLI
+fsxvbp4shqrk3 THALER_PRD		    272.61	  212	       0     6826708	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+9kw95x0rztypq THALER_OWNER		    250.15	    1	  535800      539893	244.14 select /*+ parallel(VSD10,8) */ count(*) from VSD10 AS
+00sz19zjv9wfj THALER_PRD		    243.27	  447	   19161      106515	240.83 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5y4z2f6afmnmf THALER_PRD		    226.10	 2071	   16685      317735	223.08 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+cq9cxca2bbtqu THALER_OWNER		    201.71	    1	  654116      658999	187.27 select /*+ parallel(ZTH50,8) */ CNDVAL,'20190301',DATMA
+31hwzupf1czn2 THALER_OWNER		    197.65	    1	  801271      803154	183.29 select /*+ parallel(ZED06,8) */ count(*) from ZED06 AS
+cypwbuh0g6yd0 THALER_OWNER		    176.36	    1	  654103      657871	166.38 select /*+ parallel(ZTH50,8) */ count(*) from ZTH50 AS
+aqs6qxymxp22a THALER_OWNER		    166.69	    1	   25033       31919	165.32 select /*+ parallel(ZED06,8) */ CONNUM,'20190301',DATCR
+6a7nc831dsg7j THALER_PRD		    161.47	  369	   11986       25070	160.62 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+b4cxqxfbbwpz6 THALER_OWNER		    131.38	    1	   38051       57234	130.08 select /*+ parallel(ZED02,8) */ count(*) from ZED02 AS
+d72kdwkgc1h3j THALER_OWNER		    126.73	    1	  320862      325233	119.47 select /*+ parallel(ZTDCA,8) */ ANECAS,CASPST,'20190301
+7gh5dzx2hmkur THALER_OWNER		    124.77	  638	   76080     4007831	 70.30 INSERT INTO CCD01DLT   (CATEMA,CDTVAL,CODACT_CTR,CRILBR
+fv48n4c8y1dzr THALER_OWNER		    116.30	    1	  320840      324998	111.08 select /*+ parallel(ZTDCA,8) */ count(*) from ZTDCA AS
+7adptqt7th7dm THALER_OWNER		    112.84	    1	  252663      257344	107.14 select /*+ parallel(ZXD32,8) */ '20190301',DATCRT,DATEF
+409wrr8csw296 THALER_OWNER		    100.30	    1	  230285      457116	 64.60 create table ccd01fu
+25mqd19d4bc01 THALER_OWNER		     98.44	    1	  162207      307797	 76.17 create table cld01fu
+7ky6gmtnzqc7d THALER_PRD		     95.69	  211	    7424       17808	 95.20 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+2jdrf6sbup7dy THALER_PRD		     94.81	   15	    7634       14064	 94.30 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+drc9qj2tgqvqb THALER_OWNER		     83.73	    1	  252650      256158	 79.35 select /*+ parallel(ZXD32,8) */ count(*) from ZXD32 AS
+d64tjr56k3t8r THALER_OWNER		     80.97	    1	  200963     1058110	 30.09 DECLARE	  error_found	  EXCEPTION ;	l_query
+c13s2avg7r9d2 THALER_OWNER		     77.57	    1	  272375      953884	 37.53 DECLARE	  error_found	  EXCEPTION ;	l_query
+83qhcbp0vvbgb THALER_OWNER		     71.97	    1	  139123      143734	 68.98 select /*+ parallel(ZSD61,8) */ AIMPRF,AUMMIN,AUMPOU,BN
+a5wtvayw3v0cv THALER_OWNER		     71.23	  268	   46965     1259592	 49.73 INSERT INTO XVD30DLT   (ACCNUM,ACCTYP,BTCLAS,BTTYPE,CAN
+872qwh35j4544 THALER_PRD		     69.43	  234	    4880      162554	 68.40 select * from ( select row_.*, rownum rownum_ from ( SE
+5zqfkpp0gfdxg THALER_OWNER		     66.51	    4	       0     2707779	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+
+Snap:	   373838  From :   01 Mar 2019 20:40:51  To :	 01 Mar 2019 20:50:51
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+7gh5dzx2hmkur THALER_OWNER		    456.42	 2976	  356933    20711895	239.66 INSERT INTO CCD01DLT   (CATEMA,CDTVAL,CODACT_CTR,CRILBR
+fsxvbp4shqrk3 THALER_PRD		    255.17	  216	       0     7086626	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+00sz19zjv9wfj THALER_PRD		    185.02	  449	   20532      119600	182.67 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5y4z2f6afmnmf THALER_PRD		    134.45	 2094	   14706      314451	131.92 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+6a7nc831dsg7j THALER_PRD		     96.04	  351	    9886       23488	 95.38 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+7ky6gmtnzqc7d THALER_PRD		     86.90	  216	    9642       20844	 86.37 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+5zqfkpp0gfdxg THALER_OWNER		     63.27	    5	       1     2861442	  0.01 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+ft3n0ju3a258v SYS			     50.29	    8	       0	  16	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+872qwh35j4544 THALER_PRD		     46.16	  226	    5014      188109	 45.15 select * from ( select row_.*, rownum rownum_ from ( SE
+g1tag71arrdpv THALER_PRD		     44.03	 3873	       0     1542558	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+dvx2x30nywzt4 THALER_PRD		     40.68	 1629	    4356       30657	 40.14 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+4u2yz2wu7kczs THALER_PRD		     36.97	  179	    3837	7647	 36.69 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+2jdrf6sbup7dy THALER_PRD		     32.42	    9	    3577	5254	 32.23 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+2acup1009rx7d THALER_PRD		     22.83	   18	       0      590238	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+bykfbhx4z4gcm THALER_PRD		     22.61	 1621	    2557       34784	 21.20 insert into THALER_OWNER.jad01 (STAANN, NUMVER, REFMAJ,
+g30whuq293xba THALER_PRD		     20.19	76848	    1593      307442	 15.37 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+86bdffj6f3p4z THALER_PRD		     18.59	 2034	    2034       21056	 17.68 insert into THALER_OWNER.zz700 (STAANN, NUMVER, REFMAJ,
+7u9ndtp0gcmu8 SYS			     17.64	    8	       0	   0	  0.00 SELECT NVL(MAX(AL.NEXT_CHANGE#), 0), NVL(MAX(AL.RESETLO
+dh6d254bvp71t SYS			     17.51	   16	       0	   0	  0.00 SELECT NVL(MAX(NEXT_CHANGE#),0) FROM V$ARCHIVED_LOG L,
+80jwafdz88h8c SYS			     15.01	    8	       0	   0	  0.00 SELECT L.DEST_ID DEST, L.THREAD# TRD, L.SEQUENCE# SEQ,
+9ggb3vda64xb2 CAP_OWNER 		     14.40	    5	       0      827497	  0.00 BEGIN STATCAP(2); END;
+dss2v6xrdktb1 THALER_PRD		     13.33	   10	       0      327910	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+5mw55dp9p6nyt SYS			     13.09	    7	       0	   0	  0.00 select  nvl(max(al.recid), '0'),nvl(max(al.recid), 0)
+fhg5mcy8w0c27 THALER_PRD		     12.81	 3360	    1131       57789	 11.56 select * from ( select this_.NUMABT as NUMABT2523_0_, t
+0acgaaypjp9g8 OBOOK_USER		     12.14	   49	       0     1288701	  0.00 select ordertosig0_.identifier as identifier1_0_, order
+5z20sfj46z1j0 SYS			     11.10	    3	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+073n0a4q3g5zv THALER_PRD		     10.47	 5092	    1062       51453	  9.73 select principali0_.IDTPCP as IDTPCP1805_1_, principali
+bzttf2us3q4st THALER_OWNER		     10.47	    1	   49393       55613	  9.21 SELECT '#' Z,   RE.refopn,   RE.staopn || ' (' || TSTA.
+amwb1cjz9sqzj THALER_OWNER		     10.41	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+7bgq22105shp2 THALER_PRD		     10.37	    8	       0      262328	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+
+Snap:	   373839  From :   01 Mar 2019 20:50:51  To :	 01 Mar 2019 21:00:52
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+gvduvyqwcczsh THALER_PRD		  2,070.23     711526	  676367    13894580   1719.28 INSERT INTO thaler_owner.ccd01ba (numver, refmaj, datcr
+bz2jhshu1q0kb THALER_PRD		  1,911.07     709589	  679932    13856235   1546.93 INSERT INTO thaler_owner.cld01ba (numver, refmaj, datcr
+5y4z2f6afmnmf THALER_PRD		    192.30	 1934	   21860      318730	189.00 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+fsxvbp4shqrk3 THALER_PRD		    190.18	  151	       0     4947689	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+4q2rt2qj8hvkz THALER_PRD		    162.39	  354	   18845       73639	160.77 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+bhr0479cvr184 THALER_PRD		    153.85	 1168	   53426      186657	145.88 SELECT /*+ INDEX ( msd08 msd08_2 ) */ numver, refmaj, d
+00sz19zjv9wfj THALER_PRD		    128.88	  316	   15167       91341	126.82 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+0byvhh7u1vb73 THALER_PRD		     98.88	  430	   12325       40914	 97.82 SELECT /*+ INDEX ( ind51 ind51_3 ) */ numver, refmaj, d
+6a7nc831dsg7j THALER_PRD		     97.97	  364	   11178       26698	 97.17 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+a5jnw4gdb4b2g THALER_OWNER		     89.22	    1	  754853      754994	 76.46 SELECT REFMSG, NUMCPT, SWIENV FROM msd08 WHERE SWIENV =
+5vfq8u6tkk1xn THALER_PRD		     81.69	 2953	    9505      135039	 77.71 INSERT INTO thaler_owner.pgd10 (numver, refmaj, datcrt,
+2jfqzrxhrm93b SYS			     76.15    1419250	       0     4242913	  2.96 select /*+ rule */ c.name, u.name from con$ c, cdef$ cd
+2skwhauh2cwky SYS			     73.75    1418957	       0     8472972	  2.78 select o.name, u.name from obj$ o, user$ u  where o.obj
+5zqfkpp0gfdxg THALER_OWNER		     72.33	    5	       1     2861868	  0.01 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+fv18xcrt9uugu THALER_PRD		     71.89     710176	   11796     2838195	 33.56 SELECT /*+ INDEX ( xvd24 xvd24_1 ) */ numver, refmaj, d
+7gh5dzx2hmkur THALER_OWNER		     69.91	  451	   53653     3233196	 36.90 INSERT INTO CCD01DLT   (CATEMA,CDTVAL,CODACT_CTR,CRILBR
+7ky6gmtnzqc7d THALER_PRD		     69.47	  151	    7923       17339	 68.98 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+dz08544xfvay9 THALER_OWNER		     67.42	    1	   22853     1047006	 50.34 SELECT C.NUMCPT, C.TYPCPT, C.NATENC, C.NUMCLI, C.LIMOFF
+g6zcfykh52q4k THALER_OWNER		     54.89	    1	   49083      128771	 50.79 select refses, entite, usragc, stases from bnd11 where
+64g2drv9nwwrh THALER_PRD		     52.96	    1	    9081       71088	 49.77 select 2 as ROW_NUMBER,
+2jdrf6sbup7dy THALER_PRD		     52.64	   11	    5953	9938	 52.29 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+g1tag71arrdpv THALER_PRD		     52.37	 3931	       0     1564131	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+81nqr33df4ma4 THALER_PRD		     44.65	15495	    5537       76561	 43.34 SELECT /*+ INDEX ( pgd26 pgd26_1 ) */ numver, refmaj, d
+0s68mthkfyava THALER_PRD		     44.36	26813	    5383      122075	 42.61 SELECT /*+ INDEX ( pgd22 pgd22_1 ) */ numver, refmaj, d
+0az7czjdw8z7j SYS			     42.70	    1	       0	   0	  0.77	    declare	      lbRec	    dbms_rcvman.lbRec_
+15pz1pdr6hygw THALER_OWNER		     42.15	    1	  215538      344255	 32.73 update bnd10 set staopn = '9900', staann='9', pgmmaj='S
+4u2yz2wu7kczs THALER_PRD		     41.58	  217	    4618	8988	 41.19 select this_.REFOPN as REFOPN2339_0_, this_.USRAUT as U
+872qwh35j4544 THALER_PRD		     41.19	  200	    4683      126018	 40.25 select * from ( select row_.*, rownum rownum_ from ( SE
+frsay8j61rk7j THALER_OWNER		     40.72	    1	    4654       32117	 39.91 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+dvx2x30nywzt4 THALER_PRD		     39.83	 1642	    4570       30792	 39.19 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+
+Snap:	   373840  From :   01 Mar 2019 21:00:52  To :	 01 Mar 2019 21:10:55
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+bz2jhshu1q0kb THALER_PRD		  2,690.49     824824	  791773    16513087   2238.86 INSERT INTO thaler_owner.cld01ba (numver, refmaj, datcr
+gvduvyqwcczsh THALER_PRD		  2,074.95     824574	  789371    16506490   1638.76 INSERT INTO thaler_owner.ccd01ba (numver, refmaj, datcr
+bhr0479cvr184 THALER_PRD		    454.07	 4099	  152997      544934	431.69 SELECT /*+ INDEX ( msd08 msd08_2 ) */ numver, refmaj, d
+5y4z2f6afmnmf THALER_PRD		    143.20	 1618	   16554      249901	140.40 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+5gbu1mcsk4hrz THALER_PRD		    141.50	 2065	   15800     1142132	120.16 SELECT /*+ INDEX ( ccd01dlt ccd01dlt_3 ) */ numver, ref
+fsxvbp4shqrk3 THALER_PRD		    135.99	   97	       0     3180727	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+frsay8j61rk7j THALER_OWNER		    116.35	    0	   13365      208163	112.55 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+6a7nc831dsg7j THALER_PRD		    101.71	  442	   11570       32653	100.77 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+2jfqzrxhrm93b SYS			     94.23    1649736	       0     4932031	  2.92 select /*+ rule */ c.name, u.name from con$ c, cdef$ cd
+2skwhauh2cwky SYS			     87.05    1649268	       0     9849162	  2.99 select o.name, u.name from obj$ o, user$ u  where o.obj
+00sz19zjv9wfj THALER_PRD		     80.92	  207	    9642       51444	 79.56 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+64g2drv9nwwrh THALER_PRD		     80.47	    0	   20487     1078004	 71.81 select 2 as ROW_NUMBER,
+5zqfkpp0gfdxg THALER_OWNER		     72.91	    5	       0     2859125	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+0s68mthkfyava THALER_PRD		     70.11	40069	    8693      184164	 67.48 SELECT /*+ INDEX ( pgd22 pgd22_1 ) */ numver, refmaj, d
+81nqr33df4ma4 THALER_PRD		     68.06	24760	    8822      122859	 66.13 SELECT /*+ INDEX ( pgd26 pgd26_1 ) */ numver, refmaj, d
+fv18xcrt9uugu THALER_PRD		     63.47     825378	    3441     3298774	 17.24 SELECT /*+ INDEX ( xvd24 xvd24_1 ) */ numver, refmaj, d
+1juq5ymbpy9mh THALER_PRD		     57.63	11014	    6633       55116	 56.53 SELECT /*+ INDEX ( pgd21 pgd21_1 ) */ numver, refmaj, d
+g1tag71arrdpv THALER_PRD		     49.85	 3453	       0     1365136	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+6cbk3czvyvmrc THALER_OWNER		     49.59     283106	   15728     1179812	 23.65 UPDATE /*+ INDEX ( ped01 ped01_1 ) */ thaler_owner.ped0
+9x96uw8f9bw8m THALER_PRD		     46.77	 1742	    2852       12641	 45.40 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+872qwh35j4544 THALER_PRD		     44.93	  232	    5078      191323	 43.66 select * from ( select row_.*, rownum rownum_ from ( SE
+7ky6gmtnzqc7d THALER_PRD		     41.99	   98	    4927	9471	 41.67 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+dvx2x30nywzt4 THALER_PRD		     41.28	 1441	    4679       27237	 40.63 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+7j0k1q1jvhqnh THALER_OWNER		     41.26	21183	   20281      146555	 34.83 UPDATE /*+ INDEX ( zz698 zz698_1 ) */ thaler_owner.zz69
+03qusjhq5qmqj THALER_PRD		     40.50     825359	       2     2474261	  0.48 SELECT /*+ INDEX ( xvd23 xvd23_2 ) */ numver, refmaj, d
+d8h988yt1a1ng THALER_PRD		     38.12	 4423	    4577       20795	 37.25 SELECT /*+ INDEX ( ald11 ald11_1 ) */ numver, refmaj, d
+cjv510zkkd445 THALER_OWNER		     37.73	 8231	    5218      127098	 35.80 SELECT /*+ INDEX ( rsd10 rsd10_4 ) */ numver, refmaj, d
+1nfc41hwjmbc9 THALER_OWNER		     35.74	97078	   13609      904965	 21.03 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+7uzfd96963cm4 THALER_PRD		     35.47     474729	    2098     1897812	  4.51 SELECT /*+ INDEX ( cld01ful cld01ful_1 ) */ numver, ref
+4q2rt2qj8hvkz THALER_PRD		     34.02	   78	    4046       16644	 33.64 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+
+Snap:	   373841  From :   01 Mar 2019 21:10:55  To :	 01 Mar 2019 21:20:55
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+bz2jhshu1q0kb THALER_PRD		  2,416.28     828058	  807272    16431258   1971.72 INSERT INTO thaler_owner.cld01ba (numver, refmaj, datcr
+gvduvyqwcczsh THALER_PRD		  2,240.04     828089	  803987    16459479   1809.62 INSERT INTO thaler_owner.ccd01ba (numver, refmaj, datcr
+bhr0479cvr184 THALER_PRD		    320.05	 3812	  121127      519999	300.92 SELECT /*+ INDEX ( msd08 msd08_2 ) */ numver, refmaj, d
+8343ajuccz7vd THALER_PRD		    289.32	 4392	   66981      180752	282.73 INSERT INTO thaler_owner.msd40 (datmaj, heumaj, pgmmaj,
+75nn272xt8br8 THALER_OWNER		    165.06	    1	   31664      187968	158.88 SELECT /*+ INDEX_DESC ( dmd01 dmd01_6 ) */ numver, refm
+5y4z2f6afmnmf THALER_PRD		    156.02	 1455	   17844      228525	153.30 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+bfxcgnpc6frv5 THALER_OWNER		    133.74	    1	   32529     1692141	110.78 SELECT /*+ INDEX ( dmd01 dmd01_7 ) */ numver, refmaj, d
+fsxvbp4shqrk3 THALER_PRD		    106.43	   79	       0     2590495	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+6a7nc831dsg7j THALER_PRD		     94.54	  431	   10822       27006	 93.68 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+2jfqzrxhrm93b SYS			     94.22    1651767	       0     4938262	  2.81 select /*+ rule */ c.name, u.name from con$ c, cdef$ cd
+5gbu1mcsk4hrz THALER_PRD		     89.18	 2068	    9108     1180456	 67.95 SELECT /*+ INDEX ( ccd01dlt ccd01dlt_3 ) */ numver, ref
+2skwhauh2cwky SYS			     85.56    1651139	       0     9862398	  2.97 select o.name, u.name from obj$ o, user$ u  where o.obj
+00sz19zjv9wfj THALER_PRD		     82.70	  178	    9701       45518	 81.42 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5zqfkpp0gfdxg THALER_OWNER		     77.28	    5	       5     2857973	  0.04 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+fv18xcrt9uugu THALER_PRD		     74.56     828953	    6006     3312979	 29.36 SELECT /*+ INDEX ( xvd24 xvd24_1 ) */ numver, refmaj, d
+frsay8j61rk7j THALER_OWNER		     62.97	    0	    7199      310121	 58.28 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+1nfc41hwjmbc9 THALER_OWNER		     51.55     142395	   20141     1550538	 30.31 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+9x96uw8f9bw8m THALER_PRD		     50.17	 4053	    6235       26827	 49.30 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+czfmjd6mt830n THALER_PRD		     47.08	41531	    5313      166124	 44.33 SELECT /*+ INDEX ( cld11 cld11_1 ) */ numver, refmaj, d
+g1tag71arrdpv THALER_PRD		     45.88	 3150	       0     1254389	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+dvx2x30nywzt4 THALER_PRD		     42.89	 1344	    4967       25393	 42.25 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+391gnaqr7mrm0 THALER_PRD		     40.92	 5589	    5227       27693	 40.21 SELECT /*+ INDEX ( oud05 oud05_1 ) */ datmaj, heumaj, p
+0s68mthkfyava THALER_PRD		     40.79	23594	    4809      108394	 39.21 SELECT /*+ INDEX ( pgd22 pgd22_1 ) */ numver, refmaj, d
+03qusjhq5qmqj THALER_PRD		     40.29     828829	       0     2484894	  0.53 SELECT /*+ INDEX ( xvd23 xvd23_2 ) */ numver, refmaj, d
+81nqr33df4ma4 THALER_PRD		     39.53	14618	    4826       72305	 38.36 SELECT /*+ INDEX ( pgd26 pgd26_1 ) */ numver, refmaj, d
+9ayjq247xsvc6 THALER_OWNER		     38.10	 4069	    8512       43637	 35.89 SELECT /*+ INDEX ( dmd01 dmd01_5 ) */ numver, refmaj, d
+7ky6gmtnzqc7d THALER_PRD		     37.48	   78	    4406	8678	 37.20 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+2jdrf6sbup7dy THALER_PRD		     37.31	    7	    4325	5173	 37.04 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+7uzfd96963cm4 THALER_PRD		     35.28     475849	    1893     1902188	  4.61 SELECT /*+ INDEX ( cld01ful cld01ful_1 ) */ numver, ref
+2acup1009rx7d THALER_PRD		     33.91	   22	       0      721402	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+
+Snap:	   373842  From :   01 Mar 2019 21:20:55  To :	 01 Mar 2019 21:30:56
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+5hmp563uh24z1 THALER_PRD		    796.65	57072	   99565      353941	786.94 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+9x96uw8f9bw8m THALER_PRD		    473.76	42144	   60002      278076	465.56 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+849p91fjvsyf3 THALER_PRD		    473.07	56946	   54154      289330	466.00 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+bhr0479cvr184 THALER_PRD		    424.88	 4642	  150730      634860	400.68 SELECT /*+ INDEX ( msd08 msd08_2 ) */ numver, refmaj, d
+4v6y07a7cypx4 THALER_PRD		    358.70     344232	   74331     5512016	227.82 INSERT INTO thaler_owner.xvd33 (datmaj, heumaj, pgmmaj,
+djapnbsydnfh6 THALER_PRD		    335.84     710275	   84688    11011140	163.38 UPDATE /*+ INDEX ( xvd33 xvd33_1 ) */ thaler_owner.xvd3
+gvduvyqwcczsh THALER_PRD		    320.96     126257	  122230     2466723	260.96 INSERT INTO thaler_owner.ccd01ba (numver, refmaj, datcr
+2z1wbsjsmjb75 THALER_PRD		    292.43	12847	   34870      152151	287.71 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+bz2jhshu1q0kb THALER_PRD		    288.73     126182	  122552     2454761	224.39 INSERT INTO thaler_owner.cld01ba (numver, refmaj, datcr
+391gnaqr7mrm0 THALER_PRD		    217.64	35824	   27677      177577	213.48 SELECT /*+ INDEX ( oud05 oud05_1 ) */ datmaj, heumaj, p
+816a9hka29c23 THALER_PRD		    185.77	  993	   21412       91823	181.17 SELECT /*+ INDEX ( ind10 ind10_3 ) */ numver, refmaj, d
+65tbbxsaw7dgc THALER_OWNER		    181.87	    1	   34376       76009	168.01 SELECT :1,max(pgd10.refopn),:2,:3,:4,:5,:6,:7,:8,:9,:10
+5y4z2f6afmnmf THALER_PRD		    164.51	 1470	   18919      231131	161.62 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+da0yp7j60t1jr THALER_PRD		    153.44	34273	   20505      138219	149.01 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+5x7wpwmuhvh5r THALER_PRD		    142.13	 5662	   17053      134595	136.73 INSERT INTO thaler_owner.dcd01 (numver, refmaj, datcrt,
+fsxvbp4shqrk3 THALER_PRD		    129.78	   91	       0     2962938	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+cm99hw5gqghzh THALER_OWNER		    117.59	 3810	   13758       52812	115.59 INSERT INTO thaler_owner.pgd08 (numver, refmaj, datcrt,
+3tcwwjugmmph0 THALER_PRD		    116.55	54074	   17859      216220	110.69 SELECT /*+ INDEX ( msd20 msd20_1 ) */ datmaj, heumaj, p
+7xvhkkgzjcwb4 THALER_PRD		    105.60	   19	       6	 401	107.41 INSERT INTO thaler_owner.zz587 (numver, refmaj, datcrt,
+6q766g18sa2cp THALER_PRD		     98.04	42136	   14747      286402	 92.71 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+8bpt6r1rq360p THALER_PRD		     94.70	34267	   10962      206709	 91.37 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+00sz19zjv9wfj THALER_PRD		     91.33	  198	   10736       46897	 89.93 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+6a7nc831dsg7j THALER_PRD		     85.07	  383	    9787       23996	 84.29 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+djk1hs4w77m1c THALER_PRD		     82.53	 8556	    9518       44915	 81.08 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+g0a4k5zt4xf1u THALER_PRD		     81.72	25927	   12919      223277	 71.53 SELECT /*+ INDEX ( cbd01 cbd01_7 ) */ numver, refmaj, d
+cvjnd4ddyhhta THALER_PRD		     79.23    1038131	    4384     3115286	 37.94 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numcli, numseq_pt
+5zqfkpp0gfdxg THALER_OWNER		     78.48	    5	      13     2885916	  0.11 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+dykp9c22xrttm THALER_PRD		     62.93    1038176	       0     3201151	  0.62 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+g5rb4v4pkja8s THALER_PRD		     61.98	  935	   14509      405394	 54.15 SELECT /*+ INDEX ( xvd30dlt xvd30dlt_1 ) */ datmaj, heu
+7ky6gmtnzqc7d THALER_PRD		     58.16	   91	    6720       11400	 57.73 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+
+Snap:	   373843  From :   01 Mar 2019 21:30:56  To :	 01 Mar 2019 21:40:57
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+5hmp563uh24z1 THALER_PRD		  2,392.97     185531	  274380     1123684   2364.46 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+849p91fjvsyf3 THALER_PRD		  1,503.47     184767	  167172      937993   1482.59 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+2qmxqfcfsjwup THALER_OWNER		  1,190.62	    1	10071463    10010666	936.63 select /*+ parallel(XVD33,8) */ ACCNUM,ACCTYP,BTCLAS,BT
+65tbbxsaw7dgc THALER_OWNER		    559.64	    0	  104450      335078	511.72 SELECT :1,max(pgd10.refopn),:2,:3,:4,:5,:6,:7,:8,:9,:10
+9x96uw8f9bw8m THALER_PRD		    386.15	34239	   45490      309768	378.27 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+391gnaqr7mrm0 THALER_PRD		    190.94	35627	   25558      176575	186.99 SELECT /*+ INDEX ( oud05 oud05_1 ) */ datmaj, heumaj, p
+2z1wbsjsmjb75 THALER_PRD		    162.03	 7095	   18217       80757	159.42 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+5y4z2f6afmnmf THALER_PRD		    150.13	 1426	   16868      221680	147.54 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+7b346fv2q7a99 THALER_RO 		    149.36	    0	       0      201779	  0.00 SELECT	RSL01.NUMMSG,	RSL01.LIBMSG,	convertaccount
+b6byb74dbqc1m THALER_OWNER		    146.99	12090	   22778      203754	141.65 INSERT INTO thaler_owner.msd90 (datmaj, heumaj, pgmmaj,
+da0yp7j60t1jr THALER_PRD		    145.39	34067	   19522      137316	141.12 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+g0a4k5zt4xf1u THALER_PRD		    143.47     359994	   18288     2286687	 62.83 SELECT /*+ INDEX ( cbd01 cbd01_7 ) */ numver, refmaj, d
+fsxvbp4shqrk3 THALER_PRD		    113.81	   84	       0     2754444	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+578gp432u1dn1 THALER_PRD		    109.14     189898	   17096     1600976	 55.13 INSERT INTO thaler_owner.msw05 (numcpt, spttrm, datcta,
+3tcwwjugmmph0 THALER_PRD		    103.46     152507	   10389      609852	 90.73 SELECT /*+ INDEX ( msd20 msd20_1 ) */ datmaj, heumaj, p
+6a7nc831dsg7j THALER_PRD		    101.57	  308	   11067       22987	100.72 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+00sz19zjv9wfj THALER_PRD		     97.53	  181	   11373       46081	 96.15 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+6q766g18sa2cp THALER_PRD		     92.74	34242	   12672      294753	 87.15 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+8bpt6r1rq360p THALER_PRD		     78.50	34066	    8675      205509	 75.29 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+bf4z15tu2b2q5 THALER_PRD		     76.21     218915	       0     2832029	  0.01 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+5zqfkpp0gfdxg THALER_OWNER		     69.20	    5	       3     2886328	  0.03 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+arjnzxdmygtpv THALER_PRD		     65.66	15243	    8243       60972	 64.07 SELECT /*+ INDEX ( cld02 cld02_1 ) */ numver, refmaj, d
+9fdfxjtqwayv2 THALER_RO 		     65.03	    1	  159561      161601	 60.64 SELECT	IP_RITMO_INVEST.NUMCLI,   IP_RITMO_INVEST.MONO
+dykp9c22xrttm THALER_PRD		     62.69    1036727	       0     3199501	  0.27 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+cvjnd4ddyhhta THALER_PRD		     62.40    1036667	    2411     3113852	 21.70 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numcli, numseq_pt
+2jdrf6sbup7dy THALER_PRD		     60.78	   16	    6373       14244	 60.31 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+frsay8j61rk7j THALER_OWNER		     54.14	    0	   23696      362028	 48.78 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+8yf8f8aqnsck3 THALER_PRD		     53.22     152468	    4195      612616	 26.26 SELECT /*+ INDEX ( msd19 msd19_1 ) */ datmaj, heumaj, p
+7ky6gmtnzqc7d THALER_PRD		     48.62	   84	    5676	9406	 48.25 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+g1tag71arrdpv THALER_PRD		     47.60	 3318	       0     1312097	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.
+
+Snap:	   373844  From :   01 Mar 2019 21:40:57  To :	 01 Mar 2019 21:50:57
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+849p91fjvsyf3 THALER_PRD		  2,304.23     331424	  276188     1680392   2271.45 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+5hmp563uh24z1 THALER_PRD		  1,678.05     332925	  222022     1730721   1645.43 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+9x96uw8f9bw8m THALER_PRD		    711.46	91789	  100678      561811	697.19 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+391gnaqr7mrm0 THALER_PRD		    290.73	58532	   42481      290478	284.55 SELECT /*+ INDEX ( oud05 oud05_1 ) */ datmaj, heumaj, p
+2z1wbsjsmjb75 THALER_PRD		    266.95	14260	   32562      150771	262.48 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+6hmuqk9kq81s8 THALER_PRD		    263.85	   47	   42785      125059	260.45 SELECT /*+ INDEX ( msd40 msd40_1 ) */ datmaj, heumaj, p
+da0yp7j60t1jr THALER_PRD		    210.42	56358	   32665      227230	203.81 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+6q766g18sa2cp THALER_PRD		    208.58	91789	   36272      674287	196.92 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+578gp432u1dn1 THALER_PRD		    160.41     341463	   30753     2917179	 82.93 INSERT INTO thaler_owner.msw05 (numcpt, spttrm, datcta,
+5y4z2f6afmnmf THALER_PRD		    128.88	 1224	   15581      200949	126.57 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+8bpt6r1rq360p THALER_PRD		    114.12	56360	   13674      339857	109.21 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+fsxvbp4shqrk3 THALER_PRD		     96.88	   75	       0     2459330	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+dykp9c22xrttm THALER_PRD		     96.81    1692200	       0     5222406	  0.73 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+3tcwwjugmmph0 THALER_PRD		     93.10     273540	    6348     1093668	 73.17 SELECT /*+ INDEX ( msd20 msd20_1 ) */ datmaj, heumaj, p
+bf4z15tu2b2q5 THALER_PRD		     92.73     280622	       0     3636023	  0.04 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+gmt1dx74v0dv8 THALER_PRD		     89.29	 1515	   12485       93321	 87.30 SELECT /*+ INDEX ( msd40 msd40_1 ) */ datmaj, heumaj, p
+8yf8f8aqnsck3 THALER_PRD		     79.69     273477	    6094     1087521	 34.83 SELECT /*+ INDEX ( msd19 msd19_1 ) */ datmaj, heumaj, p
+cvjnd4ddyhhta THALER_PRD		     78.50    1691996	    2037     5079391	 16.31 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numcli, numseq_pt
+0s68mthkfyava THALER_PRD		     78.39	36608	    9795      153793	 76.06 SELECT /*+ INDEX ( pgd22 pgd22_1 ) */ numver, refmaj, d
+00sz19zjv9wfj THALER_PRD		     72.97	  158	    9171       39232	 71.87 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+5zqfkpp0gfdxg THALER_OWNER		     70.77	    5	       0     2913536	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+2jdrf6sbup7dy THALER_PRD		     68.42	   25	    8288       26523	 67.81 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+0gv2vuc4v6mkt THALER_OWNER		     67.45	 5890	    8270       29599	 66.60 SELECT /*+ INDEX ( pgd26 pgd26_1 ) */ numver, refmaj, d
+6a7nc831dsg7j THALER_PRD		     65.89	  320	    8239       27015	 65.23 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+czfmjd6mt830n THALER_PRD		     48.81	56314	    7462      225256	 45.34 SELECT /*+ INDEX ( cld11 cld11_1 ) */ numver, refmaj, d
+00wnaggkq84tu THALER_PRD		     47.82     401645	    4586     2533319	 13.11 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+ft3n0ju3a258v SYS			     47.40	    8	       0	  16	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+7ky6gmtnzqc7d THALER_PRD		     46.42	   75	    5770	8846	 46.08 select count(this_.REFOPN) as y0_ from THALER_OWNER.pgd
+1nfc41hwjmbc9 THALER_OWNER		     46.16     152370	   21495     1657921	 24.10 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+dqvh1vzg7q3q2 THALER_PRD		     45.00     299925	       0     2696445	  0.01 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+
+Snap:	   373845  From :   01 Mar 2019 21:50:57  To :	 01 Mar 2019 22:00:57
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+849p91fjvsyf3 THALER_PRD		  2,866.05     463928	  342226     2346441   2826.67 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+5hmp563uh24z1 THALER_PRD		  1,378.17     465967	  197530     2322222   1342.39 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+9x96uw8f9bw8m THALER_PRD		    764.61	91851	   98783      658712	749.77 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+2z1wbsjsmjb75 THALER_PRD		    712.78	51153	  104441      591364	698.37 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+391gnaqr7mrm0 THALER_PRD		    441.12	78808	   69360      390045	432.73 SELECT /*+ INDEX ( oud05 oud05_1 ) */ datmaj, heumaj, p
+578gp432u1dn1 THALER_PRD		    353.34     491922	   49268     4476282	247.62 INSERT INTO thaler_owner.msw05 (numcpt, spttrm, datcta,
+6hmuqk9kq81s8 THALER_PRD		    321.22	    1	   53046      134767	317.35 SELECT /*+ INDEX ( msd40 msd40_1 ) */ datmaj, heumaj, p
+7ma5rp1j6tf3h THALER_PRD		    314.33	40588	   43576      286189	308.18 SELECT /*+ INDEX ( frd30 frd30_1 ) */ numver, refmaj, d
+da0yp7j60t1jr THALER_PRD		    308.67	74764	   52515      301985	300.01 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+6q766g18sa2cp THALER_PRD		    187.54	91851	   26273      635909	177.32 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+8bpt6r1rq360p THALER_PRD		    160.39	74761	   19724      451317	154.13 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+3tcwwjugmmph0 THALER_PRD		    154.05     402711	   10565     1609948	126.85 SELECT /*+ INDEX ( msd20 msd20_1 ) */ datmaj, heumaj, p
+dykp9c22xrttm THALER_PRD		    121.89    2255744	       0     6960419	  1.26 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+8yf8f8aqnsck3 THALER_PRD		     96.51     402565	    6130     1587344	 38.06 SELECT /*+ INDEX ( msd19 msd19_1 ) */ datmaj, heumaj, p
+cvjnd4ddyhhta THALER_PRD		     95.39    2255475	    1983     6768524	 16.51 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numcli, numseq_pt
+6jr0hx041k8nf THALER_OWNER		     94.69	 9932	   12340      135187	 91.57 INSERT INTO thaler_owner.ztd50 (numver, refmaj, datcrt,
+bf4z15tu2b2q5 THALER_PRD		     89.83     281924	       0     3659073	  0.03 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+fsxvbp4shqrk3 THALER_PRD		     84.54	   68	       0     2229788	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+5y4z2f6afmnmf THALER_PRD		     83.09	  793	   10037      125724	 81.67 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+5zqfkpp0gfdxg THALER_OWNER		     66.50	    5	       1     2850390	  0.01 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+1nfc41hwjmbc9 THALER_OWNER		     56.96     182633	   25639     1986100	 31.32 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+dqvh1vzg7q3q2 THALER_PRD		     56.32     385171	       0     3463389	  0.01 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+00sz19zjv9wfj THALER_PRD		     54.33	  155	    6797       37996	 53.46 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+6a7nc831dsg7j THALER_PRD		     51.43	  547	    6300       37000	 50.82 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+czfmjd6mt830n THALER_OWNER		     47.78	54836	    6005      219344	 44.53 SELECT /*+ INDEX ( cld11 cld11_1 ) */ numver, refmaj, d
+c7gc0sgpapvg7 THALER_PRD		     45.46     686698	       0     1372506	  0.22 SELECT /*+ INDEX ( fcd46 fcd46_1 ) */ numver, refmaj, d
+00wnaggkq84tu THALER_PRD		     44.43     394009	    4622     2481732	 12.19 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+4v77z0wqdr79q THALER_OWNER		     43.92	    0	   15369      492445	 35.72 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+2b9qptzwfj6ta THALER_PRD		     41.63	 9221	    8645       85240	 36.09 INSERT INTO thaler_owner.frd32 (numver, refmaj, datcrt,
+0az7czjdw8z7j SYS			     41.58	    1	       0	   0	  0.58	    declare	      lbRec	    dbms_rcvman.lbRec_
+
+Snap:	   373846  From :   01 Mar 2019 22:00:57  To :	 01 Mar 2019 22:10:58
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+849p91fjvsyf3 THALER_PRD		  1,420.59     235091	  162308     1189996   1401.17 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+9x96uw8f9bw8m THALER_PRD		    770.94	95433	  106141      713906	755.70 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+2z1wbsjsmjb75 THALER_PRD		    749.51	76381	  121299      877841	731.33 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+5hmp563uh24z1 THALER_PRD		    597.14     236081	   81529     1202010	580.14 SELECT /*+ INDEX ( msd40 msd40_1 ) */ numcpt, tmsext, n
+391gnaqr7mrm0 THALER_PRD		    387.10	85148	   58362      406295	379.26 SELECT /*+ INDEX ( oud05 oud05_1 ) */ datmaj, heumaj, p
+578gp432u1dn1 THALER_PRD		    312.28     302297	   38116     3035799	238.61 INSERT INTO thaler_owner.msw05 (numcpt, spttrm, datcta,
+da0yp7j60t1jr THALER_PRD		    266.12	65404	   43517      264415	259.08 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+6q766g18sa2cp THALER_PRD		    182.13	95435	   29088      654276	172.11 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+3tcwwjugmmph0 THALER_PRD		    164.34     289266	   10567     1156264	144.63 SELECT /*+ INDEX ( msd20 msd20_1 ) */ datmaj, heumaj, p
+8bpt6r1rq360p THALER_PRD		    139.04	65402	   16770      395101	133.92 SELECT /*+ INDEX ( oud06 oud06_2 ) */ datmaj, heumaj, p
+5mg3x7wq3fc0x THALER_OWNER		    124.63	14155	   16435      190779	120.18 UPDATE /*+ INDEX ( ztd50 ztd50_1 ) */ thaler_owner.ztd5
+dykp9c22xrttm THALER_PRD		    121.35    2379794	       0     7339945	  1.14 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+cvjnd4ddyhhta THALER_PRD		    111.61    2379715	    5571     7135048	 32.40 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numcli, numseq_pt
+bf4z15tu2b2q5 THALER_PRD		     86.96     278821	       0     3621772	  0.01 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+86cfd2mcjyu0c THALER_OWNER		     82.71	14432	   16689       82168	 79.18 SELECT /*+ INDEX ( ind12 ind12_1 ) */ numver, refmaj, d
+fpqy852p9r1y9 THALER_PRD		     63.65	76246	    8849      407677	 29.63 UPDATE /*+ INDEX ( frd32 frd32_1 ) */ thaler_owner.frd3
+5zqfkpp0gfdxg THALER_OWNER		     62.51	    5	       0     2724252	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+dqvh1vzg7q3q2 THALER_PRD		     62.23     456773	       0     4106916	  0.05 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+6jr0hx041k8nf THALER_OWNER		     62.21	 7807	    8557      108114	 59.81 INSERT INTO thaler_owner.ztd50 (numver, refmaj, datcrt,
+1nfc41hwjmbc9 THALER_OWNER		     55.36     177349	   25128     1931804	 29.78 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+c7gc0sgpapvg7 THALER_PRD		     47.28     746270	       0     1491502	  0.20 SELECT /*+ INDEX ( fcd46 fcd46_1 ) */ numver, refmaj, d
+fxhmb38twwmrm THALER_OWNER		     41.74	  140	   18844     2925871	 14.52 SELECT /*+ INDEX ( ztd50 ztd50_3 ) */ numver, refmaj, d
+8yf8f8aqnsck3 THALER_PRD		     38.81     289072	     712      914878	  7.36 SELECT /*+ INDEX ( msd19 msd19_1 ) */ datmaj, heumaj, p
+38jc085b2t9sj THALER_PRD		     37.48	85049	       0     3910942	  0.01 SELECT /*+ INDEX ( ccd51 ccd51_2 ) */ numver, refmaj, d
+00wnaggkq84tu THALER_PRD		     37.12     292357	    3523     1866856	 10.52 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+a5f58d890uu29 THALER_OWNER		     35.45	 7806	    5578       31225	 34.81 SELECT /*+ INDEX ( ccd07 ccd07_1 ) */ numcpt, codlan, i
+czfmjd6mt830n THALER_PRD		     31.81	21137	    4107       84548	 30.38 SELECT /*+ INDEX ( cld11 cld11_1 ) */ numver, refmaj, d
+1vjydwffqk6a1 THALER_OWNER		     30.47	14432	    7582       73736	 28.51 SELECT /*+ INDEX ( frd11 frd11_1 ) */ numver, refmaj, d
+0vunsz9f2tvqv THALER_PRD		     29.04     777758	       0     2332290	  0.15 SELECT /*+ INDEX ( ccd51 ccd51_1 ) */ numver, refmaj, d
+f9w3j0u114ppn THALER_PRD		     26.09	76436	    3146      386230	 15.58 SELECT /*+ INDEX ( frd32 frd32_1 ) */ numver, refmaj, d
+
+Snap:	   373847  From :   01 Mar 2019 22:10:58  To :	 01 Mar 2019 22:20:58
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+2z1wbsjsmjb75 THALER_PRD		    816.50	91617	  144364     1056593	797.82 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+9x96uw8f9bw8m THALER_PRD		    596.22	91771	   98790      666601	582.88 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+b6byb74dbqc1m THALER_OWNER		    280.99	88347	   45576     1568945	244.07 INSERT INTO thaler_owner.msd90 (datmaj, heumaj, pgmmaj,
+fah9ntfyavckd THALER_OWNER		    254.11	88347	   42577      315521	248.13 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+arjnzxdmygtpv THALER_PRD		    138.23	86108	   20425      344444	132.57 SELECT /*+ INDEX ( cld02 cld02_1 ) */ numver, refmaj, d
+6q766g18sa2cp THALER_PRD		     75.34	91774	   16155      551804	 68.02 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+fpqy852p9r1y9 THALER_PRD		     68.72	91147	    9183      483208	 33.38 UPDATE /*+ INDEX ( frd32 frd32_1 ) */ thaler_owner.frd3
+5zqfkpp0gfdxg THALER_OWNER		     57.84	    5	       0     2695197	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+bf4z15tu2b2q5 THALER_PRD		     50.71     184722	       0     2400760	  0.05 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+dqvh1vzg7q3q2 THALER_PRD		     47.71     394027	       0     3544992	  0.02 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+1nfc41hwjmbc9 THALER_OWNER		     43.30     135619	   19516     1476733	 22.93 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+00wnaggkq84tu THALER_PRD		     38.71     183549	    5192     1205740	 19.35 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+d7161nyjhm4n6 THALER_OWNER		     32.95	 2126	    3967	8504	 32.61 SELECT /*+ INDEX ( cld03 cld03_3 ) */ numver, refmaj, d
+c7gc0sgpapvg7 THALER_PRD		     31.03     580309	       0     1160352	  0.10 SELECT /*+ INDEX ( fcd46 fcd46_1 ) */ numver, refmaj, d
+5mg3x7wq3fc0x THALER_OWNER		     30.85	 3558	    4068       48651	 29.75 UPDATE /*+ INDEX ( ztd50 ztd50_1 ) */ thaler_owner.ztd5
+86cfd2mcjyu0c THALER_PRD		     29.50	 2989	    4507       16642	 28.66 SELECT /*+ INDEX ( ind12 ind12_1 ) */ numver, refmaj, d
+ca0akfnd4t7ks THALER_OWNER		     27.97	 3176	    3223       11235	 27.58 SELECT /*+ INDEX ( cld10 cld10_3 ) */ numver, refmaj, d
+f9w3j0u114ppn THALER_PRD		     25.14	91587	    3433      461920	 14.65 SELECT /*+ INDEX ( frd32 frd32_1 ) */ numver, refmaj, d
+0vunsz9f2tvqv THALER_PRD		     17.92     580279	       0     1740531	  0.11 SELECT /*+ INDEX ( ccd51 ccd51_1 ) */ numver, refmaj, d
+2jdrf6sbup7dy THALER_PRD		     17.11	   17	    1964       19977	 16.90 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+49h27u9j36bfj THALER_PRD		     16.75     678987	       4     2032923	  0.64 SELECT /*+ INDEX ( cwd01 cwd01_1 ) */ numver, refmaj, d
+1vjydwffqk6a1 THALER_OWNER		     15.71	 2988	    2525       15093	 15.25 SELECT /*+ INDEX ( frd11 frd11_1 ) */ numver, refmaj, d
+frsay8j61rk7j THALER_OWNER		     15.41	    0	    1756      365784	 10.50 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+9ggb3vda64xb2 CAP_OWNER 		     14.12	    5	       0      846023	  0.00 BEGIN STATCAP(2); END;
+3wyc35t1pgz4h THALER_PRD		     13.49     177985	       0      767369	  0.03 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numver, refmaj, d
+6d65h4hd2gzmv THALER_PRD		     12.83	    3	    2077       10340	 12.63 select * from ( select this_.REFOPN as REFOPN2442_0_, t
+6a7nc831dsg7j THALER_PRD		     12.40	   43	    1463	2639	 12.31 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+04yt0mvq1yuz7 THALER_PRD		     11.93     380541	       0      761028	  0.01 SELECT /*+ INDEX ( zz231 zz231_1 ) */ numver, refmaj, d
+5y4z2f6afmnmf THALER_PRD		     11.71	  129	    1362       19508	 11.51 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+5q9v53vzgatbp THALER_OWNER		     11.42	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+
+Snap:	   373848  From :   01 Mar 2019 22:20:58  To :	 01 Mar 2019 22:30:58
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+2z1wbsjsmjb75 THALER_PRD		    354.63	37779	   48834      433882	346.89 SELECT /*+ INDEX ( ind11 ind11_1 ) */ numver, refmaj, d
+9x96uw8f9bw8m THALER_PRD		    317.88	65280	   52863      415518	309.48 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+b6byb74dbqc1m THALER_OWNER		    138.59	99837	   24647     1777076	101.05 INSERT INTO thaler_owner.msd90 (datmaj, heumaj, pgmmaj,
+fah9ntfyavckd THALER_OWNER		     98.83	99838	   18319      356279	 93.64 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+5zqfkpp0gfdxg THALER_OWNER		     60.70	    5	       0     2723994	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+arjnzxdmygtpv THALER_OWNER		     52.51	97200	    6257      388804	 47.11 SELECT /*+ INDEX ( cld02 cld02_1 ) */ numver, refmaj, d
+ft3n0ju3a258v SYS			     47.85	    8	       0	  16	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+1nfc41hwjmbc9 THALER_OWNER		     46.29     153187	   22024     1670141	 24.28 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+gq4u3dppjkmyr SYS			     45.48	    4	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+0az7czjdw8z7j SYS			     40.34	    1	       0	   0	  0.77	    declare	      lbRec	    dbms_rcvman.lbRec_
+bf4z15tu2b2q5 THALER_PRD		     33.82     123057	       0     1598853	  0.00 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+6q766g18sa2cp THALER_PRD		     32.11	65287	    3900      378258	 27.32 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+d7161nyjhm4n6 THALER_OWNER		     31.76	 2486	    4008	9944	 31.38 SELECT /*+ INDEX ( cld03 cld03_3 ) */ numver, refmaj, d
+frsay8j61rk7j THALER_OWNER		     30.25	    0	   12129      425868	 24.56 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+fpqy852p9r1y9 THALER_PRD		     29.65	36288	    3721      192602	 15.07 UPDATE /*+ INDEX ( frd32 frd32_1 ) */ thaler_owner.frd3
+00wnaggkq84tu THALER_PRD		     28.77     130563	    3346      856367	 14.49 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+dqvh1vzg7q3q2 THALER_PRD		     25.63     210320	       0     1892385	  0.02 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+5z20sfj46z1j0 SYS			     24.08	    6	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+ca0akfnd4t7ks THALER_OWNER		     24.00	 3668	    2741       12872	 23.60 SELECT /*+ INDEX ( cld10 cld10_3 ) */ numver, refmaj, d
+49h27u9j36bfj THALER_PRD		     19.12     776905	       0     2329380	  0.75 SELECT /*+ INDEX ( cwd01 cwd01_1 ) */ numver, refmaj, d
+c7gc0sgpapvg7 THALER_PRD		     18.19     334634	       0      669180	  0.06 SELECT /*+ INDEX ( fcd46 fcd46_1 ) */ numver, refmaj, d
+7u9ndtp0gcmu8 SYS			     17.35	    8	       0	   0	  0.00 SELECT NVL(MAX(AL.NEXT_CHANGE#), 0), NVL(MAX(AL.RESETLO
+dh6d254bvp71t SYS			     16.75	   16	       0	   0	  0.00 SELECT NVL(MAX(NEXT_CHANGE#),0) FROM V$ARCHIVED_LOG L,
+5y4z2f6afmnmf THALER_PRD		     15.28	  148	    1739       22412	 15.04 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+9ggb3vda64xb2 CAP_OWNER 		     14.50	    5	       0      847618	  0.00 BEGIN STATCAP(2); END;
+3wyc35t1pgz4h THALER_OWNER		     13.84     200730	       0      865294	  0.04 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numver, refmaj, d
+80jwafdz88h8c SYS			     13.61	    8	       0	   0	  0.00 SELECT L.DEST_ID DEST, L.THREAD# TRD, L.SEQUENCE# SEQ,
+f9w3j0u114ppn THALER_PRD		     12.98	38654	    1867      191992	  8.37 SELECT /*+ INDEX ( frd32 frd32_1 ) */ numver, refmaj, d
+5mw55dp9p6nyt SYS			     12.89	    7	       0	   0	  0.00 select  nvl(max(al.recid), '0'),nvl(max(al.recid), 0)
+00sz19zjv9wfj THALER_PRD		     12.50	   17	    1475	4816	 12.36 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+
+Snap:	   373849  From :   01 Mar 2019 22:30:58  To :	 01 Mar 2019 22:40:59
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+b6byb74dbqc1m THALER_OWNER		    128.47     109327	   22043     1953895	 92.20 INSERT INTO thaler_owner.msd90 (datmaj, heumaj, pgmmaj,
+9x96uw8f9bw8m THALER_PRD		     64.70	19523	   13982       95052	 62.77 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+fah9ntfyavckd THALER_OWNER		     61.13     109331	    9817      390514	 56.29 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+5zqfkpp0gfdxg THALER_OWNER		     54.46	    5	       0     2548870	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+1nfc41hwjmbc9 THALER_OWNER		     51.28     197831	   28622     2157878	 27.61 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+d7161nyjhm4n6 THALER_OWNER		     31.86	 2648	    3819       10592	 31.48 SELECT /*+ INDEX ( cld03 cld03_3 ) */ numver, refmaj, d
+arjnzxdmygtpv THALER_OWNER		     27.38     106214	    2767      424860	 22.31 SELECT /*+ INDEX ( cld02 cld02_1 ) */ numver, refmaj, d
+ca0akfnd4t7ks THALER_OWNER		     23.98	 3988	    2487       14123	 23.55 SELECT /*+ INDEX ( cld10 cld10_3 ) */ numver, refmaj, d
+49h27u9j36bfj THALER_PRD		     16.90     719821	       2     2157624	  0.68 SELECT /*+ INDEX ( cwd01 cwd01_1 ) */ numver, refmaj, d
+9ggb3vda64xb2 CAP_OWNER 		     16.27	    5	       0      849257	  0.00 BEGIN STATCAP(2); END;
+frsay8j61rk7j THALER_OWNER		     15.67	    0	    1859      374720	 11.14 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+4v77z0wqdr79q THALER_OWNER		     13.96	    0	    1039      555504	  6.63 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+3wyc35t1pgz4h THALER_OWNER		     13.74     218115	       0      940402	  0.01 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numver, refmaj, d
+2b6vmfppyrv6j THALER_OWNER		     11.00     217371	       0      869452	  0.03 SELECT /*+ INDEX ( cld01 cld01_1 ) */ numver, refmaj, d
+5q9v53vzgatbp THALER_OWNER		     10.10	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+fhb58a3xshbzj THALER_OWNER		      9.86     488236	       0      488170	  0.14 SELECT /*+ INDEX ( zza91 zza91_1 ) */ numver, refmaj, d
+amwb1cjz9sqzj THALER_OWNER		      9.75	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+f5bzmwamx230d THALER_OWNER		      9.67	    8	       0      815360	  0.00 INSERT INTO rsd10				     (
+3vj9ym4yhh9j3 THALER_OWNER		      8.77	  296	      49      446997	  0.33 SELECT /*+ INDEX ( zwd01 zwd01_5 ) */ numver, refmaj, d
+8ha7g1jsqv7vr THALER_OWNER		      8.66	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+50vn031jn2suc THALER_OWNER		      8.45	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+3kwybr7f77n1k THALER_OWNER		      8.23     109327	       0      327931	  0.13 SELECT /*+ INDEX ( msd90 msd90_4 ) */ datmaj, heumaj, p
+00wnaggkq84tu THALER_PRD		      7.69	39044	     868      255551	  3.77 SELECT /*+ INDEX ( fcd02 fcd02_1 ) */ datref, mdeape, c
+b0f3dzy6jcynq CAP_OWNER 		      7.26	 1088	     880       42447	  6.67 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+ddx1bk91zsk1w OBOOK_REPORTINGDDL	      6.87	   11	       0     1502919	  0.00 declare	 csid number(10);   -- Internal procedure to p
+ghw2a3nxq6xuy OBOOK_REPORTINGDDL	      6.87	   11	       0     1502919	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+2rkhya66tn72s DBSNMP			      6.77	    1	    7933      366102	  3.85 DELETE FROM "BPO_OWNER"."LIST_TAB_PRIVS" "A1"
+bf4z15tu2b2q5 THALER_PRD		      6.63	23523	       0      305653	  0.00 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+cr3ajk2jvrj49 THALER_OWNER		      6.49	39627	       0      515160	  0.00 SELECT /*+ INDEX ( zzc23 zzc23_1 ) */ numver, refmaj, d
+gu4my1ktp4kt4 CAP_OWNER 		      5.82	    5	       0      282989	  0.00 SELECT COUNT (*), NVL(AVG(RESPONSE_TIME),0), NVL(MAX (R
+
+Snap:	   373850  From :   01 Mar 2019 22:40:59  To :	 01 Mar 2019 22:50:59
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+1nfc41hwjmbc9 THALER_OWNER		     61.08     235876	   45819     2669294	 36.33 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+5zqfkpp0gfdxg THALER_OWNER		     51.95	    5	       0     2490606	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+57ku144cs5d0d THALER_OWNER		     48.74     120693	   10256      616848	 41.80 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+ft3n0ju3a258v SYS			     39.30	    7	       0	  14	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+4v77z0wqdr79q THALER_OWNER		     32.79	    1	    2764     1858398	 13.15 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+gq4u3dppjkmyr SYS			     26.70	    3	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+b6byb74dbqc1m THALER_OWNER		     25.97	24662	    4576      442058	 17.28 INSERT INTO thaler_owner.msd90 (datmaj, heumaj, pgmmaj,
+aj3pug86qubz4 THALER_OWNER		     20.34     120696	    3919      617228	  4.00 UPDATE /*+ INDEX ( msd05 msd05_1 ) */ thaler_owner.msd0
+49h27u9j36bfj THALER_PRD		     15.63     702697	       0     2106237	  0.48 SELECT /*+ INDEX ( cwd01 cwd01_1 ) */ numver, refmaj, d
+b14fg0nru959g THALER_PRD		     14.92	   18	    1537	2324	 14.85 SELECT /*+ INDEX ( ind10 ind10_2 ) */ numver, refmaj, d
+5z20sfj46z1j0 SYS			     14.74	    4	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+9ggb3vda64xb2 CAP_OWNER 		     14.21	    5	       0      850624	  0.00 BEGIN STATCAP(2); END;
+7u9ndtp0gcmu8 SYS			     14.11	    7	       0	   0	  0.00 SELECT NVL(MAX(AL.NEXT_CHANGE#), 0), NVL(MAX(AL.RESETLO
+dh6d254bvp71t SYS			     13.92	   14	       0	   0	  0.00 SELECT NVL(MAX(NEXT_CHANGE#),0) FROM V$ARCHIVED_LOG L,
+fah9ntfyavckd THALER_OWNER		     12.55	24655	    1895       92048	 11.51 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+35mtcps9t0syg THALER_OWNER		     11.52	 1862	    1584	9310	 11.39 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+80jwafdz88h8c SYS			     11.14	    7	       0	   0	  0.00 SELECT L.DEST_ID DEST, L.THREAD# TRD, L.SEQUENCE# SEQ,
+5mw55dp9p6nyt SYS			     11.05	    7	       0	   0	  0.00 select  nvl(max(al.recid), '0'),nvl(max(al.recid), 0)
+5q9v53vzgatbp THALER_OWNER		      9.40	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+amwb1cjz9sqzj THALER_OWNER		      9.08	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+f5bzmwamx230d THALER_OWNER		      8.50	    8	       0      815360	  0.00 INSERT INTO rsd10				     (
+8ha7g1jsqv7vr THALER_OWNER		      7.77	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+50vn031jn2suc THALER_OWNER		      7.55	    5	       0	   0	  0.01 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+arjnzxdmygtpv THALER_PRD		      7.17	24184	     670       96728	  6.03 SELECT /*+ INDEX ( cld02 cld02_1 ) */ numver, refmaj, d
+ddx1bk91zsk1w OBOOK_REPORTINGDDL	      6.79	   12	       0     1639548	  0.00 declare	 csid number(10);   -- Internal procedure to p
+b0f3dzy6jcynq CAP_OWNER 		      6.79	 1008	     807       38394	  6.31 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+ghw2a3nxq6xuy OBOOK_REPORTINGDDL	      6.79	   12	       0     1639548	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+frsay8j61rk7j THALER_OWNER		      6.37	    0	    1147      236740	  3.97 SELECT /*+ INDEX ( cbd01 cbd01_4 ) */ numver, refmaj, d
+cf00gtkvhygdw THALER_OWNER		      6.08	    2	    3103	9581	  5.95 SELECT E5.CONNUM, E5.EXPID, E5.CONSTA, E5.NUMCLI,  E61.
+ca0akfnd4t7ks THALER_OWNER		      5.68	  600	     566	2261	  5.61 SELECT /*+ INDEX ( cld10 cld10_3 ) */ numver, refmaj, d
+
+Snap:	   373851  From :   01 Mar 2019 22:50:59  To :	 01 Mar 2019 23:00:59
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+b14fg0nru959g THALER_PRD		    113.06	  152	   12044       18405	112.45 SELECT /*+ INDEX ( ind10 ind10_2 ) */ numver, refmaj, d
+aj3pug86qubz4 THALER_OWNER		     91.55     520847	   21780     2681695	 17.30 UPDATE /*+ INDEX ( msd05 msd05_1 ) */ thaler_owner.msd0
+57ku144cs5d0d THALER_OWNER		     65.27     520846	   17015     2643749	 37.99 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+5zqfkpp0gfdxg THALER_OWNER		     46.64	    5	       0     2403980	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+1nfc41hwjmbc9 THALER_OWNER		     44.66     180279	   35050     2043983	 23.86 INSERT INTO thaler_owner.zxd15 (numver, refmaj, datcrt,
+7vrf1n5d596v7 THALER_OWNER		     43.24	20697	    5346       82801	 42.38 SELECT /*+ INDEX ( ccd07 ccd07_1 ) */ numcpt, mulfrc, a
+56a9f3khrdwtt THALER_OWNER		     35.24	    1	   33602       61550	 33.11 DECLARE	 CURSOR myIdtpcpCur IS	   select idtpcp from
+cf00gtkvhygdw THALER_OWNER		     34.68	    0	   17494      111246	 33.70 SELECT E5.CONNUM, E5.EXPID, E5.CONSTA, E5.NUMCLI,  E61.
+0az7czjdw8z7j SYS			     32.40	    1	       0	   0	  0.02	    declare	      lbRec	    dbms_rcvman.lbRec_
+7a7sykkj27qu5 THALER_OWNER		     31.89	    1	   33266       60718	 29.82 SELECT IDTPCP FROM ZTD30 WHERE STAOPN_FRS IN ('4000') A
+4v77z0wqdr79q THALER_OWNER		     30.65	    0	       0     2972262	  0.00 SELECT /*+ INDEX ( ccd01 ccd01_3 ) */ numver, refmaj, d
+35mtcps9t0syg THALER_OWNER		     24.91	24056	    4433      120285	 24.07 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+bfh08031kagzt THALER_OWNER		     24.31	    1	    5592      167333	 22.24 SELECT /*+ INDEX ( cbd01 cbd01_1 ) */ numver, refmaj, d
+gq4u3dppjkmyr SYS			     14.65	    1	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+5x7wpwmuhvh5r THALER_PRD		     14.42	  587	    1550       14345	 14.03 INSERT INTO thaler_owner.dcd01 (numver, refmaj, datcrt,
+9ggb3vda64xb2 CAP_OWNER 		     13.81	    5	       0      851936	  0.00 BEGIN STATCAP(2); END;
+9rwykasru0xmf THALER_OWNER		     11.88	    1	    8137       26994	 10.86 update jed33 set idtrol = '22834' where idtpcp in (sele
+5q9v53vzgatbp THALER_OWNER		      9.90	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+f5bzmwamx230d THALER_OWNER		      9.77	    9	       0      917280	  0.00 INSERT INTO rsd10				     (
+djk1hs4w77m1c THALER_PRD		      9.25	 1177	     987	6163	  9.13 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+b3gbjj2ctc09k THALER_PRD		      9.23	  295	     992	7841	  9.06 INSERT INTO thaler_owner.txd30 (numver, refmaj, datcrt,
+amwb1cjz9sqzj THALER_OWNER		      9.01	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+6yuvf679swjwf SYS			      8.20	    1	       0	   0	  0.00 SELECT BS.SET_STAMP LIST_ORDER1, 0 LIST_ORDER2, BS.RECI
+50vn031jn2suc THALER_OWNER		      7.43	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+8ha7g1jsqv7vr THALER_OWNER		      7.27	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+b0f3dzy6jcynq CAP_OWNER 		      7.11	 1010	     828       38304	  6.64 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+ddx1bk91zsk1w OBOOK_REPORTINGDDL	      6.79	   13	       0     1776177	  0.00 declare	 csid number(10);   -- Internal procedure to p
+ghw2a3nxq6xuy OBOOK_REPORTINGDDL	      6.78	   13	       0     1776177	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+d982bhtnrtb0a THALER_OWNER		      6.71	    8	    4271      122512	  5.91 SELECT /*+ INDEX ( ztd30 ztd30_2 ) */ numver, refmaj, d
+bqzrp1vrh60hd THALER_OWNER		      5.13	   52	       0      779825	  0.00 SELECT /*+ INDEX ( msw05 msw05_9 ) */ numcpt, spttrm, d
+
+Snap:	   373852  From :   01 Mar 2019 23:00:59  To :	 01 Mar 2019 23:10:00
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+c7nmp1jmqug5q THALER_OWNER		    426.97	    0	   74457      304603	421.60 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+aj3pug86qubz4 THALER_OWNER		     84.79     498342	   24006     2580722	 17.68 UPDATE /*+ INDEX ( msd05 msd05_1 ) */ thaler_owner.msd0
+57ku144cs5d0d THALER_OWNER		     54.01     498324	   20876     2525254	 29.21 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+5zqfkpp0gfdxg THALER_OWNER		     47.12	    5	       0     2375110	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+5x7wpwmuhvh5r THALER_PRD		     37.03	 2905	    4202       69059	 35.50 INSERT INTO thaler_owner.dcd01 (numver, refmaj, datcrt,
+djk1hs4w77m1c THALER_PRD		     32.23	 3498	    3878       18073	 31.84 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+3pvp0fu65cnng THALER_OWNER		     14.89	71909	    5965      449657	  4.50 UPDATE /*+ INDEX ( cgd30 cgd30_1 ) */ thaler_owner.cgd3
+9ggb3vda64xb2 CAP_OWNER 		     13.84	    5	       0      853319	  0.00 BEGIN STATCAP(2); END;
+9x96uw8f9bw8m THALER_OWNER		     11.45	   27	    1156      116137	  9.71 SELECT /*+ INDEX ( cgd30 cgd30_1 ) */ datmaj, heumaj, p
+5q9v53vzgatbp THALER_OWNER		     10.42	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+f5bzmwamx230d THALER_OWNER		     10.24	    8	       0      815360	  0.00 INSERT INTO rsd10				     (
+amwb1cjz9sqzj THALER_OWNER		      9.09	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+b3gbjj2ctc09k THALER_PRD		      8.69	  297	     968	7838	  8.49 INSERT INTO thaler_owner.txd30 (numver, refmaj, datcrt,
+bfh08031kagzt THALER_OWNER		      8.66	    0	    1849       90783	  7.75 SELECT /*+ INDEX ( cbd01 cbd01_1 ) */ numver, refmaj, d
+50vn031jn2suc THALER_OWNER		      7.74	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+8ha7g1jsqv7vr THALER_OWNER		      7.45	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+g11mkx39q6x38 THALER_PRD		      5.65	 2907	     847       68106	  4.71 UPDATE /*+ INDEX ( dcd01 dcd01_1 ) */ thaler_owner.dcd0
+bqzrp1vrh60hd THALER_OWNER		      5.05	   50	       1      746459	  0.02 SELECT /*+ INDEX ( msw05 msw05_9 ) */ numcpt, spttrm, d
+ddx1bk91zsk1w OBOOK_REPORTINGDDL	      5.02	    9	       0     1229661	  0.00 declare	 csid number(10);   -- Internal procedure to p
+ghw2a3nxq6xuy OBOOK_REPORTINGDDL	      5.02	    9	       0     1229661	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+gu4my1ktp4kt4 CAP_OWNER 		      4.72	    5	       0      284278	  0.00 SELECT COUNT (*), NVL(AVG(RESPONSE_TIME),0), NVL(MAX (R
+dvbza87739bu3 CAP_OWNER 		      4.66	    5	       0      284278	  0.00 SELECT COUNT (*), NVL(AVG(RESPONSE_TIME),0), NVL(MAX(RE
+b0f3dzy6jcynq CAP_OWNER 		      4.65	  723	     554       27477	  4.31 insert into DT_AUDIT_BS (OP_MAIN_KEY,AUTH_STATUS,CONF_S
+7g6030zczrkuk THALER_PRD		      4.63	  888	     635       26568	  4.31 INSERT INTO thaler_owner.evd01 (datmaj, heumaj, pgmmaj,
+dzq0d5xv9kf3u THALER_PRD		      4.62	 2932	     774       31927	  4.20 UPDATE /*+ INDEX ( ztd30 ztd30_1 ) */ thaler_owner.ztd3
+9jrvcyc549xcf CAP_OWNER 		      4.46	    5	       0      284763	  0.00 SELECT COUNT (*), NVL(AVG(RESPONSE_TIME),0), NVL(MAX(RE
+9kaga0faswmbx THALER_PRD		      4.30	  297	     463	1256	  4.27 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+d982bhtnrtb0a THALER_OWNER		      4.12	   31	     898      307278	  2.20 SELECT /*+ INDEX ( ztd30 ztd30_2 ) */ numver, refmaj, d
+c6ytd2qdp7xt7 THALER_OWNER		      4.00	  302	     515	4188	  3.92 INSERT INTO thaler_owner.zid05 (refmaj, datcrt, datmaj,
+2ztq9dtq3hun3 THALER_PRD		      3.76	 2930	     438       14870	  3.54 SELECT /*+ INDEX ( ztd30 ztd30_1 ) */ numver, refmaj, d
+
+Snap:	   373853  From :   01 Mar 2019 23:10:00  To :	 01 Mar 2019 23:20:01
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+bd8u557t7t7un THALER_PRD		  2,523.32     310200	  399903     2194916   2477.24 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+bwwr61w7q0xkp THALER_PRD		  1,770.84     310162	  283196     1919652   1723.50 SELECT /*+ INDEX ( ccd05 ccd05_1 ) */ numver, refmaj, d
+ccmam93y2gh03 THALER_PRD		    262.09     323391	   52000     2674557	110.02 UPDATE /*+ INDEX ( ccd01 ccd01_1 ) */ thaler_owner.ccd0
+c7nmp1jmqug5q THALER_OWNER		    247.50	    0	   59334      898492	237.14 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+6y046azgfx3t0 THALER_PRD		    228.32     322961	   44088     2031680	152.37 UPDATE /*+ INDEX ( ccd05 ccd05_1 ) */ thaler_owner.ccd0
+3m92z2mshpm7n THALER_PRD		    228.24	87777	   23408     6634408	 59.94 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numver, refmaj, d
+db1ynf8h5sq2p THALER_PRD		    209.50     322737	    2448     6825982	 12.94 INSERT INTO thaler_owner.ccd05 (numver, refmaj, datcrt,
+76g3tzdtj9953 THALER_PRD		    162.62    4831184	       0     9632690	  8.24 SELECT /*+ INDEX ( zz201 zz201_1 ) */ numver, refmaj, d
+2n87sa7vg9sr1 THALER_PRD		    129.21    5103105	       0     6843364	  7.57 SELECT /*+ INDEX ( zz539 zz539_1 ) */ numver, refmaj, d
+g6g8120h0m9u1 THALER_OWNER		    112.89	58422	   22917      284686	108.96 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+c13cjq4j1bcnn THALER_PRD		     76.19	29323	       0     4916533	  0.05 SELECT /*+ INDEX ( ccd01 ccd01_2 ) */ refmaj, datcrt, d
+dwfgfpjxfjqq0 THALER_OWNER		     68.08	50076	   10366      225496	 65.23 SELECT /*+ INDEX ( zed07 zed07_1 ) */ numver, refmaj, d
+dxnqmjbu3rrbf THALER_OWNER		     58.18	12267	   10401       74465	 56.58 SELECT /*+ INDEX ( zed07m zed07m_1 ) */ numver, refmaj,
+5zqfkpp0gfdxg THALER_OWNER		     52.54	    5	      70     2375110	  0.60 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+34gb10f7zsy37 THALER_PRD		     36.78     323475	       0     2093413	  1.37 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numver, refmaj, d
+aj3pug86qubz4 THALER_OWNER		     34.24     197912	   11586     1027540	  7.50 UPDATE /*+ INDEX ( msd05 msd05_1 ) */ thaler_owner.msd0
+bfh08031kagzt THALER_OWNER		     29.57	    0	    5057      473997	 23.79 SELECT /*+ INDEX ( cbd01 cbd01_1 ) */ numver, refmaj, d
+6skpmhh5awrmm THALER_OWNER		     21.52	    1	   22991       18539	  5.67 SELECT typcpt,natenc,numcpt_deb,numcpt_fin FROM	(SELEC
+2skwhauh2cwky SYS			     17.02     322952	       0     1930170	  0.26 select o.name, u.name from obj$ o, user$ u  where o.obj
+2jfqzrxhrm93b SYS			     14.68     322949	       0      966730	  0.22 select /*+ rule */ c.name, u.name from con$ c, cdef$ cd
+9ggb3vda64xb2 CAP_OWNER 		     14.10	    5	       0      853876	  0.00 BEGIN STATCAP(2); END;
+57ku144cs5d0d THALER_OWNER		     12.35     197911	     949      992944	  2.82 SELECT /*+ INDEX ( msd05 msd05_1 ) */ numver, refmaj, d
+5q9v53vzgatbp THALER_OWNER		     10.83	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+amwb1cjz9sqzj THALER_OWNER		      9.38	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+fjz0vd22d1ygj DBSNMP			      9.18	    1	       0	   0	  0.00 /* OracleOEM */	  SELECT end_time, status, session_key
+0wp6n3b9a4b46 THALER_OWNER		      8.78	  879	      75      883059	  0.48 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numcpt FROM thale
+8ha7g1jsqv7vr THALER_OWNER		      8.74	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+50vn031jn2suc THALER_OWNER		      8.22	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+f5bzmwamx230d THALER_OWNER		      6.23	    5	       0      509604	  0.00 INSERT INTO rsd10				     (
+brnjhavdvjycs THALER_OWNER		      6.13	    1	       0      288474	  0.00 select '#' z, pgd40.reflot, pgd40.stalot, zxd06.staopn,
+
+Snap:	   373854  From :   01 Mar 2019 23:20:01  To :	 01 Mar 2019 23:30:01
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+c7nmp1jmqug5q THALER_OWNER		    194.90	    0	   32259     2079350	175.15 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+bd8u557t7t7un THALER_PRD		    175.08	21068	   21781      131628	172.16 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+bwwr61w7q0xkp THALER_PRD		    172.64	21066	   30702      127992	168.63 SELECT /*+ INDEX ( ccd05 ccd05_1 ) */ numver, refmaj, d
+g6g8120h0m9u1 THALER_OWNER		    165.64     101230	   37565      493148	159.68 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+3m92z2mshpm7n THALER_PRD		    153.22	58258	   16813     5596100	 55.98 SELECT /*+ INDEX ( ccd01 ccd01_1 ) */ numver, refmaj, d
+dwfgfpjxfjqq0 THALER_OWNER		    105.29	86767	   18099      387066	101.32 SELECT /*+ INDEX ( zed07 zed07_1 ) */ numver, refmaj, d
+2n87sa7vg9sr1 THALER_PRD		    105.21    4652099	       0     5803245	  9.02 SELECT /*+ INDEX ( zz539 zz539_1 ) */ numver, refmaj, d
+dxnqmjbu3rrbf THALER_OWNER		     93.11	19707	   16308      119377	 90.84 SELECT /*+ INDEX ( zed07m zed07m_1 ) */ numver, refmaj,
+5zqfkpp0gfdxg THALER_OWNER		     49.01	    5	       0     2403991	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+6y046azgfx3t0 THALER_PRD		     48.98	21278	   10606      132242	 42.42 UPDATE /*+ INDEX ( ccd05 ccd05_1 ) */ thaler_owner.ccd0
+gq4u3dppjkmyr SYS			     42.83	    4	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+ft3n0ju3a258v SYS			     42.70	    7	       0	  14	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+76g3tzdtj9953 THALER_PRD		     42.63    1477078	       0     2951526	  0.65 SELECT /*+ INDEX ( zz201 zz201_1 ) */ numver, refmaj, d
+0az7czjdw8z7j SYS			     35.78	    1	       0	   0	  0.70	    declare	      lbRec	    dbms_rcvman.lbRec_
+6y9y9z04zm9rs THALER_OWNER		     20.18	 5419	   10194      232487	 15.67 INSERT INTO CGL31   (NUMCPT,ANESOL,MOISOL,SMVPSF,SMVNEG
+ccmam93y2gh03 THALER_PRD		     19.89	21399	    3265      165231	  9.09 UPDATE /*+ INDEX ( ccd01 ccd01_1 ) */ thaler_owner.ccd0
+5z20sfj46z1j0 SYS			     19.37	    5	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+db1ynf8h5sq2p THALER_PRD		     16.46	21383	     343      396812	  0.99 INSERT INTO thaler_owner.ccd05 (numver, refmaj, datcrt,
+7u9ndtp0gcmu8 SYS			     15.46	    7	       0	   0	  0.00 SELECT NVL(MAX(AL.NEXT_CHANGE#), 0), NVL(MAX(AL.RESETLO
+dh6d254bvp71t SYS			     15.26	   14	       0	   0	  0.00 SELECT NVL(MAX(NEXT_CHANGE#),0) FROM V$ARCHIVED_LOG L,
+9ggb3vda64xb2 CAP_OWNER 		     14.00	    5	       0      855274	  0.00 BEGIN STATCAP(2); END;
+5mw55dp9p6nyt SYS			     12.51	    7	       0	   0	  0.00 select  nvl(max(al.recid), '0'),nvl(max(al.recid), 0)
+5q9v53vzgatbp THALER_OWNER		     12.33	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+80jwafdz88h8c SYS			     11.88	    7	       0	   0	  0.00 SELECT L.DEST_ID DEST, L.THREAD# TRD, L.SEQUENCE# SEQ,
+f5bzmwamx230d THALER_OWNER		     11.58	    9	       0      917280	  0.00 INSERT INTO rsd10				     (
+amwb1cjz9sqzj THALER_OWNER		      9.56	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+91nrnz5gawx9g THALER_OWNER		      9.17	14586	    1747       73493	  6.70 SELECT /*+ INDEX ( zed05 zed05_3 ) */ numver, refmaj, d
+6yuvf679swjwf SYS			      9.03	    1	       0	   0	  0.00 SELECT BS.SET_STAMP LIST_ORDER1, 0 LIST_ORDER2, BS.RECI
+8ha7g1jsqv7vr THALER_OWNER		      8.38	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+50vn031jn2suc THALER_OWNER		      7.59	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+
+Snap:	   373855  From :   01 Mar 2019 23:30:01  To :	 01 Mar 2019 23:40:02
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+8hgrkg4rhp4nx THALER_PRD		    374.97	36773	   47700      776350	362.75 INSERT INTO thaler_owner.cbd60 (numver, refmaj, datcrt,
+c7nmp1jmqug5q THALER_OWNER		    285.32	    0	   43433     1137377	273.06 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+g6g8120h0m9u1 THALER_OWNER		    192.03	83002	   28879      404965	187.10 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+dwfgfpjxfjqq0 THALER_OWNER		    103.98	71143	   13743      332407	100.55 SELECT /*+ INDEX ( zed07 zed07_1 ) */ numver, refmaj, d
+7g6030zczrkuk THALER_PRD		     98.23	16588	   12416      537395	 92.17 INSERT INTO thaler_owner.evd01 (datmaj, heumaj, pgmmaj,
+7832z9y51871m THALER_PRD		     93.81	 7638	   11721      241254	 90.43 UPDATE /*+ INDEX ( rsd10 rsd10_1 ) */ thaler_owner.rsd1
+1yc98z7rd5cbw THALER_PRD		     55.29	 7659	    6391       46530	 54.05 SELECT /*+ INDEX ( ccd10 ccd10_1 ) */ numver, refmaj, d
+5zqfkpp0gfdxg THALER_OWNER		     55.19	    5	       0     2520187	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+dxnqmjbu3rrbf THALER_OWNER		     54.75	23709	   13319      144099	 52.37 SELECT /*+ INDEX ( zed07m zed07m_1 ) */ numver, refmaj,
+41zw01wh8s59a THALER_PRD		     48.23	  165	       7      302416	  0.05 SELECT TABLE_NAME, NVL(TABLE_OWNER, ''), NVL(DB_LINK, '
+9tf6m3mq3u8c4 THALER_OWNER		     48.00	75300	   22057      523982	 40.73 INSERT INTO thaler_owner.xnd20 (refopn, imafic, typrec,
+7hf7tg9476rzw THALER_PRD		     47.19	16791	    5438      179741	 41.18 INSERT INTO thaler_owner.cgd30 (datmaj, heumaj, pgmmaj,
+f5k29f64grkn7 THALER_PRD		     43.83	24682	    6421       98741	 42.30 SELECT /*+ INDEX ( cbd01 cbd01_2 ) */ numver, refmaj, d
+ftk5t9f8csdp4 THALER_PRD		     43.82	26111	    5752      629645	 37.68 UPDATE /*+ INDEX ( xnd11 xnd11_1 ) */ thaler_owner.xnd1
+8343ajuccz7vd THALER_PRD		     42.18	 8832	    5738       78990	 40.11 INSERT INTO thaler_owner.msd40 (datmaj, heumaj, pgmmaj,
+6x6gxdu56gtrw THALER_OWNER		     36.13	    1	   22504      113428	 30.94 update cbd01 set swipar = 'N' where swipar = 'Y' and no
+czfmjd6mt830n THALER_PRD		     29.63	 8774	    3552       35096	 28.92 SELECT /*+ INDEX ( cld11 cld11_1 ) */ numver, refmaj, d
+bpsatamdjc574 THALER_PRD		     25.75	16785	    5809      409000	 17.00 UPDATE /*+ INDEX ( ccd01 ccd01_1 ) */ thaler_owner.ccd0
+9xtm5k4bw32c4 THALER_PRD		     25.11	13876	    2766       85124	 22.29 SELECT /*+ INDEX ( cbd01 cbd01_8 ) */ numver, refmaj, d
+48gqh7mv2507n THALER_PRD		     20.20	 7651	    2502      183619	 17.96 INSERT INTO thaler_owner.emd11 (datmaj, heumaj, pgmmaj,
+c00apxmjz0uy5 THALER_OWNER		     18.28	29798	    4823      420125	 14.69 INSERT INTO thaler_owner.xnd11 (numver, refmaj, datcrt,
+0sy61kc09qp5h THALER_PRD		     17.49	16632	       0     1105701	  0.00 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+9ggb3vda64xb2 CAP_OWNER 		     16.82	    5	       0      856042	  0.00 BEGIN STATCAP(2); END;
+986tsy81zd29u THALER_PRD		     15.47	  577	    1951       24295	 14.83 select this_.IDTMSG as IDTMSG9_0_, this_.IDTFLD as IDTF
+cq2y1kg97uk0c THALER_PRD		     14.43	 1289	    1922       77759	 13.49 UPDATE /*+ INDEX ( cbd10 cbd10_1 ) */ thaler_owner.cbd1
+5q9v53vzgatbp THALER_OWNER		     13.58	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+dju95xtwhcv9j THALER_PRD		     12.30     134772	    1642      678643	  3.60 UPDATE /*+ INDEX ( fcd02 fcd02_1 ) */ thaler_owner.fcd0
+9kaga0faswmbx THALER_PRD		     11.03	16461	    1401       84988	  9.94 SELECT /*+ INDEX ( ind30 ind30_1 ) */ datmaj, heumaj, p
+0w2asst16gvfx THALER_PRD		     10.66	 1544	    1368       18247	 10.06 UPDATE /*+ INDEX ( cbd01 cbd01_1 ) */ thaler_owner.cbd0
+bfh08031kagzt THALER_OWNER		     10.18	    0	    1825      228989	  7.98 SELECT /*+ INDEX ( cbd01 cbd01_1 ) */ numver, refmaj, d
+
+Snap:	   373856  From :   01 Mar 2019 23:40:02  To :	 01 Mar 2019 23:50:02
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+c7nmp1jmqug5q THALER_OWNER		    276.97	    0	   46466      975697	266.38 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+g6g8120h0m9u1 THALER_OWNER		    237.03     101875	   36460      544291	230.21 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+8hgrkg4rhp4nx THALER_PRD		    187.52	21847	   28237      469885	180.78 INSERT INTO thaler_owner.cbd60 (numver, refmaj, datcrt,
+5zqfkpp0gfdxg THALER_OWNER		     62.76	    5	       1     2752824	  0.01 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+26xyn3vyw7wyc THALER_OWNER		     57.26	    1	   37649       90488	 53.01 SELECT /*+ INDEX ( xdd01 xdd01_2 ) */ datmaj, heumaj, p
+dwfgfpjxfjqq0 THALER_OWNER		     55.44	87330	    9799      405900	 52.05 SELECT /*+ INDEX ( zed07 zed07_1 ) */ numver, refmaj, d
+7g6030zczrkuk THALER_PRD		     50.81	 9848	    6733      314953	 47.17 INSERT INTO thaler_owner.evd01 (datmaj, heumaj, pgmmaj,
+dxnqmjbu3rrbf THALER_OWNER		     48.88	27816	   10730      168039	 46.54 SELECT /*+ INDEX ( zed07m zed07m_1 ) */ numver, refmaj,
+7832z9y51871m THALER_PRD		     43.53	 4919	    5645      154787	 41.45 UPDATE /*+ INDEX ( rsd10 rsd10_1 ) */ thaler_owner.rsd1
+ft3n0ju3a258v SYS			     32.21	    5	       0	  10	  0.00 begin dbms_rcvman.getRequiredSCN(reqscn => :lreqscn, rl
+1yc98z7rd5cbw THALER_PRD		     25.94	 4318	    3128       26336	 25.33 SELECT /*+ INDEX ( ccd10 ccd10_1 ) */ numver, refmaj, d
+7hf7tg9476rzw THALER_PRD		     25.27	 9846	    3332      104464	 21.77 INSERT INTO thaler_owner.cgd30 (datmaj, heumaj, pgmmaj,
+8343ajuccz7vd THALER_PRD		     22.02	 4933	    3001       43293	 20.92 INSERT INTO thaler_owner.msd40 (datmaj, heumaj, pgmmaj,
+9tf6m3mq3u8c4 THALER_OWNER		     17.91	27334	   10219      199283	 15.56 INSERT INTO thaler_owner.xnd20 (refopn, imafic, typrec,
+5y4z2f6afmnmf THALER_PRD		     17.70	  121	    2002       18431	 17.50 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+9ggb3vda64xb2 CAP_OWNER 		     15.27	    5	       0      857059	  0.00 BEGIN STATCAP(2); END;
+czfmjd6mt830n THALER_PRD		     14.45	 4985	    1741       19940	 14.06 SELECT /*+ INDEX ( cld11 cld11_1 ) */ numver, refmaj, d
+5mw55dp9p6nyt SYS			     12.78	    7	       0	   0	  0.00 select  nvl(max(al.recid), '0'),nvl(max(al.recid), 0)
+bpsatamdjc574 THALER_PRD		     12.52	 9847	    3243      262178	  7.33 UPDATE /*+ INDEX ( ccd01 ccd01_1 ) */ thaler_owner.ccd0
+5z20sfj46z1j0 SYS			     12.27	    3	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+7u9ndtp0gcmu8 SYS			     12.25	    5	       0	   0	  0.00 SELECT NVL(MAX(AL.NEXT_CHANGE#), 0), NVL(MAX(AL.RESETLO
+8pqg61qujgn1z THALER_OWNER		     11.92	 3418	    1743       13661	 11.66 SELECT /*+ INDEX ( zid02 zid02_1 ) */ numver, refmaj, d
+9xtm5k4bw32c4 THALER_PRD		     11.61	22353	    1038      138487	  7.79 SELECT /*+ INDEX ( cbd01 cbd01_8 ) */ numver, refmaj, d
+dh6d254bvp71t SYS			     11.15	   10	       0	   0	  0.00 SELECT NVL(MAX(NEXT_CHANGE#),0) FROM V$ARCHIVED_LOG L,
+48gqh7mv2507n THALER_PRD		     10.99	 4915	    1929      117431	  9.38 INSERT INTO thaler_owner.emd11 (datmaj, heumaj, pgmmaj,
+f5bzmwamx230d THALER_OWNER		     10.85	    9	       0      917320	  0.00 INSERT INTO rsd10				     (
+5q9v53vzgatbp THALER_OWNER		     10.31	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+fsxvbp4shqrk3 THALER_PRD		      9.98	    8	       3      262328	  0.03 select * from ( select this_.REFINP as REFINP2338_0_, t
+0sy61kc09qp5h THALER_PRD		      9.96	 9847	       0      655461	  0.00 SELECT STAANN, TYPRUL, REFRUL,VALCRI_1, VALCRI_2,VALCRI
+amwb1cjz9sqzj THALER_OWNER		      8.99	    5	       0	   0	  0.01 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+
+Snap:	   373857  From :   01 Mar 2019 23:50:02  To :	 02 Mar 2019 00:00:03
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+8hgrkg4rhp4nx THALER_PRD		    216.21	23923	   30707      513126	208.76 INSERT INTO thaler_owner.cbd60 (numver, refmaj, datcrt,
+c7nmp1jmqug5q THALER_OWNER		    158.82	    0	   30102     1196556	147.66 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+g6g8120h0m9u1 THALER_OWNER		    145.59     129437	   44604      630498	139.16 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+dwfgfpjxfjqq0 THALER_OWNER		    100.40     110947	   19290      500409	 96.09 SELECT /*+ INDEX ( zed07 zed07_1 ) */ numver, refmaj, d
+983cu7gz1bmyy THALER_OWNER		     93.91	    1	   28792     2347388	 84.44 delete msw20 where (spttrm_adr,numcli_adr,numseq_adr,na
+dxnqmjbu3rrbf THALER_OWNER		     77.47	27851	   19162      168666	 74.81 SELECT /*+ INDEX ( zed07m zed07m_1 ) */ numver, refmaj,
+5zqfkpp0gfdxg THALER_OWNER		     57.77	    5	       0     2694594	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+0yw58ft420apt THALER_OWNER		     49.07	    1	   31876      604174	 25.97 merge into jed60 using (    select min(aa_idtaut_) aa_i
+8pqg61qujgn1z THALER_OWNER		     41.19	83402	   10773      333584	 37.81 SELECT /*+ INDEX ( zid02 zid02_1 ) */ numver, refmaj, d
+0az7czjdw8z7j SYS			     35.92	    1	       0	   0	  0.57	    declare	      lbRec	    dbms_rcvman.lbRec_
+gq4u3dppjkmyr SYS			     35.25	    3	       0	   0	  0.00 select /*+ rule */ round(sum(MBYTES_PROCESSED)), round(
+9tf6m3mq3u8c4 THALER_OWNER		     32.66	47270	   17575      344815	 28.20 INSERT INTO thaler_owner.xnd20 (refopn, imafic, typrec,
+9ggb3vda64xb2 CAP_OWNER 		     11.68	    5	       0      686059	  0.00 BEGIN STATCAP(2); END;
+5y4z2f6afmnmf THALER_PRD		     11.67	  103	    1273       15321	 11.53 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+5q9v53vzgatbp THALER_OWNER		      9.93	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+amwb1cjz9sqzj THALER_OWNER		      9.16	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+g30whuq293xba THALER_PRD		      8.81	 4777	     883       19108	  8.42 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+6yuvf679swjwf SYS			      8.25	    1	       0	   0	  0.00 SELECT BS.SET_STAMP LIST_ORDER1, 0 LIST_ORDER2, BS.RECI
+50vn031jn2suc THALER_OWNER		      8.20	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+872qwh35j4544 THALER_PRD		      8.10	   38	     851       21848	  7.97 select * from ( select row_.*, rownum rownum_ from ( SE
+f5bzmwamx230d THALER_OWNER		      7.98	    7	       0      713606	  0.00 INSERT INTO rsd10				     (
+8ha7g1jsqv7vr THALER_OWNER		      7.73	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+6a7nc831dsg7j THALER_PRD		      7.59	   19	     852	1088	  7.55 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+9m1ks7q381bdh THALER_OWNER		      7.52	18609	     850       96879	  2.08 UPDATE /*+ INDEX ( zed05 zed05_1 ) */ thaler_owner.zed0
+5z20sfj46z1j0 SYS			      7.51	    2	       0	   0	  0.00 SELECT  /*+ rule */  RECID , STAMP , PARENT_RECID , PAR
+fsxvbp4shqrk3 THALER_PRD		      7.18	    5	       0      163955	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+cprsbv9j8w12b THALER_OWNER		      7.12     240384	       0      721152	  0.00 SELECT /*+ INDEX ( zz838 zz838_1 ) */ numver, refmaj, d
+fhg5mcy8w0c27 THALER_PRD		      6.49	  202	     668	3605	  6.39 select * from ( select this_.NUMABT as NUMABT2523_0_, t
+00sz19zjv9wfj THALER_PRD		      6.46	   11	     717	2859	  6.40 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+dju95xtwhcv9j THALER_PRD		      6.35	71198	    1015      359034	  2.53 UPDATE /*+ INDEX ( fcd02 fcd02_1 ) */ thaler_owner.fcd0
+
+Snap:	   373858  From :   02 Mar 2019 00:00:03  To :	 02 Mar 2019 00:10:03
+
+				   Total execution   Total	Total	    Total
+SQL_ID	      Username			Time (sec) Executions Disk reads Buffer gets  IO Wait  SQL_TEXT_FRAGMENT
+------------- -------------------- --------------- ---------- ---------- ----------- --------- -------------------------------------------------------
+1s56mgvsad8pm THALER_OWNER		    499.11	    0	   56041      173012	494.26 insert into msd06 (numver,refmaj,datcrt,datmaj,heumaj,u
+g6g8120h0m9u1 THALER_OWNER		    190.93     114759	   33510      559567	185.17 SELECT /*+ INDEX ( zed06 zed06_1 ) */ numver, refmaj, d
+c7nmp1jmqug5q THALER_OWNER		    125.19	    0	   18292     1681540	109.69 SELECT /*+ INDEX ( cbd10 cbd10_3 ) */ numver, refmaj, d
+dwfgfpjxfjqq0 THALER_OWNER		    108.88	98364	   16743      455076	104.50 SELECT /*+ INDEX ( zed07 zed07_1 ) */ numver, refmaj, d
+8hgrkg4rhp4nx THALER_PRD		     80.32	10609	   12373      226624	 77.36 INSERT INTO thaler_owner.cbd60 (numver, refmaj, datcrt,
+5zqfkpp0gfdxg THALER_OWNER		     59.70	    5	       0     2752095	  0.00 select 'B2O PWD '||NOMIDT from JED71 where IDTIDT in (s
+dxnqmjbu3rrbf THALER_OWNER		     59.10	30160	   16760      182322	 56.42 SELECT /*+ INDEX ( zed07m zed07m_1 ) */ numver, refmaj,
+60uqm8p7a05vj THALER_OWNER		     34.49	    1	   38879      128374	 32.44 select '#','O',a.TYPITF,a.NUMSEQ,a.STAOPN,a.DATTRT,a.HE
+8pqg61qujgn1z THALER_OWNER		     28.82     163998	    8772      655950	 23.06 SELECT /*+ INDEX ( zid02 zid02_1 ) */ numver, refmaj, d
+gyc7cw6fbynmb THALER_RO 		     12.99	    2	       0	8326	  0.00 SELECT	CONVERTACCOUNT(CGL31.NUMCPT),	CGL31.SMVPSF,
+f5bzmwamx230d THALER_OWNER		     12.99	    9	       0      917700	  0.00 INSERT INTO rsd10				     (
+5y4z2f6afmnmf THALER_PRD		     12.04	   81	    1299       12121	 11.91 select * from ( SELECT cgd30.sgnmvt, cgd30.monmvt, cgd3
+9m1ks7q381bdh THALER_OWNER		     11.61	16418	    1374      185479	  4.78 UPDATE /*+ INDEX ( zed05 zed05_1 ) */ thaler_owner.zed0
+5q9v53vzgatbp THALER_OWNER		     10.94	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) HPRD_LOG_SEQ FROM V$ARCHIVED_LOG
+amwb1cjz9sqzj THALER_OWNER		      8.87	    5	       0	   0	  0.00 SELECT count(*) FROM v$archived_log WHERE dest_id=2 AND
+6a7nc831dsg7j THALER_PRD		      7.88	   27	     892	1907	  7.83 select datmaj,heumaj,pgmmaj,numcpt,tmsext,natcpt,datcta
+8ha7g1jsqv7vr THALER_OWNER		      7.72	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_SEQ FROM V$ARCHIVED_LOG
+50vn031jn2suc THALER_OWNER		      7.65	    5	       0	   0	  0.00 SELECT MAX(SEQUENCE#) STDBY_LOG_APPL FROM V$ARCHIVED_LO
+cprsbv9j8w12b THALER_OWNER		      6.26     213121	       0      639363	  0.00 SELECT /*+ INDEX ( zz838 zz838_1 ) */ numver, refmaj, d
+g30whuq293xba THALER_PRD		      6.21	 4121	     644       16484	  5.85 select securemess0_.REFMSG as REFMSG2520_0_, securemess
+ddx1bk91zsk1w OBOOK_REPORTINGDDL	      5.93	   11	       0     1503597	  0.00 declare	 csid number(10);   -- Internal procedure to p
+ghw2a3nxq6xuy OBOOK_REPORTINGDDL	      5.92	   11	       0     1503597	  0.00 SELECT T.DATA.GETBLOBVAL(:B1 ) DATACDE FROM (SELECT XML
+872qwh35j4544 THALER_PRD		      5.50	   22	     621       15128	  5.42 select * from ( select row_.*, rownum rownum_ from ( SE
+fsxvbp4shqrk3 THALER_PRD		      5.33	    4	       0      131164	  0.00 select * from ( select this_.REFINP as REFINP2338_0_, t
+fhg5mcy8w0c27 THALER_PRD		      5.02	  183	     501	3140	  4.93 select * from ( select this_.NUMABT as NUMABT2523_0_, t
+00sz19zjv9wfj THALER_PRD		      4.83	    8	     539	2320	  4.78 SELECT /*+ INDEX_DESC ( pgd10 pgd10_3 ) */ numver, refm
+91nrnz5gawx9g THALER_OWNER		      4.80	16418	     428       83057	  1.84 SELECT /*+ INDEX ( zed05 zed05_3 ) */ numver, refmaj, d
+dvx2x30nywzt4 THALER_PRD		      4.73	  143	     508	2447	  4.69 SELECT /*+ INDEX ( txd01 txd01_1 ) */ numver, refmaj, d
+bfh08031kagzt THALER_OWNER		      4.64	    0	       0      406536	  0.00 SELECT /*+ INDEX ( cbd01 cbd01_1 ) */ numver, refmaj, d
+g1tag71arrdpv THALER_PRD		      3.04	  265	       0      107179	  0.00 select securitytr1_1_.NOMTRS as col_0_0_, securityco0_.

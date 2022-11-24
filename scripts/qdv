@@ -1,0 +1,109 @@
+#!/usr/bin/ksh
+if [ "x-$1" = "x--h" ];then
+      cat <<EOF
+
+         Quick describe :  Will list all fixed views and show the select behind
+
+         Usage : qdv -h 
+ 
+
+                 -h : This help
+
+
+EOF
+exit
+fi
+
+
+T_USER=SYS_VW
+ksh -x $SBINS/smenu_list_tbl_for_user.sh 
+$SBINS/smenu_list_tbl_for_user.sh 1>/dev/null 2>&1
+TBLLIST=$TBLLIST
+if [ "x-$T_TBL" = "x-" ];then
+   exit
+fi
+
+SBINS=$SBIN/scripts
+HOST=`hostname`
+HOST=`echo $HOST | awk '{ printf ("%-+15.15s",$1)  }'`
+
+if [ $T_USER = SYS_XTBL ];then
+   S_USER=SYS
+   T_USER=SYS
+fi
+. $SBIN/scripts/passwd.env
+. ${GET_PASSWD} $S_USER $ORACLE_SID
+if [  "x-$CONNECT_STRING" = "x-" ];then
+   echo "could no get a the password of $S_USER"
+   exit 0
+fi
+sqlplus -s "$CONNECT_STRING" <<EOF
+
+clear screen
+
+ttitle skip 2 'MACHINE $HOST - ORACLE_SID : $ORACLE_SID '      'Page:' format 999 sql.pno skip 2
+column nline newline
+set pause off
+set pagesize 66
+set linesize 80
+set heading off
+set embedded on
+set termout on
+set verify off
+set long 2000
+
+select 'Date              -  '||to_char(sysdate,'Day Ddth Month YYYY  HH24:MI:SS'),
+       'Username          -  '||USER  nline ,
+       'View source text for SYS.$T_TBL ' nline
+from sys.dual
+/
+prompt ********** Source : *****************
+prompt
+select view_definition from v\$fixed_view_definition where view_name = '$T_TBL' ;
+desc $T_TBL;
+prompt ********** First row : **************
+prompt
+set head on
+select * from $T_TBL where rownum < 2 ;
+EOF
+
+echo " "
+echo "Press any key to continue ... \c"
+read gg
+
+PS3='Select TABLE, e to leave ==> '
+select L_TABLE in ${TBLLIST} 
+    do
+ if [ "x-$L_TABLE" = "x-" ];then
+      break
+ fi
+
+sqlplus -s "$CONNECT_STRING" <<EOF
+
+clear screen
+
+ttitle skip 2 'MACHINE $HOST - ORACLE_SID : $ORACLE_SID '      'Page:' format 999 sql.pno skip 2
+column nline newline
+set pause off
+set pagesize 66
+set linesize 80
+set heading off
+set embedded on
+set termout on
+set verify off
+
+select 'Date              -  '||to_char(sysdate,'Day Ddth Month YYYY  HH24:MI:SS'),
+       'Username          -  '||USER  nline ,
+       'View source text for sys.$L_TABLE ' nline
+from sys.dual
+/
+prompt ********** Source : *****************
+prompt
+select view_definition from v\$fixed_view_definition where view_name = '$L_TABLE' ;
+desc $L_TABLE; 
+prompt ********** First row : **************
+prompt
+set head on
+select * from $T_TBL where rownum < 2 ;
+EOF
+done

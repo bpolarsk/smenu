@@ -1,0 +1,201 @@
+#!/bin/ksh
+# author   ; Polarski bernard
+# date     : 22 Oct 2005
+# Program  : SELECT
+# set -x
+# -------------------------------------------------------------------------------------------------
+function ret_files
+{
+   var0=`echo "$@" | sed 's/.* FROM \(.*\)/\1/'`
+   var1=`echo "$var0" | sed 's/.* from \(.*\)/\1/'`
+   var0=`echo "$var1" | sed 's/\(.*\) where .*/\1/'`
+   var1=`echo "$var0" | sed 's/\(.*\) WHERE .*/\1/'`
+   var0=`echo "$var1" | sed 's/\(.*\) group .*/\1/'`
+   var1=`echo "$var0" | sed 's/\(.*\) GROUP .*/\1/'`
+   var0=`echo "$var1" | sed 's/\(.*\) ORDER .*/\1/'`
+   var1=`echo "$var0" | sed 's/\(.*\) order .*/\1/'`
+   var0=`echo "$var1" |  tr ',' ' '`
+  echo $var0
+}
+# -------------------------------------------------------------------------------------------------
+function create_ext_table
+{
+case $rad in 
+ "sample_delta_w" )
+sqlplus -s "$CONNECT_STRING" <<EOF
+DROP TABLE $rad ;
+CREATE TABLE $rad
+         (
+            DDATE                            VARCHAR2(14),
+            SQL_ID                           varchar2(13),
+            ROWS_PROCESSED                   NUMBER,
+            DISK_READS                       NUMBER,
+            FETCHES                          NUMBER,
+            EXECUTIONS                       NUMBER,
+            LOADS                            NUMBER,
+            PARSE_CALLS                      NUMBER,
+            BUFFER_GETS                      NUMBER,
+            SORTS                            NUMBER,
+            CPU_TIME                         NUMBER,
+            FIRST_LOAD_TIME                  VARCHAR2(19),
+            PLAN_HASH_VALUE                  NUMBER,
+            CHILD_NUMBER                     NUMBER,
+            MODULE                           VARCHAR2(64)
+	)
+  ORGANIZATION EXTERNAL
+    ( TYPE ORACLE_LOADER DEFAULT DIRECTORY SAMPLER_W_DIR ACCESS PARAMETERS
+      ( RECORDS DELIMITED BY NEWLINE NOLOGFILE NOBADFILE FIELDS TERMINATED BY '{' MISSING FIELD VALUES ARE NULL)
+      LOCATION ('$FILE_LIST') ) REJECT LIMIT UNLIMITED;
+EOF
+ ;;
+ 
+ sample_txt_w  )
+sqlplus -s "$CONNECT_STRING" <<EOF
+DROP TABLE $rad ;
+CREATE TABLE $rad
+         (
+            SQL_ID                       varchar2(13),
+            piece                             NUMBER,
+            SQL_TEXT                          varchar2(64)
+	)
+  ORGANIZATION EXTERNAL
+    ( TYPE ORACLE_LOADER DEFAULT DIRECTORY SAMPLER_W_DIR ACCESS PARAMETERS
+      ( RECORDS DELIMITED BY NEWLINE NOLOGFILE NOBADFILE FIELDS TERMINATED BY '{' MISSING FIELD VALUES ARE NULL)
+      LOCATION ('$FILE_LIST') ) REJECT LIMIT UNLIMITED;
+EOF
+  #( RECORDS DELIMITED BY NEWLINE badfile SAMPLER_W_DIR:'sampler_txt.bad' logfile SAMPLER_W_DIR:'sampler_txt.log' 
+ ;;
+ sample_sql_w  )
+sqlplus -s "$CONNECT_STRING" <<EOF
+DROP TABLE $rad ;
+CREATE TABLE $rad
+         (
+            DDATE                                  VARCHAR2(14),
+            SID                                    NUMBER,
+            SEQ#                                   NUMBER,
+            EVENT#                                 NUMBER,
+            EVENT                                  VARCHAR2(64),
+            WAIT_TIME                              NUMBER,
+            SECONDS_IN_WAIT                        NUMBER,
+            P1                                     NUMBER,
+            P1RAW                                  VARCHAR2(16),
+            P1TEXT                                 VARCHAR2(64),
+            P2                                     NUMBER,
+            P2RAW                                  VARCHAR2(16),
+            P2TEXT                                 VARCHAR2(64),
+            P3                                     NUMBER,
+            P3TEXT                                 VARCHAR2(64),
+            SQL_ID                                 varchar2(13),
+            PREV_SQL_ID                            varchar2(13),
+            ROW_WAIT_OBJ#                          Number
+	)
+  ORGANIZATION EXTERNAL
+    ( TYPE ORACLE_LOADER DEFAULT DIRECTORY SAMPLER_W_DIR ACCESS PARAMETERS
+      ( RECORDS DELIMITED BY NEWLINE NOLOGFILE NOBADFILE FIELDS TERMINATED BY '{' MISSING FIELD VALUES ARE NULL)
+      LOCATION ('$FILE_LIST') ) REJECT LIMIT UNLIMITED;
+EOF
+ ;;
+ sample_evt_w )
+sqlplus -s "$CONNECT_STRING" <<EOF
+DROP TABLE $rad ;
+CREATE TABLE $rad
+         (
+            DDATE                            VARCHAR2(14),
+            SID                              NUMBER,
+            SERIAL                           NUMBER,
+            EVENT                            VARCHAR(64),
+            TOTAL_WAITS                      NUMBER,
+            TOTAL_TIMEOUTS                   NUMBER,
+            TIME_WAITED                      NUMBER,
+            AVERAGE_WAIT                     NUMBER,
+            MAX_WAIT                         NUMBER,
+            TIME_WAITED_MICRO                NUMBER,
+            PROGRAM                          VARCHAR2(48),
+            MODULE                           VARCHAR2(48),
+            ACTION                           VARCHAR2(32),
+            USERNAME                         VARCHAR2(30) 
+	)
+  ORGANIZATION EXTERNAL
+    ( TYPE ORACLE_LOADER DEFAULT DIRECTORY SAMPLER_W_DIR ACCESS PARAMETERS
+      ( RECORDS DELIMITED BY NEWLINE NOLOGFILE NOBADFILE FIELDS TERMINATED BY '{' MISSING FIELD VALUES ARE NULL)
+      LOCATION ('$FILE_LIST') ) REJECT LIMIT UNLIMITED;
+EOF
+   ;;
+  * ) "rad no found for rad=$rad" ;;
+esac
+}
+# -------------------------------------------------------------------------------------------------
+if [ "$1" = "-c" ];then
+     CHECK_ONLY=TRUE
+     shift
+elif [ "$1" = "-cc" ];then
+     CHECK_CREATE=TRUE
+     shift
+elif [ "$1" = "-cr" ];then
+     LDATE=$2
+     shift 
+. $SBIN/scripts/passwd.env
+. ${GET_PASSWD} $S_USER $ORACLE_SID
+if [  "x-$CONNECT_STRING" = "x-" ];then
+   echo "could no get a the password of $S_USER"
+   exit 0
+fi 
+     for i in sample_delta_w sample_sql_w sample_text_w sample_evt_w
+     do
+        FILE_LIST=${i}_${ORACLE_SID}.$LDATE
+        rad=$i
+        create_ext_table 
+     done 
+     exit
+fi
+S_ARG="$@"
+FILE_LIST=`ret_files "$S_ARG"`
+rad=`echo $FILE_LIST | sed  's/\(sam.*\)_w.*/\1_w/'`
+
+
+. $SBIN/scripts/passwd.env
+. ${GET_PASSWD} $S_USER $ORACLE_SID
+if [  "x-$CONNECT_STRING" = "x-" ];then
+   echo "could no get a the password of $S_USER"
+   exit 0
+fi 
+
+# is exist $rad sqlplus ?
+ret=`sqlplus -s "$CONNECT_STRING" <<EOF
+set feed off pagesize 0 head off
+select count(1) from dba_external_tables where table_name = upper('$rad') and DEFAULT_DIRECTORY_NAME = 'SAMPLER_W_DIR';
+EOF`
+
+
+if [  "$ret" -lt 1 ];then
+     #create_ext_table $FILE_LIST 1>/dev/null 2>&1
+     create_ext_table $FILE_LIST 
+else
+   ret=`sqlplus -s "$CONNECT_STRING" <<EOF
+set feed off pagesize 0 head off
+select count(1) from dba_external_locations where table_name = upper('$rad') and 
+       DIRECTORY_NAME = 'SAMPLER_W_DIR' and LOCATION='$FILE_LIST';
+EOF`
+    if [  "$ret" -lt 1 ];then
+         sqlplus -s "$CONNECT_STRING" <<EOF
+set feed off pagesize 0 head off
+drop table $rad;
+EOF
+         #create_ext_table $FILE_LIST 1>/dev/null 2>&1
+         create_ext_table $FILE_LIST
+    fi
+fi
+if [ "$CHECK_CREATE" = "TRUE" ];then
+   # we have fullfilled our mission, now we leave
+   exit
+fi
+
+SQL=`echo "$S_ARG" | eval sed 's/$FILE_LIST/$rad/g'`
+sqlplus -s "$CONNECT_STRING" <<EOF
+set pagesize 0 head off
+select $SQL
+/
+EOF
+# ---------------------------------
+# now we execute the awk built
+# ---------------------------------

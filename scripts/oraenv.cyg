@@ -1,0 +1,155 @@
+:
+#
+# $Header: oraenv.sh.pp 1.1 95/02/22 14:37:37 rdhoopar Osd<unix> $ oraenv.sh.pp Copyr (c) 1991 Oracle
+#
+###################################
+#
+# usage: . oraenv
+#
+# This routine is used to condition a user's environment for access to
+# an ORACLE database. It will prompt for the value of the new SID unless
+# the variable ORAENV_ASK is set to NO, in which case it will use the
+# current value of ORACLE_SID.
+# The character "*" denotes a null SID.
+#
+# NOTE:         Due to constraints of the shell in regard to environment
+# -----         variables, the command MUST be prefaced with ".". If it
+#               is not, then no permanent change in the user's environment
+#               can take place.
+#
+#####################################
+
+case ${ORACLE_TRACE:-""} in
+
+    T)  set -x ;;
+esac
+
+#
+# Determine how to suppress newline with echo command.
+#
+N=
+C=
+if echo "\c" | grep c >/dev/null 2>&1; then
+    N='-n'
+else
+    C='\c'
+fi
+
+#
+# Set minimum environment variables
+#
+
+# ensure that OLDHOME is non-null
+if [ ${ORACLE_HOME:-0} = 0 ]; then
+    OLDHOME=$PATH
+else
+    OLDHOME=$ORACLE_HOME
+fi
+
+OLDHOME=`echo $OLDHOME|sed -e "s;:;;" -e "s;^;/cygdrive/;" -e "s;\\\\\\;/;g"`
+
+case ${ORAENV_ASK:-""} in                       #ORAENV_ASK suppresses prompt when set
+
+    NO) NEWSID="$ORACLE_SID" ;;
+    *)  case "$ORACLE_SID" in
+            "") ORASID=$LOGNAME ;;
+            *)  ORASID=$ORACLE_SID ;;
+        esac
+        echo $N "ORACLE_SID = [$ORASID] ? $C"
+        read NEWSID
+        case "$NEWSID" in
+            "")         ORACLE_SID="$ORASID" ;;
+            *)          ORACLE_SID="$NEWSID" ;;
+        esac ;;
+esac
+export ORACLE_SID
+
+ORAHOME=`dbhome "$ORACLE_SID"`
+case $? in
+    0)  ORACLE_HOME=$ORAHOME ;;
+    *)  echo $N "ORACLE_HOME = [$ORAHOME] ? $C"
+        read NEWHOME
+        case "$NEWHOME" in
+            "") ORACLE_HOME=$ORAHOME ;;
+            *)  ORACLE_HOME=$NEWHOME ;;
+        esac ;;
+esac
+
+export ORACLE_HOME
+
+#
+# Put new ORACLE_HOME in path and remove old one
+#
+
+case "$OLDHOME" in
+    "") OLDHOME=$PATH ;;        #This makes it so that null OLDHOME can't match
+esac                            #anything in next case statement
+
+case "$PATH" in
+    *$OLDHOME/bin*)     PATH=`echo $PATH | \
+                            sed "s;$OLDHOME/bin;$ORACLE_HOME/bin;g"` ;;
+    *$ORACLE_HOME/bin*) ;;
+    *:)                 PATH=${PATH}$ORACLE_HOME/bin: ;;
+    "")                 PATH=$ORACLE_HOME/bin ;;
+    *)                  PATH=$PATH:$ORACLE_HOME/bin ;;
+esac
+
+export PATH
+
+#
+# Install any "custom" code here
+#
+# ORACLE_BASE=/oracle/app/oracle ; export ORACLE_BASE
+# TNS_ADMIN=$ORACLE_HOME/network/admin  ; export TNS_ADMIN
+
+# Update LD_LIBRARY_PATH
+
+case "$LD_LIBRARY_PATH" in
+    *$OLDHOME/lib*)     LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | \
+                            sed "s;$OLDHOME/lib;$ORACLE_HOME/lib;g"` ;;
+    *$ORACLE_HOME/lib*) ;;
+    *:)                 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}$ORACLE_HOME/lib: ;;
+    "")                 LD_LIBRARY_PATH=$ORACLE_HOME/lib ;;
+    *)                  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib ;;
+esac
+
+# Make sure that X-windows utilities are available
+#
+#case "$LD_LIBRARY_PATH" in
+#    */usr/openwin/lib:/usr/dt/lib*) ;;
+#    *:)                 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}/usr/openwin/lib:/usr/dt/lib: ;;
+#    "")                 LD_LIBRARY_PATH=/usr/openwin/lib:/usr/dt/lib ;;
+#    *)                  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/openwin/lib:/usr/dt/lib ;;
+#esac
+
+export LD_LIBRARY_PATH
+
+# ORA_NLS32=$ORACLE_HOME/ocommon/nls/admin/data ; export ORA_NLS32
+# NLS_LANG=american_america.we8iso8859P1; export NLS_LANG
+# NLS_DATE_FORMAT=DD-MON-RR;export NLS_DATE_FORMAT
+
+# Locate "osh" and exec it if found
+ULIMIT=`(ulimit) 2>/dev/null`
+
+if [ $? = 0 -a "$ULIMIT" != "unlimited" ] ; then
+  if [ "$ULIMIT" -lt 2113674 ] ; then
+
+    if [ -f $ORACLE_HOME/bin/osh ] ; then
+        exec $ORACLE_HOME/bin/osh
+    else
+        for D in `echo $PATH | tr : " "`
+        do
+            if [ -f $D/osh ] ; then
+                exec $D/osh
+            fi
+        done
+    fi
+
+  fi
+
+fi
+
+# Convert ORACLE_HOME to a DOS string
+
+ORACLE_HOME=`echo $ORACLE_HOME|sed -e "s;/cygdrive/;;" -e "s;/;:/;" -e "s;/;\\\\\\;g"`
+export ORACLE_HOME

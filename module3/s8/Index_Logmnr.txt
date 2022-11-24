@@ -1,0 +1,10 @@
+conn sys/***@partage
+create index system.logmnr_r_ckpt$ckpt_scn on 
+      system.logmnr_restart_ckpt$ (session#,ckpt_scn) logging
+tablespace TBS_LOGMINER_STREAM;
+
+
+create index system.logmnr_r_ckpt_txinfo$eff_scn on 
+     system.logmnr_restart_ckpt_txinfo$ (session#,effective_scn) logging
+tablespace TBS_LOGMINER_STREAM;
+

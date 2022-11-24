@@ -1,0 +1,75 @@
+#!/bin/bash
+# this is an add on of smenu specific to Wordline
+#set -x
+
+# -------- fill these once for all for your install -----------------
+export EDITOR=vi
+
+export TNS_TARGET=ist
+# adapt
+if [  -z "$ORACLE_BASE" ];then
+  ORACLE_BASE=/oraapp01/app/oracle; export ORACLE_BASE
+fi
+if [  -z "$ORACLE_HOME" ];then
+   ORACLE_HOME=$ORACLE_BASE/product/RDBMS/12102; export ORACLE_HOME
+fi
+
+# this adapted DAS stuff for WORLDLINE
+if [ "$DAS_USER" = "TRUE" ];then
+   if [ "$USER" = "oracle" ];then
+      export DAS=${DAS:-$SUDO_USER}
+   else
+      export DAS=$USER
+   fi
+
+   # fixed at world_line, do not touch, this is the default
+   # use $SBIN/data/smenu_default_user.txt if you connect to 
+   # a specific db using a specific S_USER
+   if [ -n "$DAS" ];then
+      export S_USER=$DAS  
+   fi
+   # this adapted DAS stuff for WORLDLINE
+   if [ -z "$PWA" ];then
+      read -s -p "Enter the DAS password : " PWA
+      export PWA
+   fi
+fi
+
+# -------------------------------------------------------------------
+HOST=`hostname -s`
+echo "HOST = $HOST"
+export TNS_ADMIN=$SBIN/data
+export NLS_LANG="American_America.WE8ISO8859P15"
+ORACLE_TERM=vt220; export ORACLE_TERM
+PS1='[$HOST:$ORACLE_SID]$PWD> '
+export PS1
+PATH=$ORACLE_HOME/bin:$ORACLE_HOME/opmn/bin:$PATH:.
+export PATH;
+
+#########################
+###### BMENU commands ###
+#########################
+
+alias toist='export TNS_ADMIN=$SBIN/data; export TNS_TARGET=ist; rm $SBIN/data/tnsnames.ora; ln -s $SBIN/data/tnsnames.ist $SBIN/data/tnsnames.ora ; export S_USER=$DAS'
+alias torac='export TNS_ADMIN=$SBIN/data; export TNS_TARGET=rac; rm $SBIN/data/tnsnames.ora; ln -s $SBIN/data/tnsnames.rac $SBIN/data/tnsnames.ora ; export S_USER=$DAS'
+alias todg='export TNS_ADMIN=$SBIN/data; export TNS_TARGET=dg; rm $SBIN/data/tnsnames.ora; ln -s $SBIN/data/tnsnames.dg $SBIN/data/tnsnames.ora ; export S_USER=SYS'
+alias tosmon='export TNS_ADMIN=$SBIN/data; export TNS_TARGET=smon; rm $SBIN/data/tnsnames.ora; ln -s $SBIN/data/tnsnames.smon $SBIN/data/tnsnames.ora ;'
+alias tolocal='export TNS_ADMIN=$ORACLE_HOME/network/admin; S_USER=SYS; unset DAS'
+alias ssp=$SBINS/ssp
+
+
+alias vpa='vi ~/smenu/ad_wl'
+alias ba='. ~/smenu/ad'
+
+# remove these alias if defined
+if [ "$(type -t ls)" = 'alias' ]; then
+  unalias ls  
+fi
+if [ "$(type -t vi)" = 'alias' ]; then
+   unalias vi   
+fi
+
+export https_proxy=http://proxy-prod-scl.svc.meshcore.net:3128
+
+
+alias lsrv='$SBIN/standalone/sworldine_db_server.sh'

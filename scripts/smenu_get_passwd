@@ -1,0 +1,72 @@
+#!/bin/bash
+# set -xv
+# Read the password for an oracle instance
+
+if [ "$1" = "-r" ];then
+   echo "$2" | tr "0-9a-zA-Z" "A-Za-z0-9"
+   exit
+fi
+
+S_USER=${S_USER:-$1}
+PASSWORD_FILE=$SBIN/scripts/.passwd
+
+if [ -z "$ORACLE_SID" ];then
+   echo " No Oracle SID "
+   exit 2
+fi
+
+var=`grep -i "^${ORACLE_SID}:" $SBIN/data/smenu_default_user.txt | cut -f2 -d:`
+if [ -n "$var" ];then
+   # there is a prefered user, so we set it and the search of the passwd in $SBINS/.passwd will use this couple SID:S_USER
+   export S_USER=$var
+elif [  "$S_USER" =  "$DAS" -a -n "$PWA" ];then
+   # there is a DAS + password already exported, check if there is not a prefered specific user for this DB
+   CONNECT_STRING="$S_USER/${PWA}@$ORACLE_SID"   # exported a fixed passwd in your environement 
+fi
+#else
+  # var=`grep -i "^${ORACLE_SID}:${S_USER}:"  $PASSWORD_FILE | cut -f3 -d: | head -1`
+#fi
+
+if [ -n "$var" ] ;then
+   LOCAL=TRUE
+else
+   LOCAL=FALSE
+fi
+if [ -n "$S_USER" -a -n "$DAS" -a "$S_USER" != "SYS" -a "$LOCAL" = FALSE ];then
+    # redefine the smenu_ key to current sid
+    CONNECT_STRING="$S_USER/${PWA}@$ORACLE_SID"   # exported a fixed passwd in your environement 
+elif [ -f $PASSWORD_FILE ];then
+    if [ ! -r ${PASSWORD_FILE} ]; then
+       echo "Cannot read file ${PASSWORD_FILE}"
+       exit 2
+    fi
+    #var=`grep -i "^${ORACLE_SID}:${S_USER}:"  $PASSWORD_FILE | cut -f3 -d: | head -1 | awk '{ print toupper($1) }'`
+    # On request of Koen Serry and since 11g and password sensitive, we suppress the toupper
+    passwd=`grep -i "^${ORACLE_SID}:${S_USER}:"  $PASSWORD_FILE | cut -f3 -d: | head -1`
+    if [ "$S_USER" = "SYS" -o "$S_USER" = "sys" ];then
+      if [ -z "$passwd" ];then
+         # modification to connect using wallet. must have add wallet address in sqlnet.ora
+         susr=`grep -i "^${ORACLE_SID}:SYS" $SBIN/data/smenu_default_user.txt | cut -f2 -d: `
+         if [ -n "$susr" ];then
+            CONNECT_STRING='/@$ORACLE_SID as sysdba'
+         else
+        
+            CONNECT_STRING='/ as sysdba'
+         fi
+      else
+         CONNECT_STRING="SYS/$passwd as SYSDBA"
+         PASSWD="$passwd as SYSDBA"
+      fi
+    elif [ -z "passwd"  ];then
+         echo " $S_USER password : \c"
+         stty echo
+         stty -echo
+         read passwd
+         stty echo
+         PASSWD=`echo $passwd | awk '{print $1}'`
+         CONNECT_STRING=$S_USER/$PASSWD
+    else
+      PASSWD=$passwd
+      CONNECT_STRING="$S_USER/$PASSWD"
+    fi
+fi
