@@ -1,5 +1,7 @@
 #!/bin/bash
-# this is an add on of smenu specific to Wordline
+# this is an add on of smenu case you have a LDAP user to connect into Oracle
+# add this call in $SBIN/scripts/addpar.sh
+# adapt the PATHS
 #set -x
 
 # -------- fill these once for all for your install -----------------
@@ -69,7 +71,4 @@ if [ "$(type -t vi)" = 'alias' ]; then
    unalias vi   
 fi
 
-export https_proxy=http://proxy-prod-scl.svc.meshcore.net:3128
 
-
-alias lsrv='$SBIN/standalone/sworldine_db_server.sh'
