@@ -27,6 +27,7 @@ while [ -n "$1" ]; do
    case "$1" in
        -size  ) CHANGE_SIZE=$2 ; shift ;;
            -s ) STATS=TRUE ;;
+           -i ) INSTANCE=$2 ; shift ;; # for thread distinction in RAC
           -la ) HIST=TRUE 
                 if [ -n "$2" ];then
                     NDAYS=$2
@@ -48,6 +49,10 @@ if [  "x-$CONNECT_STRING" = "x-" ];then
    exit 0
 fi
 
+
+if [ -n "$INSTANCE" ];then
+   AND_INST=" and thread# = $INSTANCE" 
+fi
 if [ -n "$HIST" ];then
 #
 # A great classic SQL, by Tom Kyte?

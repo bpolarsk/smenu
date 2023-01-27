@@ -1,6 +1,8 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #                 visit  "www.smenu.org" for latest Smenu release                        +
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+13-12-2022  :   Added sts -adv' to list advisors status
+07-12-2022  :   Added 'rdl -la -i <inst>' to distinguish on which node the redo activity took place
 23-11-2022  :   Added 'aw -writes' to display IO & direct writes stats in conjuction with '-sl' '-each'
 21-11-2022  :   Added 'soc -s' 'soc -curr' 'soc -cpt' 'soc -prg' to investigate open cursors
                 when you hit 'too many open cursors'
