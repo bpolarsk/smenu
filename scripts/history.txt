@@ -1,6 +1,7 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #                 visit  "www.smenu.org" for latest Smenu release                        +
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+14-03-2023  :   Altered asm -f to reflect non mirrored free space
 13-12-2022  :   Added sts -adv' to list advisors status
 07-12-2022  :   Added 'rdl -la -i <inst>' to distinguish on which node the redo activity took place
 23-11-2022  :   Added 'aw -writes' to display IO & direct writes stats in conjuction with '-sl' '-each'

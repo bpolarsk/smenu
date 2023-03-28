@@ -114,6 +114,7 @@ function help {
        sts -al -bid <n> [-eid <n>] : view all message of alert log between 2 id.
        sts -lc             : List category counts in controlfiles
        sts -tns            : regen tnsnanes.ora from grid control. 
+       sts -adv            : List advisors status
 
        sts -h              : this help
        sts -v              : Verbose
@@ -137,6 +138,7 @@ ROWNUM=30
 while [ -n "$1" ]
 do
   case "$1" in
+    -adv  ) CHOICE=LIST_ADV;;
     -al  ) CHOICE=ALERT_LOG;;
     -cpt ) COUNT=TRUE ;;
     -id ) RECORD_ID="RECORD_ID as id," ;;
@@ -208,7 +210,19 @@ fi
 # ..................................................................
 # meta for kruger manager partitions
 # ..................................................................
-if [ "$CHOICE" = "MANAGED_PARTS" ];then
+if [ "$CHOICE" = "LIST_ADV" ];then
+SQL="
+SELECT client_name, status FROM dba_autotask_client;
+
+prompt to disable run :
+prompt SQL> EXEC DBMS_AUTO_TASK_ADMIN.DISABLE(client_name=>'sql tuning advisor', operation=>NULL, window_name=>NULL);
+prompt SQL> EXEC DBMS_AUTO_TASK_ADMIN.DISABLE(client_name=>'auto space advisor', operation=>NULL, window_name=>NULL);
+prompt SQL> EXEC DBMS_AUTO_TASK_ADMIN.DISABLE(client_name=>'auto optimizer stats collection', operation=>NULL, window_name=>NULL);
+"
+# ..................................................................
+# meta for kruger manager partitions
+# ..................................................................
+elif [ "$CHOICE" = "MANAGED_PARTS" ];then
  if [ -s "$fowner" ];then
     echo "I need an owner"
     exit

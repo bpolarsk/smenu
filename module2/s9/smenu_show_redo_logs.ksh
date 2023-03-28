@@ -124,7 +124,7 @@ SUBSTR(TO_CHAR(first_time, 'YYYY/MM/DD HH:MI:SS'),1,10) DAY
 , COUNT(*) TOTAL
 FROM
 v\$log_history a
-where first_time > trunc(sysdate) - $NDAYS
+where first_time > trunc(sysdate) - $NDAYS $AND_INST
 GROUP BY SUBSTR(TO_CHAR(first_time, 'YYYY/MM/DD HH:MI:SS'),1,10)
 ORDER BY SUBSTR(TO_CHAR(first_time, 'YYYY/MM/DD HH:MI:SS'),1,10)  desc;
 EOF

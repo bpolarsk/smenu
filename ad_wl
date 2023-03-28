@@ -9,11 +9,13 @@ export EDITOR=vi
 
 export TNS_TARGET=ist
 # adapt
-if [  -z "$ORACLE_BASE" ];then
-  ORACLE_BASE=/oraapp01/app/oracle; export ORACLE_BASE
+if [  -n "$ORACLE_BASE" ];then
+    echo "ORACLE_BASE is not defined"
+    exit
 fi
-if [  -z "$ORACLE_HOME" ];then
-   ORACLE_HOME=$ORACLE_BASE/product/RDBMS/12102; export ORACLE_HOME
+if [  -n "$ORACLE_HOME" ];then
+    echo "ORACLE_HOME is not defined"
+    exit
 fi
 
 # this adapted DAS stuff for WORLDLINE

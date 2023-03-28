@@ -7,6 +7,7 @@
 #           instead of typing mine. I need to be slashed a bit like slaves in pharaonic time
 #           in order to revigorate a bit.
 #           12 December 2007 added 'asm -mv' to move easily files in ASM from diskgroups
+#
 HOST=`hostname`
 PAR1=$1
 
@@ -46,7 +47,7 @@ do
              col failgroup format a10
              select group_number, disk_number, mount_status, header_status, state, path, failgroup from v\$asm_disk;" ;;
     -dv ) CHOICE="DV" ;;
-     -f ) SQL="select group_number, name, total_mb, free_mb, state, type from v\$asm_diskgroup;" ;;
+     -f ) SQL="select group_number, name, total_mb, free_mb, USABLE_FILE_MB,round(USABLE_FILE_MB/free_mb*100,1) pct_free, state, type from v\$asm_diskgroup;" ;;
      -g ) SQL="SELECT group_number,name,state,TOTAL_MB, FREE_MB,USABLE_FILE_MB, BLOCK_SIZE ,REQUIRED_MIRROR_FREE_MB from v\$asm_diskgroup;" ;;
      -l ) CHOICE="FILE" ;;
     -mv ) CHOICE=MV ; FILE_ID=$2; DISKGROUP=$3 ; shift; shift ;;
