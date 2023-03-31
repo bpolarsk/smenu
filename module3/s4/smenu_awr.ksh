@@ -191,7 +191,7 @@ STATISTICS & EVENT:
     aw  -hist -u  <OWNER> [-t<table>] 
          -b <beg snap> -e <end snap>         : List the history stats for a table
     aw -sts                                  : List statistics deviance
-
+    aw -shis				     : List Resource limit history
 
 AWR REPORTS:
 
@@ -323,6 +323,7 @@ do
      -lb ) METHOD=SHOW_BIND ; SQL_ID=$2; shift; EXECUTE=YES;;
     -lsm ) METHOD=LIST_LAST_METRIC; ROWNUM=50 ; EXECUTE=YES;;
     -lbs ) METHOD=LIST_BASELINE; EXECUTE=YES ;;
+    -shis) METHOD=LIST_STATHIS; EXECUTE=YES ;;
     -lbw ) METHOD=LBW ; EXECUTE=YES ;;
     -len ) LEN_TEXT=$2; shift ;;
    -lprf ) METHOD=LIST_ADV_PRF;
@@ -3500,6 +3501,15 @@ select BASELINE_ID,BASELINE_NAME, START_SNAP_ID, to_char(START_SNAP_TIME,'YYYY-M
        END_SNAP_ID, to_char(END_SNAP_TIME,'YYYY-MM-DD HH24:MI:SS')END_SNAP_TIME
        from dba_hist_baseline
 ) where rownum<=$ROWNUM;
+"
+# -----------------------------------------------------------------------------------------------
+elif [ "$METHOD" = "LIST_STATHIS" ];then
+if [ -n "$SNAP1" ];then
+   AND_SNAP1="snap_id = $SNAP1"
+fi
+SQL="
+col RESOURCE_NAME for a23
+select snap_id, resource_name, current_utilization, max_utilization, initial_allocation, limit_value from DBA_HIST_RESOURCE_LIMIT where $AND_SNAP1;
 "
 # -----------------------------------------------------------------------------------------------
 elif [ "$METHOD" = "LIST_SNAP" ];then
