@@ -1069,13 +1069,14 @@ col last_active_time for a12 head 'Last active| time' justify c
 col IO_WAIT head 'io wait|avg(ms)|per exec' justify c
 col Conc_wait head 'Concurent|wait avg(ms)|per exec' justify c
 col to_execs head 'Total|execs' justify c
+col application_wait_time head 'WAIT 4 APP' justify c
 break on last_active_time on report
- select $INST_ID to_char(last_active_time,'HH24:MI:SS')last_active_time, sql_id, child_number chld, 
+ select $INST_ID to_char(last_active_time,'HH24:MI:SS')last_active_time,application_wait_time, sql_id, child_number chld,
         executions to_execs,
-        decode (nvl(executions,0),0,0,BUFFER_GETS/executions) avg_gets, 
-        decode(nvl(executions,0),0,0,DISK_READS/executions) DISK_READS, 
+        decode (nvl(executions,0),0,0,BUFFER_GETS/executions) avg_gets,
+        decode(nvl(executions,0),0,0,DISK_READS/executions) DISK_READS,
         round(decode (nvl(executions,0),0,0,USER_IO_WAIT_TIME/executions/1000),1) IO_WAIT,
-        round(decode(nvl(executions,0),0,0,CONCURRENCY_WAIT_TIME/executions/1000),1) Conc_wait, 
+        round(decode(nvl(executions,0),0,0,CONCURRENCY_WAIT_TIME/executions/1000),1) Conc_wait,
         PARSING_SCHEMA_NAME owner,
           substr(SQL_TEXT,1,$FLEN) sql_text
         from sys.${G}v_\$sql where last_active_time > sysdate-$LAST_SEC/86400 $AND_OWNER order by last_active_time desc;
