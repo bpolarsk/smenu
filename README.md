@@ -1,2 +1,2 @@
 # smenu
-Semnu is a set of hierachical scripts to manage Oracle database
+Smenu is a set of hierachical scripts to manage Oracle database
