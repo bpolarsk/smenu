@@ -111,6 +111,7 @@ function help
             sq -pl                                   #  show sql with difference execution time
             sq -pv  [ -day <nn>]                     #  Show sql with execution speed variations, limit to last nn days, default is 1
 
+            sq -eh <sqlid> [-d <DBID>]               #  List SQL Execution history correlated with DB events & waits  
             sq -ph <sqlid> [-d <DBID>]               #  List sql history executions plan and perfs  
             sq -pe <sqlid> [-d <DBID>]               #  List sql history events 
             sq -pb <sqlid> [-d <DBID>]               #  List binds mismatch reason for SQL
@@ -215,6 +216,12 @@ do
                fi
                SQL_ID=$2; shift;;
          -ph ) ACTION=PLH ;
+               if [ -z "$2" ];then
+                   echo "I need an sql id"
+                   exit
+               fi
+               SQL_ID=$2; shift;;
+          -eh ) ACTION=ELH ;
                if [ -z "$2" ];then
                    echo "I need an sql id"
                    exit
@@ -1271,6 +1278,97 @@ prompt     Rowset limited to first $NROWNUM rows
 # .........................
 #  Attempts to find SQL statements with plan instability
 # .........................
+
+elif [ "$ACTION" = "ELH" ];then
+#----------------------------------------------------------------------------------------
+#-- Author:   Oskars Stabulnieks
+#----------------------------------------------------------------------------------------
+SQL_ID=`get_sql_id $SQL_ID`
+   if [ -z "$SQL_ID" ];then
+        echo "I need an sql id"
+        exit
+   fi
+   if [ -z "$AND_DBID" ];then
+      var=`get_dbid`
+      AND_DBID=" and s.dbid=$var "
+   fi
+
+SQL="
+set lines 310
+col execs for 999999999
+col avg_etime for 999D99  head 'Average|exec|Time(ms)' justify c
+col etime for 999999999.9999 head 'Total exec|Time(s)' justify c
+col avg_lio for 999999999 head 'Avg Gets'
+col begin_interval_time for a15 head 'Begin interval| time' justify c
+col snap_id form 9999999999 head 'Snap'
+col node for 9999 head 'Inst'
+col plan_hash_value head 'Plan hash| Value'
+col Execs for 99999999 head 'Execs'
+col OPTIMIZER_COST head 'Cost' for 9999999
+col dreads head 'Average|Disk|Reads' format 99999999 justify c
+col twaits head 'Wait|time(ms)|per exec' format 999999999 justify c
+col apwait_total for 9999999999999999.9999 head 'App Wait' justify c
+col event head 'Event' for a18
+col wait_class for a10 head 'Class'
+col SESSION_ID head 'SID' format 99999999 justify c
+col WAIT_TIME head 'WAIT' format 99999999 justify c
+col TIME_WAITED head 'WAITED' format 99999999 justify c
+col BLOCKING_SESSION_SERIAL# head 'BSID' format 99999999 justify c
+
+break on startup_time skip 1
+SELECT
+  ss.snap_id,
+  ss.instance_number node,
+  TO_CHAR(ss.begin_interval_time, 'DD-MM HH24:MI:SS') begin_interval_time,
+  s.sql_id,
+  s.APWAIT_TOTAL,
+  s.OPTIMIZER_COST,
+  NVL(s.executions_delta, 0) execs,
+  ROUND(s.elapsed_time_delta / 1000000, 3) etime,
+  CASE
+    WHEN s.executions_delta IS NULL THEN ROUND(s.elapsed_time_delta / 1000, 3)
+    WHEN s.executions_delta = 0 THEN ROUND(s.elapsed_time_delta / 1000, 3)
+    ELSE ROUND((s.elapsed_time_delta / s.executions_delta) / 1000, 3)
+  END avg_etime,
+  CASE
+    WHEN s.executions_delta IS NULL THEN s.buffer_gets_delta
+    WHEN s.executions_delta = 0 THEN s.buffer_gets_delta
+    ELSE s.buffer_gets_delta / s.executions_delta
+  END avg_lio,
+  CASE
+    WHEN s.executions_delta IS NULL THEN s.DISK_READS_DELTA
+    WHEN s.executions_delta = 0 THEN s.DISK_READS_DELTA
+    ELSE s.DISK_READS_DELTA / s.executions_delta
+  END dreads,
+ CASE
+    WHEN s.executions_delta IS NULL THEN ROUND((s.IOWAIT_DELTA + s.CLWAIT_DELTA + s.APWAIT_DELTA + s.CCWAIT_DELTA) / 1000, 3)
+    WHEN s.executions_delta = 0 THEN ROUND((s.IOWAIT_DELTA + s.CLWAIT_DELTA + s.APWAIT_DELTA + s.CCWAIT_DELTA) / 1000, 3)
+    ELSE ROUND((s.IOWAIT_DELTA + s.CLWAIT_DELTA + s.APWAIT_DELTA + s.CCWAIT_DELTA) / (1000 * s.executions_delta), 3)
+  END twaits,
+  ash.EVENT,
+  ash.WAIT_CLASS,
+  ash.SESSION_ID,
+  ash.USER_ID,
+  ash.WAIT_TIME / 10 as TWAIT_MS,
+  ash.TIME_WAITED / 10 as WAITED_MS,
+  ash.BLOCKING_SESSION_SERIAL#
+FROM
+  DBA_HIST_SQLSTAT s
+JOIN
+  DBA_HIST_SNAPSHOT ss
+  ON s.dbid = ss.dbid
+  AND ss.snap_id = s.snap_id
+  AND ss.instance_number = s.instance_number
+LEFT JOIN
+  DBA_HIST_ACTIVE_SESS_HISTORY ash
+  ON ash.SQL_ID = s.sql_id
+  AND ash.SNAP_ID = ss.snap_id
+WHERE
+  s.sql_id = '$SQL_ID'
+  AND s.dbid = ss.dbid $AND_DBID
+ORDER BY
+  3 DESC, 1, 2;
+"
 
 elif [ "$ACTION" = "EXEC_VAR_SPEED" ];then
 #----------------------------------------------------------------------------------------
