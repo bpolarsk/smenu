@@ -1,6 +1,8 @@
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #                 visit  "www.smenu.org" for latest Smenu release                        +
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+10-05-2023  :   Altered sq -m for additional detail on waits.
+10-05-2023  :   Added sq -eh for detailed information on query performance corelating db events.
 14-03-2023  :   Altered asm -f to reflect non mirrored free space
 13-12-2022  :   Added sts -adv' to list advisors status
 07-12-2022  :   Added 'rdl -la -i <inst>' to distinguish on which node the redo activity took place
@@ -531,3 +533,4 @@ bpa: Bernard Polarski
 RRE: Roelens Rens
 PTI: Pierre Timmermans
 IZA: Iza Kanea
+OST: Oskars Stabulnieks
