@@ -230,7 +230,7 @@ SQL="
 set long 200
 col blocking_session for 9999999 head 'Blocking|Session'
 col program for a20 truncate
-col session_id for a5
+col session_id CLEAR
 set feed on
 col sql_text for a90
 col rn noprint
@@ -256,7 +256,7 @@ and a.sample_time > sysdate - $PAR
 set long 200
 col blocking_session for 9999999 head 'Blocking|Session'
 col program for a20 truncate
-col session_id for a5
+col session_id CLEAR
 set feed on
 col sql_text for a95
     SELECT  
